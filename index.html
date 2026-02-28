@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Guides</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+    }
+    .kids {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .kid-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 2rem 2.5rem;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s, box-shadow 0.15s;
+      min-width: 160px;
+    }
+    .kid-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+    .kid-card .avatar {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+    }
+    .kid-card h2 {
+      font-size: 1.25rem;
+      color: #2c3e50;
+      text-transform: capitalize;
+    }
+  </style>
+</head>
+<body>
+  <h1>Study Guides</h1>
+  <div class="kids">
+    <a class="kid-card" href="julian/index.html">
+      <div class="avatar">📚</div>
+      <h2>Julian</h2>
+    </a>
+    <a class="kid-card" href="mj/index.html">
+      <div class="avatar">📚</div>
+      <h2>MJ</h2>
+    </a>
+    <a class="kid-card" href="zach/index.html">
+      <div class="avatar">📚</div>
+      <h2>Zach</h2>
+    </a>
+  </div>
+</body>
+</html>

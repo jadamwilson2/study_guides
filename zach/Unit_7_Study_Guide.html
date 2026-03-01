@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 7: Contact &amp; Conquest — Study Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:        #1B2A4A;
+      --ocean:       #1A5276;
+      --gold:        #C9A227;
+      --terra:       #A0522D;
+      --green:       #2D6A4F;
+      --red:         #8B1A1A;
+      --parchment:   #F5F0E8;
+      --text:        #1a1a2e;
+      --light-gold:  #FFF8E7;
+      --light-blue:  #EAF4FB;
+      --light-green: #E8F5EE;
+      --light-red:   #FCECEA;
+      --light-terra: #FBF0E8;
+      --light-purple:#F3EAF9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--parchment);
+      color: var(--text);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--ocean) 60%, #0d3b5e 100%);
+      color: white;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 30px,
+        rgba(255,255,255,0.03) 30px,
+        rgba(255,255,255,0.03) 60px
+      );
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(201,162,39,0.25);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--gold);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      margin-bottom: 0.5rem;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.88;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── Sticky Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      padding: 0.6rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    nav a:hover {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+
+    /* ── Main Layout ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 60px;
+    }
+
+    /* ── Section Headers ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 3px solid var(--gold);
+    }
+    .section-header .icon { font-size: 1.6rem; }
+    .section-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: var(--navy);
+    }
+    h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      color: var(--ocean);
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    /* ── Content Boxes ── */
+    .box {
+      background: white;
+      border-radius: 8px;
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      border-left: 4px solid var(--gold);
+    }
+    .box-blue   { border-left-color: var(--ocean); background: var(--light-blue); }
+    .box-green  { border-left-color: var(--green); background: var(--light-green); }
+    .box-red    { border-left-color: var(--red);   background: var(--light-red); }
+    .box-terra  { border-left-color: var(--terra); background: var(--light-terra); }
+    .box-gold   { border-left-color: var(--gold);  background: var(--light-gold); }
+    .box-purple { border-left-color: #6A4C93;      background: var(--light-purple); }
+
+    .box p, .box li { margin-bottom: 0.35rem; }
+    .box ul, .box ol { padding-left: 1.4rem; }
+    .box strong { color: var(--navy); }
+
+    /* ── Grid ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* ── Content Targets List ── */
+    .targets ol {
+      padding-left: 1.5rem;
+    }
+    .targets li {
+      margin-bottom: 0.6rem;
+      font-style: italic;
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 1rem 0;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 0.85rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.85rem;
+      top: 0.45rem;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .timeline-item .date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--terra);
+      font-weight: 600;
+    }
+
+    /* ── Maps ── */
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .map-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .map-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: #ddd;
+    }
+    .map-card .map-caption {
+      padding: 0.75rem 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      color: var(--navy);
+      border-top: 2px solid var(--gold);
+    }
+    .map-card .map-caption span {
+      display: block;
+      font-family: 'Crimson Pro', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: 0.2rem;
+    }
+
+    /* ── Videos ── */
+    .video-list { display: grid; gap: 0.85rem; }
+    .video-item {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      text-decoration: none;
+      color: inherit;
+      border-left: 4px solid var(--ocean);
+      transition: box-shadow 0.15s;
+    }
+    .video-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .video-item .vicon { font-size: 1.8rem; flex-shrink: 0; }
+    .video-item .vtitle {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--ocean);
+      margin-bottom: 0.2rem;
+    }
+    .video-item .vdesc { font-size: 0.9rem; color: #555; }
+
+    /* ── Flashcards ── */
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.9rem;
+    }
+    .flashcard {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.09);
+      overflow: hidden;
+    }
+    .flashcard .term {
+      background: var(--navy);
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      padding: 0.6rem 0.9rem;
+      font-weight: 600;
+    }
+    .flashcard .def {
+      padding: 0.65rem 0.9rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    /* Color-code by topic */
+    .fc-latin .term  { background: var(--terra); color: #fff; }
+    .fc-africa .term { background: var(--green); color: #fff; }
+    .fc-europe .term { background: var(--ocean); color: #fff; }
+    .fc-conquest .term { background: var(--red); color: #fff; }
+    .fc-slave .term  { background: #4a3728; color: #e8d5c0; }
+
+    /* ── Quiz ── */
+    .quiz-q {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .quiz-q .qnum {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      color: var(--ocean);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.3rem;
+    }
+    .quiz-q .qtext { font-weight: 600; margin-bottom: 0.6rem; }
+    .quiz-q ol {
+      list-style-type: upper-alpha;
+      padding-left: 1.5rem;
+    }
+    .quiz-q ol li { margin-bottom: 0.25rem; }
+    .quiz-q details {
+      margin-top: 0.75rem;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 0.5rem;
+    }
+    .quiz-q details summary {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      color: var(--ocean);
+      cursor: pointer;
+      letter-spacing: 0.04em;
+    }
+    .quiz-q .answer {
+      margin-top: 0.4rem;
+      background: var(--light-green);
+      border-left: 3px solid var(--green);
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.92rem;
+    }
+    .quiz-q .answer strong { color: var(--green); }
+
+    /* ── Rapid Review ── */
+    .rapid-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 640px) { .rapid-grid { grid-template-columns: 1fr; } }
+    .rapid-box {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem 1.1rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .rapid-box h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      color: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .rapid-box ul { padding-left: 1.2rem; }
+    .rapid-box li { font-size: 0.88rem; margin-bottom: 0.25rem; }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-block;
+      margin: 1.5rem 0 0;
+      color: #888;
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+    .back-link:hover { color: var(--navy); }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">9th Grade Honors World History</div>
+  <h1>Unit 7: Contact &amp; Conquest</h1>
+  <p class="subtitle">Ancient Civilizations of Latin America &amp; Africa &nbsp;|&nbsp; European Exploration &nbsp;|&nbsp; The Atlantic World</p>
+</div>
+
+<!-- Nav -->
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#latin-america">Latin America</a>
+  <a href="#africa">Africa</a>
+  <a href="#exploration">Exploration</a>
+  <a href="#conquest">Conquest</a>
+  <a href="#slave-trade">Slave Trade</a>
+  <a href="#maps">Maps</a>
+  <a href="#videos">Videos</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#rapid-review">Rapid Review</a>
+</nav>
+
+<div class="container">
+
+  <!-- ═══════════════════════════════════════════════ OVERVIEW -->
+  <section id="overview">
+    <div class="section-header">
+      <span class="icon">🌐</span>
+      <h2>Unit Overview</h2>
+    </div>
+
+    <div class="box box-gold">
+      <p>Unit 7 examines how ancient civilizations in Latin America and Africa flourished independently — and how European exploration, conquest, and the slave trade transformed (and devastated) those worlds after 1492. This is the story of contact between worlds that had been separated for tens of thousands of years.</p>
+    </div>
+
+    <h3>Key Content Targets</h3>
+    <div class="targets">
+      <ol>
+        <li>How were Latin American and West (and East) African civilizations shaped by their unique geography?</li>
+        <li>How did pre-Columbian civilizations in the Americas (Aztecs, Maya, Incas) develop and what were their greatest achievements?</li>
+        <li>How did ancient civilizations in North and West Africa (Kush and Axum) thrive during the ancient and classical period?</li>
+        <li>How did civilizations in Africa (Ghana, Mali, Songhai, Great Zimbabwe, Swahili) develop during the 15th and 16th centuries?</li>
+        <li>What were the primary motivations for European (principally Iberian) exploration in the 15th and 16th centuries?</li>
+        <li>How did Europeans engage in voyages of exploration — and how did they apply ideas from other civilizations?</li>
+        <li>How did transatlantic slavery affect both Africa and the Americas?</li>
+        <li>What were the social, economic, and political changes that resulted from increased global trade and European exploration?</li>
+      </ol>
+    </div>
+
+    <h3>Key Dates Timeline</h3>
+    <div class="timeline">
+      <div class="timeline-item"><span class="date">c. 250–900 CE</span> — Classic Maya civilization flourishes</div>
+      <div class="timeline-item"><span class="date">c. 1000–1450 CE</span> — Great Zimbabwe at its height; Mali Empire rises</div>
+      <div class="timeline-item"><span class="date">1312–1337</span> — Mansa Musa rules Mali; makes famous pilgrimage to Mecca (1324)</div>
+      <div class="timeline-item"><span class="date">1400s</span> — Aztec Empire expands; Inca Empire at height</div>
+      <div class="timeline-item"><span class="date">1419–1460</span> — Prince Henry the Navigator sponsors Portuguese exploration</div>
+      <div class="timeline-item"><span class="date">1488</span> — Bartolomeu Dias rounds the Cape of Good Hope</div>
+      <div class="timeline-item"><span class="date">1492</span> — Columbus reaches the Americas; Reconquista ends in Spain</div>
+      <div class="timeline-item"><span class="date">1494</span> — Treaty of Tordesillas divides the New World</div>
+      <div class="timeline-item"><span class="date">1498</span> — Vasco da Gama reaches India</div>
+      <div class="timeline-item"><span class="date">1519–1521</span> — Cortés conquers the Aztec Empire</div>
+      <div class="timeline-item"><span class="date">1519–1522</span> — Magellan's crew completes first circumnavigation</div>
+      <div class="timeline-item"><span class="date">1532</span> — Pizarro conquers the Inca Empire</div>
+      <div class="timeline-item"><span class="date">1500s–1800s</span> — Transatlantic Slave Trade operates</div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ LATIN AMERICA -->
+  <section id="latin-america">
+    <div class="section-header">
+      <span class="icon">🏛️</span>
+      <h2>Ancient Latin American Civilizations</h2>
+    </div>
+
+    <h3>Geography of Mesoamerica &amp; South America</h3>
+    <div class="box box-terra">
+      <p><strong>Mesoamerica</strong> — the region from central Mexico to northern Central America — is characterized by jungles, mountains, and coastal plains. It was home to many complex civilizations. The <strong>Andes Mountains</strong> of South America allowed the Inca to build a highland empire with its own micro-climates and agricultural systems.</p>
+    </div>
+
+    <h3>The Maya</h3>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Who &amp; Where:</strong> Mesoamerica (modern Mexico, Guatemala, Belize, Honduras). Classic Period: ~250–900 CE.
+      </div>
+      <div class="box">
+        <strong>Greatest Achievements:</strong>
+        <ul>
+          <li>Complex hieroglyphic writing system</li>
+          <li>Advanced astronomy and calendar systems</li>
+          <li>Monumental pyramids and city-states</li>
+          <li>Mathematics including concept of zero</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Teotihuacan</h3>
+    <div class="box box-terra">
+      <p><strong>"City of the Gods"</strong> — Located in central Mexico, Teotihuacan was one of the largest cities in the ancient world (peak pop. ~125,000). It influenced cultures across Mesoamerica. Famous for the <em>Pyramid of the Sun</em> and <em>Pyramid of the Moon</em>. Its origins and the people who built it remain mysterious.</p>
+    </div>
+
+    <h3>The Aztec Empire</h3>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Capital:</strong> <em>Tenochtitlan</em> — a city of ~200,000 built on an island in Lake Texcoco (modern Mexico City). Connected to the mainland by causeways.<br><br>
+        <strong>Government:</strong> Powerful emperor; conquered peoples paid tribute (goods, labor, sacrificial victims).
+      </div>
+      <div class="box">
+        <strong>Religion &amp; Culture:</strong>
+        <ul>
+          <li><strong>Human sacrifice</strong> — fed the gods, especially the sun god Huitzilopochtli, to keep the world in motion</li>
+          <li><strong>Quetzalcoatl</strong> — feathered serpent god; some sources say Cortés was believed to be his return</li>
+          <li>Pictographic writing and a 365-day solar calendar</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>The Inca Empire</h3>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Capital:</strong> <em>Cuzco</em>, in present-day Peru.<br><br>
+        <strong>Roads:</strong> 25,000+ miles of roads connecting the Andes; llamas carried goods; runners (chasquis) relayed messages.<br><br>
+        <strong>Machu Picchu:</strong> Famous mountain citadel, built ~1450 CE — possibly a royal estate.
+      </div>
+      <div class="box">
+        <strong>Social Structure:</strong>
+        <ul>
+          <li>Sapa Inca (divine emperor) at the top</li>
+          <li>Nobles and priests</li>
+          <li>Commoners — owed mit'a (labor tax)</li>
+        </ul>
+        <strong>Record-keeping:</strong> <em>Quipu</em> — knotted strings encoding data (no written language).
+      </div>
+    </div>
+
+    <div class="box box-gold">
+      <strong>Writing Systems Compared:</strong> The Maya used a fully developed hieroglyphic script. The Aztecs used pictographs. The Inca used the quipu (knotted cords). Each system reflected the culture's priorities and environment.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ AFRICA -->
+  <section id="africa">
+    <div class="section-header">
+      <span class="icon">🌍</span>
+      <h2>Civilizations of Africa</h2>
+    </div>
+
+    <div class="box box-green">
+      <strong>Geography:</strong> Africa's diversity — the Sahara Desert, rainforests, savannas, and coastlines — shaped its civilizations. Trade routes across the Sahara connected West Africa to North Africa and beyond. East African coasts connected to Indian Ocean trade networks.
+    </div>
+
+    <h3>Social Classes &amp; Religion in Africa</h3>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Social Classes:</strong> Varied by region but typically included rulers, warriors, merchants, skilled artisans, farmers, and enslaved people. Societies were often organized around kinship and clan structures.
+      </div>
+      <div class="box">
+        <strong>Religious Practices:</strong> Diverse beliefs including animism (spirits in nature), ancestor worship, and oral traditions. Christianity took hold in Axum; Islam spread through trade into West Africa and along the Swahili Coast.
+      </div>
+    </div>
+
+    <h3>East Africa: Axum &amp; the Ethiopian Orthodox Church</h3>
+    <div class="box">
+      <p><strong>Kingdom of Axum</strong> (modern Ethiopia/Eritrea) was a major trading empire from ~100–940 CE. It controlled trade routes between Africa and the Red Sea/Indian Ocean. Axum converted to Christianity in the 4th century CE under King Ezana, establishing the <strong>Ethiopian Orthodox Church</strong> — one of the oldest Christian institutions in the world. Axum created its own script (<em>Ge'ez</em>) and distinctive obelisks (stelae).</p>
+    </div>
+
+    <h3>West Africa: Ghana, Mali &amp; the Gold-Salt Trade</h3>
+    <div class="box box-green">
+      <p><strong>Empire of Ghana</strong> (c. 700–1200 CE) — the first great West African empire. Controlled trade between the gold fields of the south and the salt mines of the Sahara. Kings taxed all goods entering and leaving, becoming enormously wealthy.</p>
+      <p style="margin-top:0.5rem"><strong>Gold-Salt Trade:</strong> West Africans had gold but lacked salt (essential for survival). North Africans had salt but wanted gold. This complementary need fueled trans-Saharan trade.</p>
+    </div>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Mali Empire</strong> (c. 1230–1600 CE) — succeeded Ghana. Capital at <em>Niani</em>, later Timbuktu became a major center of learning. Founded by <strong>Sundiata Keita</strong> after defeating Sumanguru Kante of the Sosso kingdom.
+      </div>
+      <div class="box">
+        <strong>Mansa Musa</strong> (r. 1312–1337) — greatest ruler of Mali. His pilgrimage to Mecca in 1324, with a caravan of 60,000+ people and vast amounts of gold, put Mali on the map for Europeans and demonstrated Islamic Africa's immense wealth. His generosity caused gold prices to drop across the Mediterranean.
+      </div>
+    </div>
+
+    <h3>Swahili Coast &amp; Great Zimbabwe</h3>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Swahili Coast:</strong> A string of city-states along East Africa's coast (modern Kenya, Tanzania, Mozambique). Cities like Kilwa and Mombasa thrived on Indian Ocean trade. Arab merchants brought Islam; Swahili culture blended African Bantu and Arab-Islamic traditions. The word "Swahili" comes from Arabic (<em>sawahil</em> = coasts).
+      </div>
+      <div class="box">
+        <strong>Great Zimbabwe</strong> (c. 1100–1450 CE) — a stone-walled city in southern Africa (modern Zimbabwe). Center of a powerful trading kingdom that exported gold and cattle. The ruins — built without mortar — are the largest pre-colonial stone structures in sub-Saharan Africa.
+      </div>
+    </div>
+
+    <div class="box box-gold">
+      <strong>Indigenous Slavery in Africa:</strong> Before European contact, slavery existed within Africa but differed significantly from the later transatlantic system. African slavery was not typically hereditary, enslaved people had legal rights in some societies, and many could eventually earn freedom or be absorbed into the community.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ EXPLORATION -->
+  <section id="exploration">
+    <div class="section-header">
+      <span class="icon">⚓</span>
+      <h2>European Exploration</h2>
+    </div>
+
+    <h3>Why Did Europe Explore?</h3>
+    <div class="box box-blue">
+      <ul>
+        <li><strong>Trade:</strong> Desire for direct access to Asian spices, silk, and luxury goods (cutting out Ottoman middlemen)</li>
+        <li><strong>Religion:</strong> Spreading Christianity; finding Christian allies</li>
+        <li><strong>Wealth &amp; Glory:</strong> Personal fame and riches for explorers and their sponsors</li>
+        <li><strong>Reconquista Spirit:</strong> Spain and Portugal, having just expelled Muslims, were primed for "holy war" expansion</li>
+      </ul>
+    </div>
+
+    <h3>The Reconquista</h3>
+    <div class="box">
+      <p>The centuries-long Christian campaign to retake the Iberian Peninsula from Muslim (Moorish) rule. Completed in <strong>1492</strong> when Ferdinand and Isabella captured Granada. This set Spain's mindset — religious zeal + military conquest — directly into the Age of Exploration.</p>
+    </div>
+
+    <h3>Technology of Exploration</h3>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Caravel:</strong> A small, maneuverable Portuguese sailing ship with lateen (triangular) sails that could sail against the wind. It made long ocean voyages possible.
+      </div>
+      <div class="box">
+        <strong>Astrolabe:</strong> A navigational instrument that measures the angle of celestial bodies (sun, stars) above the horizon to determine latitude. Borrowed and refined from Arab and Greek astronomy.
+      </div>
+    </div>
+
+    <h3>Portugal Leads the Way</h3>
+    <div class="box">
+      <p><strong>Prince Henry the Navigator</strong> (1394–1460) — Portuguese prince who established a school of navigation and sponsored systematic exploration of the African coast. He never sailed himself but transformed exploration into a state enterprise.</p>
+    </div>
+
+    <h3>Key Explorers</h3>
+    <div class="grid-2">
+      <div class="box box-blue">
+        <strong>Bartolomeu Dias (1488)</strong> — First European to round the Cape of Good Hope (southern tip of Africa), proving a sea route to the Indian Ocean was possible.
+      </div>
+      <div class="box box-blue">
+        <strong>Vasco da Gama (1498)</strong> — Sailed from Portugal around Africa all the way to India, establishing a direct sea trade route to Asia.
+      </div>
+      <div class="box box-blue">
+        <strong>Christopher Columbus (1492)</strong> — Sailing for Spain, reached the Caribbean (thinking it was Asia). His voyages opened the Americas to European contact.
+      </div>
+      <div class="box box-blue">
+        <strong>Amerigo Vespucci</strong> — Italian explorer who recognized that Columbus had reached previously unknown continents. The Americas are named for him.
+      </div>
+      <div class="box box-blue">
+        <strong>Ferdinand Magellan (1519–1522)</strong> — Led the first expedition to circumnavigate the globe (he died in the Philippines; his crew completed the journey).
+      </div>
+      <div class="box box-blue">
+        <strong>Reconquista Connection — Columbus Revisited:</strong> Columbus's voyages were directly financed by Spain after the Reconquista ended. The same religious-military energy drove expansion to the Americas.
+      </div>
+    </div>
+
+    <h3>Trading Posts &amp; Early Slave Trade</h3>
+    <div class="box box-terra">
+      <p>Portugal established <strong>trading posts</strong> (fortified commercial outposts) along African coasts and in Asia to control trade without large-scale colonization. These posts also became nodes of the early slave trade — by the 1440s, Portuguese traders were transporting enslaved Africans to Europe and Atlantic islands. This set the template for the transatlantic slave trade to follow.</p>
+    </div>
+
+    <h3>Treaty of Tordesillas (1494)</h3>
+    <div class="box box-gold">
+      <p>With Pope Alexander VI's mediation, Spain and Portugal divided the entire non-Christian world between themselves along a line 370 leagues west of the Cape Verde Islands. Spain got the Americas (except Brazil); Portugal got Africa, Asia, and Brazil. Other European powers ignored this treaty entirely.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ CONQUEST -->
+  <section id="conquest">
+    <div class="section-header">
+      <span class="icon">⚔️</span>
+      <h2>European Conquest &amp; Colonization</h2>
+    </div>
+
+    <h3>Why Did Europeans Win So Quickly?</h3>
+    <div class="box box-red">
+      <ul>
+        <li><strong>Smallpox and disease</strong> — killed up to 90% of some indigenous populations; devastated military capacity before battles</li>
+        <li><strong>Technology</strong> — steel weapons, armor, and horses vs. stone and obsidian weapons</li>
+        <li><strong>Alliances</strong> — conquistadors exploited existing political tensions (e.g., peoples conquered by Aztecs welcomed Cortés as a liberator)</li>
+        <li><strong>Political disruption</strong> — civil wars within both the Aztec and Inca empires weakened resistance</li>
+      </ul>
+    </div>
+
+    <h3>Hernán Cortés &amp; the Aztec Empire (1519–1521)</h3>
+    <div class="grid-2">
+      <div class="box">
+        <p>Spanish conquistador Cortés landed in Mexico with ~500 soldiers. He allied with peoples who resented Aztec rule (especially the Tlaxcalans) and marched on Tenochtitlan. Emperor <strong>Montezuma II</strong> received him initially; Cortés eventually took him hostage. After a period of conflict, smallpox swept through Tenochtitlan, killing Montezuma's successor. By 1521, the Aztec Empire had fallen.</p>
+      </div>
+      <div class="box">
+        <p><strong>Doña Marina (La Malinche)</strong> — An indigenous Nahuatl-speaking woman given to Cortés as a slave who became his interpreter, advisor, and partner. Her translation and cultural knowledge were indispensable to the conquest. She is a complex figure — viewed by some as a traitor to her people, by others as a survivor.</p>
+      </div>
+    </div>
+
+    <h3>Francisco Pizarro &amp; the Inca Empire (1532)</h3>
+    <div class="box">
+      <p>Pizarro arrived in Peru with ~180 soldiers during an Inca civil war between two brothers (Huáscar and Atahualpa). He captured Emperor Atahualpa, collected an enormous ransom in gold and silver, then executed him anyway. Without their emperor, the Inca political structure collapsed. By 1535, Spanish control was established.</p>
+    </div>
+
+    <h3>The Colonial System</h3>
+    <div class="grid-2">
+      <div class="box box-red">
+        <strong>Encomienda:</strong> A grant from the Spanish crown giving a conquistador the right to demand labor and tribute from a specific group of indigenous people. In practice, it was often brutal forced labor.
+      </div>
+      <div class="box box-red">
+        <strong>Viceroys:</strong> Royal governors who ruled Spanish colonial territories in the king's name. New Spain (Mexico) and Peru were the two main viceroyalties.
+      </div>
+      <div class="box box-red">
+        <strong>Portuguese Brazil:</strong> Under the Treaty of Tordesillas, Portugal claimed Brazil. They initially traded for wood (pau-brasil) but eventually established sugar plantations worked by enslaved Africans.
+      </div>
+      <div class="box box-red">
+        <strong>Bartolomé de Las Casas:</strong> A Spanish priest who initially participated in the conquest system but became its fiercest critic. His writings documented Spanish abuses and argued for indigenous rights — an early advocate for human rights. His lobbying led to the New Laws of 1542.
+      </div>
+    </div>
+
+    <h3>Colonial Social Hierarchy</h3>
+    <div class="box box-gold">
+      <ol style="padding-left:1.4rem; margin-top:0.3rem">
+        <li><strong>Peninsulares</strong> — Spanish-born colonists; highest status, held all major government posts</li>
+        <li><strong>Creoles</strong> — American-born people of full European descent; wealthy but excluded from top offices</li>
+        <li><strong>Mestizos</strong> — mixed European and indigenous ancestry</li>
+        <li><strong>Indigenous peoples</strong> — subject to tribute and labor demands</li>
+        <li><strong>Enslaved Africans</strong> — at the bottom; brought to replace indigenous labor</li>
+      </ol>
+    </div>
+
+    <h3>The Columbian Exchange</h3>
+    <div class="grid-2">
+      <div class="box box-green">
+        <strong>From Americas → Old World:</strong>
+        <ul>
+          <li>Potatoes, corn (maize), tomatoes, chocolate, tobacco, peanuts, peppers, squash, beans</li>
+          <li>New diseases for Europeans (none significant)</li>
+        </ul>
+      </div>
+      <div class="box box-terra">
+        <strong>From Old World → Americas:</strong>
+        <ul>
+          <li>Horses, cattle, pigs, sheep, chickens</li>
+          <li>Wheat, rice, sugar cane, bananas</li>
+          <li>Devastating diseases: smallpox, measles, influenza, typhus</li>
+          <li>Iron tools, gunpowder weapons</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ SLAVE TRADE -->
+  <section id="slave-trade">
+    <div class="section-header">
+      <span class="icon">⛓️</span>
+      <h2>The Transatlantic Slave Trade (Atlantic System)</h2>
+    </div>
+
+    <div class="box box-red">
+      <p>The transatlantic slave trade was one of history's most devastating forced migrations. Between the 1400s and 1800s, approximately <strong>12–15 million Africans</strong> were forcibly transported to the Americas. It reshaped Africa, the Americas, and Europe permanently.</p>
+    </div>
+
+    <h3>Indigenous African Slavery vs. Transatlantic Slavery</h3>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Indigenous African Slavery:</strong>
+        <ul>
+          <li>Existed before European contact</li>
+          <li>Often the result of war or debt</li>
+          <li>Not typically hereditary</li>
+          <li>Enslaved people had some legal protections</li>
+          <li>Could be freed or absorbed into the community</li>
+        </ul>
+      </div>
+      <div class="box box-red">
+        <strong>Transatlantic Chattel Slavery:</strong>
+        <ul>
+          <li>Based on race</li>
+          <li>Permanent and hereditary (children born enslaved)</li>
+          <li>No legal rights</li>
+          <li>Extreme brutality and dehumanization</li>
+          <li>Industrial scale — millions transported</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Triangular Trade</h3>
+    <div class="box box-gold">
+      <p><strong>Leg 1 (Europe → Africa):</strong> European ships carried manufactured goods (textiles, guns, metal goods) to West Africa, trading for enslaved people.</p>
+      <p style="margin-top:0.5rem"><strong>Leg 2 (Africa → Americas) — The Middle Passage:</strong> Enslaved Africans were transported across the Atlantic in horrific conditions. Ships were packed far beyond capacity. Mortality rates ranged from 10–30% per voyage.</p>
+      <p style="margin-top:0.5rem"><strong>Leg 3 (Americas → Europe):</strong> Colonial products — sugar, tobacco, cotton, rice, indigo — produced by enslaved labor were shipped back to Europe for profit.</p>
+    </div>
+
+    <h3>The Middle Passage</h3>
+    <div class="box box-red">
+      <p>The ocean crossing was called the <strong>Middle Passage</strong> — the middle leg of the triangular trade. Enslaved people were chained together in the ship's hold with minimal space, food, water, or sanitation. Disease spread rapidly. Resistance (revolts, suicide) was common. Those who survived arrived traumatized, having lost their names, families, and freedom permanently.</p>
+    </div>
+
+    <h3>Monoculture, Maroons &amp; Diaspora</h3>
+    <div class="grid-2">
+      <div class="box">
+        <strong>Monoculture:</strong> Colonial plantations focused on a single cash crop (sugar in the Caribbean, tobacco in Virginia, cotton later) for export. This required massive enslaved labor forces and depleted the soil.
+      </div>
+      <div class="box">
+        <strong>Maroons:</strong> Enslaved people who escaped and formed free communities in remote areas (mountains, jungles). They maintained African traditions and resisted re-enslavement. Examples: Maroons of Jamaica, Quilombos in Brazil.
+      </div>
+    </div>
+    <div class="box box-purple">
+      <strong>African Diaspora:</strong> The scattering of African peoples across the globe as a result of the slave trade. African culture, music, religion, language, and cuisine survived and transformed in the Americas, creating new Afro-Caribbean, Afro-Brazilian, and African American cultures.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ MAPS -->
+  <section id="maps">
+    <div class="section-header">
+      <span class="icon">🗺️</span>
+      <h2>Maps</h2>
+    </div>
+    <p style="margin-bottom:1.25rem; color:#555; font-style:italic;">Key maps for Unit 7. Study these carefully — you will be tested on geography.</p>
+
+    <div class="map-grid">
+      <div class="map-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Maya-area-ancient-sites.png/500px-Maya-area-ancient-sites.png"
+             alt="Map of ancient Maya sites in Mesoamerica"
+             onerror="this.style.minHeight='120px';this.alt='[Map: Maya Civilization — Mesoamerica (modern Mexico, Guatemala, Belize)]'">
+        <div class="map-caption">
+          Maya Civilization
+          <span>Mesoamerica — modern Mexico, Guatemala, Belize, Honduras</span>
+        </div>
+      </div>
+      <div class="map-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Aztec_Empire_c_1519.svg/500px-Aztec_Empire_c_1519.svg.png"
+             alt="Map of Aztec Empire circa 1519"
+             onerror="this.style.minHeight='120px';this.alt='[Map: Aztec Empire c. 1519 — centered on Tenochtitlan (modern Mexico City)]'">
+        <div class="map-caption">
+          Aztec Empire (c. 1519)
+          <span>Capital: Tenochtitlan — modern Mexico City</span>
+        </div>
+      </div>
+      <div class="map-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Inca_Empire_South_America.svg/350px-Inca_Empire_South_America.svg.png"
+             alt="Map of Inca Empire in South America"
+             onerror="this.style.minHeight='120px';this.alt='[Map: Inca Empire — along the Andes from modern Ecuador to Chile]'">
+        <div class="map-caption">
+          Inca Empire
+          <span>The Andes — modern Peru, Ecuador, Bolivia, Chile, Argentina</span>
+        </div>
+      </div>
+      <div class="map-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Mali_empire_map.png/500px-Mali_empire_map.png"
+             alt="Map of the Mali Empire in West Africa"
+             onerror="this.style.minHeight='120px';this.alt='[Map: Mali Empire — West Africa, centered on the Niger River]'">
+        <div class="map-caption">
+          Mali Empire — West Africa
+          <span>Niger River basin; trade routes to North Africa and beyond</span>
+        </div>
+      </div>
+      <div class="map-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Triangle_trade2.svg/500px-Triangle_trade2.svg.png"
+             alt="Map of the Triangular Trade routes across the Atlantic"
+             onerror="this.style.minHeight='120px';this.alt='[Map: Triangular Trade — Europe, West Africa, and the Americas]'">
+        <div class="map-caption">
+          Triangular Trade Routes
+          <span>Europe → Africa → Americas → Europe</span>
+        </div>
+      </div>
+      <div class="map-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Age_of_Discovery.png/500px-Age_of_Discovery.png"
+             alt="Map of European Age of Discovery exploration routes"
+             onerror="this.style.minHeight='120px';this.alt='[Map: European Exploration Routes — Portuguese and Spanish voyages, 1400s–1500s]'">
+        <div class="map-caption">
+          European Exploration Routes
+          <span>Portuguese and Spanish voyages of the 15th–16th centuries</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ VIDEOS -->
+  <section id="videos">
+    <div class="section-header">
+      <span class="icon">🎬</span>
+      <h2>Video Resources</h2>
+    </div>
+    <p style="margin-bottom:1.25rem; color:#555; font-style:italic;">Recommended videos to help you visualize and understand Unit 7 content.</p>
+
+    <div class="video-list">
+      <a class="video-item" href="https://youtu.be/dCBod2jFFyQ" target="_blank" rel="noopener">
+        <span class="vicon">📺</span>
+        <div>
+          <div class="vtitle">Guns, Germs, and Steel — Part II (PBS)</div>
+          <div class="vdesc">Explains why European conquest of the Americas succeeded so decisively. Covers disease, technology, and geography. Assigned viewing for this unit.</div>
+        </div>
+      </a>
+      <a class="video-item" href="https://youtu.be/Q4uMSBGGGAg" target="_blank" rel="noopener">
+        <span class="vicon">📺</span>
+        <div>
+          <div class="vtitle">Crash Course World History #14 — The Columbian Exchange</div>
+          <div class="vdesc">John Green explains what moved between the Old and New Worlds after 1492 — plants, animals, diseases, and culture.</div>
+        </div>
+      </a>
+      <a class="video-item" href="https://youtu.be/yhMGirFysIs" target="_blank" rel="noopener">
+        <span class="vicon">📺</span>
+        <div>
+          <div class="vtitle">Crash Course World History #16 — The Atlantic Slave Trade</div>
+          <div class="vdesc">Covers the triangular trade, Middle Passage, scale of the slave trade, and its lasting impact on Africa and the Americas.</div>
+        </div>
+      </a>
+      <a class="video-item" href="https://youtu.be/eFMRGArxJeI" target="_blank" rel="noopener">
+        <span class="vicon">📺</span>
+        <div>
+          <div class="vtitle">Crash Course World History #22 — The Aztecs</div>
+          <div class="vdesc">Overview of Aztec civilization, Tenochtitlan, tribute system, human sacrifice, and the Spanish conquest.</div>
+        </div>
+      </a>
+      <a class="video-item" href="https://youtu.be/dQ1-HCsay30" target="_blank" rel="noopener">
+        <span class="vicon">📺</span>
+        <div>
+          <div class="vtitle">Crash Course World History #8 — Wait for It… The Mongols (Bonus: African Empires context)</div>
+          <div class="vdesc">For background on Mali &amp; African trade networks, see also Crash Course History of Science episodes on Africa.</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ FLASHCARDS -->
+  <section id="flashcards">
+    <div class="section-header">
+      <span class="icon">🃏</span>
+      <h2>Flashcards</h2>
+    </div>
+    <p style="margin-bottom:1.25rem; color:#555; font-style:italic;">
+      Color key:
+      <strong style="color:var(--terra)">■ Latin America</strong> &nbsp;
+      <strong style="color:var(--green)">■ Africa</strong> &nbsp;
+      <strong style="color:var(--ocean)">■ Exploration</strong> &nbsp;
+      <strong style="color:var(--red)">■ Conquest</strong> &nbsp;
+      <strong style="color:#4a3728">■ Slave Trade</strong>
+    </p>
+
+    <div class="flashcard-grid">
+      <!-- ── Latin America ── -->
+      <div class="flashcard fc-latin">
+        <div class="term">Maya</div>
+        <div class="def">Ancient Mesoamerican civilization (modern Mexico, Guatemala, Belize). Known for hieroglyphic writing, advanced astronomy, mathematics (including zero), and monumental pyramids. Classic Period: ~250–900 CE.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Teotihuacan</div>
+        <div class="def">"City of the Gods" — one of the largest ancient cities in the world, located in central Mexico. Famous for the Pyramids of the Sun and Moon. Influenced civilizations across Mesoamerica; its builders remain unknown.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Aztecs</div>
+        <div class="def">Powerful Mesoamerican empire centered at Tenochtitlan. Controlled a vast territory through military conquest and a tribute system. Renowned for monumental architecture, a complex religion, and human sacrifice.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Tenochtitlan</div>
+        <div class="def">Capital of the Aztec Empire, built on an island in Lake Texcoco (~200,000 people at its peak). Connected to the mainland by causeways. Located under modern Mexico City.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Human Sacrifice</div>
+        <div class="def">Aztec religious practice of offering human lives to the gods — especially the sun god Huitzilopochtli — to nourish the sun and maintain cosmic order. Sacrificial victims were often captives from war.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Tribute</div>
+        <div class="def">Payments demanded by the Aztec Empire from conquered peoples — including food, goods, textiles, gold, and sometimes humans for sacrifice. The tribute system funded Tenochtitlan's wealth and power.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Quetzalcoatl</div>
+        <div class="def">Feathered serpent deity worshipped across Mesoamerica. In Aztec mythology, he was associated with wind, learning, and creation. Some sources claim the Aztecs initially believed Cortés was Quetzalcoatl returning.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Inca</div>
+        <div class="def">The largest empire in pre-Columbian South America, stretching 2,500 miles along the Andes. Capital: Cuzco (Peru). Known for road networks, monumental architecture, and administrative sophistication without a writing system.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Cuzco</div>
+        <div class="def">Capital city of the Inca Empire, located in the highlands of modern Peru. The Inca considered it the "navel of the world." Featured massive stone temples and palaces, including the Temple of the Sun (Coricancha).</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Inca Roads</div>
+        <div class="def">A 25,000+ mile road network connecting the Inca Empire from Ecuador to Chile. Roads crossed mountains and deserts. Used by runners (chasquis), llama caravans, and the military. No wheeled vehicles — all foot traffic.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Inca Social Structure</div>
+        <div class="def">Sapa Inca (divine emperor) at the top → nobles and priests → commoners (paid mit'a labor tax to the state) → servants. The state redistributed labor and goods rather than using money. No true market economy.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Machu Picchu</div>
+        <div class="def">Famous Inca citadel built around 1450 CE, perched 7,970 feet high in the Andes. Believed to be a royal estate or religious site. Abandoned after the Spanish conquest; "rediscovered" by the West in 1911 by Hiram Bingham.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Mesoamerica</div>
+        <div class="def">Geographic and cultural region stretching from central Mexico through Central America (to northern Costa Rica). Home to the Maya, Aztec, Olmec, Zapotec, and other civilizations. Characterized by jungles, highlands, and coastal plains.</div>
+      </div>
+      <div class="flashcard fc-latin">
+        <div class="term">Writing Systems (Mesoamerica)</div>
+        <div class="def">Maya: fully developed hieroglyphic script capable of recording all language sounds and concepts. Aztec: pictographic system (pictographs and logograms). Inca: quipu (knotted cords) for recording data — not a written language.</div>
+      </div>
+
+      <!-- ── Africa ── -->
+      <div class="flashcard fc-africa">
+        <div class="term">Axum</div>
+        <div class="def">Ancient kingdom in East Africa (modern Ethiopia/Eritrea), c. 100–940 CE. A major trade hub linking Africa to the Red Sea and Indian Ocean trade networks. Converted to Christianity in the 4th century CE. Created the Ge'ez script and distinctive stone obelisks (stelae).</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Ethiopian Orthodox Church</div>
+        <div class="def">One of the world's oldest Christian institutions, established in the Kingdom of Axum when King Ezana converted in ~330 CE. It follows its own liturgical tradition and claims to house the Ark of the Covenant. Still active today.</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Empire of Ghana</div>
+        <div class="def">First major West African empire (c. 700–1200 CE). Located in modern Mauritania and Mali (not modern Ghana). Controlled the gold-salt trade across the Sahara, taxing all goods passing through. Declined due to drought, overgrazing, and conquest by the Almoravids.</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Gold-Salt Trade</div>
+        <div class="def">Economic exchange between West Africa (abundant in gold) and North Africa (abundant in salt). Salt was essential for preserving food and human survival in the tropics. This trade fueled the wealth of Ghana, Mali, and Songhai empires and supported trans-Saharan trade networks.</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Mansa Musa</div>
+        <div class="def">Emperor of Mali (r. 1312–1337); considered one of the wealthiest people in history. His 1324 pilgrimage to Mecca — with 60,000+ people and enormous quantities of gold — put Mali on European maps and crashed gold prices across the Mediterranean for years.</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Sundiata</div>
+        <div class="def">Founder and first emperor of the Mali Empire. A hero-king who defeated Sumanguru Kante of the Sosso kingdom at the Battle of Kirina (~1235 CE). His story is preserved in the epic oral tradition of the griots (West African storytellers/historians).</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Mali Empire</div>
+        <div class="def">West African empire (c. 1230–1600 CE) that succeeded Ghana. Stretched from the Atlantic coast to the Niger River bend. Timbuktu became a major center of trade and Islamic learning. Mansa Musa was its most famous ruler.</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Swahili Coast</div>
+        <div class="def">East African coastal region (modern Kenya, Tanzania, Mozambique) home to city-states that thrived on Indian Ocean trade (1000–1500 CE). Cities like Kilwa, Mombasa, and Zanzibar blended Bantu African and Arab-Islamic cultures. "Swahili" comes from Arabic for "coasts."</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Islam in the Swahili Coast</div>
+        <div class="def">Islam spread to East African coastal cities through trade with Arab merchants, not military conquest. Muslim merchants settled there; local rulers often converted to ease trade. Swahili culture blended African traditions with Islamic law, architecture, and language (Arabic loanwords in Swahili).</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Great Zimbabwe</div>
+        <div class="def">Stone-walled city in southern Africa (modern Zimbabwe), peak c. 1100–1450 CE. The largest pre-colonial stone structure in sub-Saharan Africa — built without mortar. Center of a gold-trading kingdom. Its very existence was denied by European colonists who couldn't believe Africans built it.</div>
+      </div>
+      <div class="flashcard fc-africa">
+        <div class="term">Indigenous African Slavery</div>
+        <div class="def">Slavery existed in Africa before European contact, typically resulting from war, debt, or crime. It differed from the later transatlantic system: it was generally not hereditary, enslaved people retained some legal rights, and social mobility was possible. Not based on race.</div>
+      </div>
+
+      <!-- ── European Exploration ── -->
+      <div class="flashcard fc-europe">
+        <div class="term">Reconquista</div>
+        <div class="def">The centuries-long Christian reconquest of the Iberian Peninsula from Muslim (Moorish) rule. Completed in 1492 when Ferdinand and Isabella took Granada. Created a culture of religious militarism in Spain and Portugal that translated directly into the Age of Exploration and conquest.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Astrolabe</div>
+        <div class="def">A navigational instrument that measures the angle of celestial bodies (sun, stars) above the horizon to determine latitude. Borrowed and refined from Arab and ancient Greek technology. Essential for long ocean voyages without landmarks.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Caravel</div>
+        <div class="def">Small, maneuverable Portuguese sailing ship with lateen (triangular) sails that could sail against the wind. It was faster and more agile than earlier ships, making long ocean voyages and exploration of unknown coastlines possible.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Prince Henry the Navigator</div>
+        <div class="def">Portuguese prince (1394–1460) who sponsored systematic exploration of the African coast and established a school of navigation at Sagres. He never sailed himself, but his patronage transformed exploration into a state-funded enterprise, launching Portugal's age of discovery.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Bartolomeu Dias</div>
+        <div class="def">Portuguese explorer who in 1488 became the first European to round the Cape of Good Hope (southern tip of Africa). His voyage proved a sea route to the Indian Ocean was possible, opening the door for Vasco da Gama.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Vasco da Gama</div>
+        <div class="def">Portuguese explorer who in 1498 sailed from Portugal around Africa to reach Calicut, India — establishing the first direct sea trade route from Europe to Asia. This broke the Ottoman monopoly on overland trade routes and made Portugal enormously wealthy.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Christopher Columbus</div>
+        <div class="def">Italian explorer sailing for Spain who in 1492 reached the Caribbean (thinking he had reached Asia). His four voyages (1492–1504) opened sustained contact between Europe and the Americas. He never acknowledged he had reached new continents.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Ferdinand Magellan</div>
+        <div class="def">Portuguese explorer who led the first expedition to circumnavigate the globe (1519–1522), sailing for Spain. He died in the Philippines; his surviving crew member Juan Sebastián Elcano completed the journey. Proved the Earth was round and enormous.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Amerigo Vespucci</div>
+        <div class="def">Italian explorer who made several voyages to the Americas (1499–1504) and was the first to clearly articulate that these were previously unknown continents (not Asia). The Americas are named after him — from the Latinized form "Americus."</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Trading Posts</div>
+        <div class="def">Fortified commercial outposts established by Portugal along African coasts and in Asia. They allowed Portugal to control trade without large-scale colonization. Became nodes for the early slave trade and models for later colonial enterprises.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Slave Trade (Early)</div>
+        <div class="def">By the 1440s, Portuguese traders were transporting enslaved Africans to Europe and Atlantic islands (Madeira, Azores). This set the precedent for the far larger transatlantic slave trade that would follow Columbus's voyages.</div>
+      </div>
+      <div class="flashcard fc-europe">
+        <div class="term">Treaty of Tordesillas (1494)</div>
+        <div class="def">Agreement between Spain and Portugal (mediated by Pope Alexander VI) dividing the non-Christian world between them along a line 370 leagues west of the Cape Verde Islands. Spain got the Americas (except Brazil); Portugal got Africa, Asia, and Brazil. Other powers ignored it.</div>
+      </div>
+
+      <!-- ── Conquest ── -->
+      <div class="flashcard fc-conquest">
+        <div class="term">Encomienda</div>
+        <div class="def">Spanish colonial system granting conquistadors the right to demand labor and tribute from a specific group of indigenous people in exchange for "protection" and Christian instruction. In practice, it was brutal forced labor that decimated indigenous populations.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Hernán Cortés</div>
+        <div class="def">Spanish conquistador who conquered the Aztec Empire (1519–1521) with ~500 soldiers, using indigenous allies, horses, steel weapons, and the devastation of smallpox. Took Tenochtitlan in 1521 and founded Mexico City on its ruins.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Francisco Pizarro</div>
+        <div class="def">Spanish conquistador who conquered the Inca Empire (1532) with ~180 soldiers. Arrived during an Inca civil war, captured Emperor Atahualpa, collected a massive gold ransom, then executed him anyway. Established Spanish control over Peru.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Smallpox</div>
+        <div class="def">Epidemic disease brought to the Americas by Europeans. Indigenous peoples had no immunity. In some regions, smallpox killed up to 90% of the population before Spanish soldiers even arrived, collapsing societies and military resistance. The single most devastating factor in the conquest.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Mestizo</div>
+        <div class="def">Person of mixed European and indigenous American ancestry. Mestizos occupied a middle tier in the colonial social hierarchy — below Creoles and Peninsulares but above indigenous peoples and enslaved Africans. Today mestizo is the majority population in many Latin American countries.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Creole</div>
+        <div class="def">Person of full European descent born in the Americas (as opposed to Spain/Portugal). Creoles were wealthy and educated but were barred from the highest government positions, which were reserved for Peninsulares. Their resentment eventually fueled the Latin American independence movements.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Peninsulare</div>
+        <div class="def">A person born on the Iberian Peninsula (Spain or Portugal) living in the Americas. They held the highest positions in colonial government and society. The term reflects the Spanish obsession with "pure" European blood (limpieza de sangre).</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Doña Marina (La Malinche)</div>
+        <div class="def">Indigenous Nahuatl-speaking woman (also known as Malintzin) given to Cortés as a slave. She became his interpreter, advisor, and partner — without her, the conquest of the Aztecs would likely have failed. A deeply complex historical figure: traitor to some, survivor and pragmatist to others.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Viceroy</div>
+        <div class="def">Royal governor who ruled a Spanish colonial territory (viceroyalty) in the king's name. The two main viceroyalties were New Spain (Mexico, Caribbean, Central America) and Peru (South America). Viceroys held enormous power but were subject to oversight from Spain.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Montezuma II</div>
+        <div class="def">Aztec emperor at the time of the Spanish conquest. He initially received Cortés with diplomacy; Cortés then took him hostage. Montezuma died during the conflict (circumstances debated). His death and the subsequent smallpox epidemic shattered Aztec resistance.</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Portuguese Conquest of Brazil</div>
+        <div class="def">Under the Treaty of Tordesillas, Portugal claimed Brazil. Initially exploited pau-brasil (brazilwood) for red dye. Eventually established sugar plantations worked by enslaved Africans. Brazil became Portugal's most profitable colony and received the most enslaved Africans of any single country (~4 million).</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Columbian Exchange</div>
+        <div class="def">The transfer of plants, animals, diseases, ideas, and people between the Old World (Europe, Africa, Asia) and the New World (Americas) after 1492. Transformed global agriculture, population, and culture. Devastating for indigenous Americans (disease); transformative for the rest of the world (new crops).</div>
+      </div>
+      <div class="flashcard fc-conquest">
+        <div class="term">Bartolomé de Las Casas</div>
+        <div class="def">Spanish Dominican priest who initially participated in the conquest system but became its most prominent critic. His "Brief Account of the Destruction of the Indies" (1542) documented Spanish atrocities against indigenous peoples. He lobbied for the New Laws (1542) limiting indigenous enslavement. An early figure in human rights advocacy.</div>
+      </div>
+
+      <!-- ── Slave Trade ── -->
+      <div class="flashcard fc-slave">
+        <div class="term">Triangular Trade</div>
+        <div class="def">Three-legged trade route: (1) Europe → West Africa, trading manufactured goods for enslaved people; (2) West Africa → Americas (the Middle Passage), transporting enslaved Africans; (3) Americas → Europe, shipping sugar, tobacco, cotton produced by enslaved labor.</div>
+      </div>
+      <div class="flashcard fc-slave">
+        <div class="term">Middle Passage</div>
+        <div class="def">The brutal ocean voyage of enslaved Africans from West Africa to the Americas — the second "leg" of the triangular trade. Ships were grotesquely overcrowded. Mortality rates reached 10–30% per voyage due to disease, starvation, and violence. Over 12 million people endured this crossing.</div>
+      </div>
+      <div class="flashcard fc-slave">
+        <div class="term">Monoculture</div>
+        <div class="def">Agricultural system focusing entirely on one cash crop for export (sugar in the Caribbean, tobacco in Virginia, cotton in the Deep South). Required massive enslaved labor forces. Depleted soil, created economic dependency, and left colonies vulnerable to crop failure.</div>
+      </div>
+      <div class="flashcard fc-slave">
+        <div class="term">Maroons</div>
+        <div class="def">Enslaved Africans who escaped and formed independent free communities in remote areas — mountain jungles in Jamaica, the Amazon basin in Brazil (Quilombos), Suriname. They maintained African cultural traditions, developed guerrilla warfare, and resisted re-enslavement. The Maroons of Jamaica signed a peace treaty with Britain in 1739.</div>
+      </div>
+      <div class="flashcard fc-slave">
+        <div class="term">Diaspora</div>
+        <div class="def">The scattering of a people from their original homeland. The African diaspora refers to the forced dispersal of millions of Africans across the Americas through the slave trade. Despite devastation, African cultures survived and blended with New World cultures, creating Afro-Caribbean, Afro-Brazilian, and African American identities.</div>
+      </div>
+      <div class="flashcard fc-slave">
+        <div class="term">Capitalism</div>
+        <div class="def">An economic system based on private ownership of production and profit-driven enterprise. European exploration and colonization accelerated the development of capitalism through the creation of joint-stock companies, global trade networks, plantation economies, and the accumulation of New World wealth.</div>
+      </div>
+      <div class="flashcard fc-slave">
+        <div class="term">Mercantilism</div>
+        <div class="def">Economic theory dominant in European colonial powers: a nation's wealth depends on accumulating gold/silver and maintaining a favorable trade balance (exporting more than importing). Colonies existed to enrich the mother country — providing raw materials and buying finished goods. Justified exploitation of colonies.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ QUIZ -->
+  <section id="quiz">
+    <div class="section-header">
+      <span class="icon">✏️</span>
+      <h2>40-Question Practice Quiz</h2>
+    </div>
+    <p style="margin-bottom:1.25rem; color:#555; font-style:italic;">Click "Show Answer" after each question to check yourself.</p>
+
+    <!-- Latin America: Q1–10 -->
+    <h3>Latin American Civilizations</h3>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 1</div>
+      <div class="qtext">What was the capital city of the Aztec Empire?</div>
+      <ol><li>Cuzco</li><li>Tenochtitlan</li><li>Teotihuacan</li><li>Tikal</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Tenochtitlan.</strong> Built on an island in Lake Texcoco, it was one of the largest cities in the world at the time (~200,000 people). It now lies beneath modern Mexico City.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 2</div>
+      <div class="qtext">Which ancient civilization is best known for building Machu Picchu?</div>
+      <ol><li>Aztec</li><li>Maya</li><li>Inca</li><li>Olmec</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Inca.</strong> Machu Picchu was built around 1450 CE high in the Peruvian Andes, likely as a royal estate. It was abandoned after the Spanish conquest.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 3</div>
+      <div class="qtext">The Inca road system was primarily used for:</div>
+      <ol><li>Chariot racing and military parades</li><li>Communication, trade, and military movement</li><li>Religious pilgrimage only</li><li>Moving water for irrigation</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Communication, trade, and military movement.</strong> The 25,000-mile road network connected the empire and allowed runners (chasquis) to relay messages quickly and armies to deploy efficiently.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 4</div>
+      <div class="qtext">The Aztec deity Quetzalcoatl is depicted as:</div>
+      <ol><li>A jaguar with a golden mask</li><li>A feathered serpent</li><li>An eagle devouring a snake</li><li>A sun disk with human features</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — A feathered serpent.</strong> Quetzalcoatl (Nahuatl: "feathered serpent") was one of the most important deities in Mesoamerica, associated with wind, learning, and creation.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 5</div>
+      <div class="qtext">Which Mesoamerican civilization is most associated with a sophisticated hieroglyphic writing system and advanced astronomy?</div>
+      <ol><li>Inca</li><li>Aztec</li><li>Maya</li><li>Teotihuacan</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Maya.</strong> The Maya developed one of the most complete writing systems in the ancient Americas and had detailed astronomical knowledge, including precise calendars.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 6</div>
+      <div class="qtext">The Aztec tribute system involved:</div>
+      <ol><li>Conquered peoples voluntarily sharing goods with Tenochtitlan</li><li>Aztec nobles distributing wealth to the poor</li><li>Conquered peoples required to pay taxes in goods, labor, and captives</li><li>Trade agreements negotiated between city-states</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Conquered peoples required to pay taxes in goods, labor, and captives.</strong> The tribute system was the economic foundation of the Aztec Empire, funding the capital and fueling constant warfare to acquire more tributaries.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 7</div>
+      <div class="qtext">Teotihuacan is sometimes called the "City of the Gods" because:</div>
+      <ol><li>It was where Aztec gods were believed to live in human form</li><li>It was a massive ancient city of mysterious origin, with massive pyramids later peoples believed only gods could have built</li><li>Priests governed it as a theocracy</li><li>It was the site of the most human sacrifices in Mesoamerica</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — It was a massive ancient city of mysterious origin.</strong> The name was given by later Aztecs, who found the city already abandoned and believed a civilization of giants or gods must have built the enormous pyramids.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 8</div>
+      <div class="qtext">How did the Inca record and transmit information without a written language?</div>
+      <ol><li>Carved stone pictographs</li><li>Trained parrots carried oral messages</li><li>The quipu — a system of knotted cords</li><li>Messenger runners memorized spoken records</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — The quipu.</strong> Quipus (knotted string devices) encoded numerical and possibly narrative information through knot type, position, and color. Specialists called "quipucamayocs" read and maintained them.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 9</div>
+      <div class="qtext">Aztec human sacrifice was primarily intended to:</div>
+      <ol><li>Entertain the Aztec ruling class</li><li>Nourish the sun god and maintain cosmic order</li><li>Punish criminals and prisoners of war equally</li><li>Demonstrate military power to neighboring cities</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Nourish the sun god and maintain cosmic order.</strong> Aztec religion taught that the gods had sacrificed themselves to create the world; humans owed blood to keep the sun moving and prevent the destruction of the cosmos.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 10</div>
+      <div class="qtext">The capital of the Inca Empire was:</div>
+      <ol><li>Machu Picchu</li><li>Tenochtitlan</li><li>Cuzco</li><li>Tikal</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Cuzco.</strong> Located in present-day Peru, Cuzco was the political, religious, and administrative center of the Inca Empire. The Inca called it the "navel of the world."</div></details>
+    </div>
+
+    <!-- Africa: Q11–20 -->
+    <h3>African Civilizations</h3>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 11</div>
+      <div class="qtext">Which ancient East African kingdom was an early center of Christianity on the continent?</div>
+      <ol><li>Mali</li><li>Ghana</li><li>Axum</li><li>Great Zimbabwe</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Axum.</strong> The Kingdom of Axum (modern Ethiopia/Eritrea) converted to Christianity around 330 CE under King Ezana, establishing the Ethiopian Orthodox Church — one of the world's oldest Christian institutions.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 12</div>
+      <div class="qtext">The gold-salt trade primarily linked which two regions?</div>
+      <ol><li>East Africa and the Arabian Peninsula</li><li>West Africa and North Africa</li><li>Central Africa and Southern Europe</li><li>The Swahili Coast and India</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — West Africa and North Africa.</strong> West Africans had abundant gold but lacked salt; North Africans had salt deposits but wanted gold. This complementary need drove trans-Saharan trade and funded the empires of Ghana and Mali.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 13</div>
+      <div class="qtext">Mansa Musa is best remembered for:</div>
+      <ol><li>Conquering Egypt and uniting North and West Africa</li><li>His lavish pilgrimage to Mecca that showcased Mali's enormous wealth</li><li>Founding the Mali Empire after defeating the Sosso</li><li>Introducing Islam to sub-Saharan Africa</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — His pilgrimage to Mecca.</strong> Mansa Musa's 1324 hajj with 60,000+ attendants and vast gold supplies put Mali on European maps (literally) and demonstrated Islamic West Africa's immense power and wealth. His gold giveaways deflated gold prices for years.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 14</div>
+      <div class="qtext">Who founded the Mali Empire?</div>
+      <ol><li>Mansa Musa</li><li>Sundiata Keita</li><li>Bartolomeu Dias</li><li>King Ezana</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Sundiata Keita.</strong> Sundiata founded Mali after defeating Sumanguru Kante of the Sosso kingdom at the Battle of Kirina (~1235 CE). His story is preserved in the oral epic tradition of West African griots.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 15</div>
+      <div class="qtext">The Swahili Coast city-states were significant primarily because of:</div>
+      <ol><li>Their large armies that resisted Arab invasions</li><li>Their role as thriving Indian Ocean trade centers blending African and Islamic cultures</li><li>Their discovery of sea routes to Europe</li><li>Their connections to the Aztec Empire through Pacific trade</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Indian Ocean trade centers.</strong> Cities like Kilwa and Mombasa were prosperous hubs where East African goods (gold, ivory, enslaved people) were exchanged for Indian and Arab goods (textiles, porcelain). Arab merchants brought Islam, creating a unique Swahili culture.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 16</div>
+      <div class="qtext">Great Zimbabwe was primarily:</div>
+      <ol><li>A religious temple built for ancestor worship</li><li>A military fortress to defend against Arab raids</li><li>A royal capital and trade center controlling regional gold trade</li><li>A farming community built to store grain</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — A royal capital and trade center.</strong> Great Zimbabwe was the capital of a powerful kingdom that controlled gold trade in southern Africa. Its massive stone walls (built without mortar) housed the royal court and storage facilities.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 17</div>
+      <div class="qtext">How did Islam spread to the Swahili Coast?</div>
+      <ol><li>Military conquest by Arab armies from Oman</li><li>Missionary work by European Christian converts</li><li>Through Indian Ocean trade contacts with Arab merchants</li><li>By force, imposed by the Ottoman Empire</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Through trade contacts.</strong> Arab merchants who settled in Swahili coast cities brought Islam peacefully. Local rulers often converted voluntarily to facilitate trade relationships with Muslim Arab and Indian traders.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 18</div>
+      <div class="qtext">Which empire was known for controlling the gold-salt trade in early West Africa?</div>
+      <ol><li>Axum</li><li>Empire of Ghana</li><li>Songhai</li><li>Great Zimbabwe</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Empire of Ghana.</strong> Ghana (c. 700–1200 CE) was the first major West African empire, becoming wealthy by taxing all gold and salt passing through its territory. Note: Ancient Ghana is not located in modern Ghana.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 19</div>
+      <div class="qtext">How did indigenous African slavery differ from the later transatlantic slave trade?</div>
+      <ol><li>African slavery was more brutal and based on heredity</li><li>African slavery was typically not hereditary and allowed for more legal protections and social mobility</li><li>African slavery was practiced only in North Africa</li><li>There was no meaningful difference between the two systems</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Not hereditary, with more legal protections.</strong> Pre-contact African slavery differed significantly: it was not race-based, was often temporary, enslaved people had some rights, and children were not automatically enslaved. The transatlantic system was far more rigid and dehumanizing.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 20</div>
+      <div class="qtext">The Ethiopian Orthodox Church traces its origins to:</div>
+      <ol><li>Portuguese missionaries in the 1500s</li><li>The conversion of King Ezana of Axum in the 4th century CE</li><li>The spread of Islam and its later reversal in East Africa</li><li>St. Paul's missionary journey to East Africa</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — King Ezana of Axum, 4th century CE.</strong> When King Ezana converted around 330 CE, Christianity became the state religion of Axum, establishing the Ethiopian Orthodox Church — one of the oldest continuous Christian institutions in the world.</div></details>
+    </div>
+
+    <!-- European Exploration: Q21–28 -->
+    <h3>European Exploration</h3>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 21</div>
+      <div class="qtext">The astrolabe was used by sailors primarily to:</div>
+      <ol><li>Predict the weather on ocean voyages</li><li>Measure wind speed and direction</li><li>Determine latitude by measuring the angle of celestial bodies</li><li>Calculate how much cargo a ship could carry</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Determine latitude.</strong> By measuring the angle of the sun or North Star above the horizon, sailors could calculate how far north or south they were. It was borrowed from Arab astronomers who had refined it from ancient Greek designs.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 22</div>
+      <div class="qtext">Why was the caravel so important to European exploration?</div>
+      <ol><li>It was large enough to carry hundreds of soldiers</li><li>It was small, fast, and could sail against the wind, making ocean exploration practical</li><li>It was equipped with cannons powerful enough to destroy any fortress</li><li>It could travel on both rivers and oceans</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Small, fast, and able to sail against the wind.</strong> The caravel's lateen (triangular) sails allowed it to tack against the wind — crucial for returning from Africa's coast against prevailing winds. Its maneuverability made it ideal for exploring unknown coastlines.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 23</div>
+      <div class="qtext">Prince Henry the Navigator's most significant contribution to exploration was:</div>
+      <ol><li>Personally sailing around Africa to India</li><li>Sponsoring systematic Portuguese exploration of the African coast and establishing a navigation school</li><li>Signing the Treaty of Tordesillas with Spain</li><li>Discovering the Americas before Columbus</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Sponsoring exploration and establishing navigation infrastructure.</strong> Henry (1394–1460) never sailed himself but funded voyages, collected geographic knowledge, and trained navigators — transforming exploration from individual adventure into a state enterprise.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 24</div>
+      <div class="qtext">Who was the first European explorer to round the southern tip of Africa (Cape of Good Hope)?</div>
+      <ol><li>Vasco da Gama</li><li>Columbus</li><li>Bartolomeu Dias</li><li>Magellan</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Bartolomeu Dias (1488).</strong> His voyage proved the Indian Ocean could be reached from the Atlantic, opening the door for Vasco da Gama to complete the voyage to India ten years later.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 25</div>
+      <div class="qtext">Amerigo Vespucci's major contribution to geography was:</div>
+      <ol><li>Leading the first circumnavigation of the globe</li><li>Establishing the first European trading post in India</li><li>Recognizing that the Americas were previously unknown continents, not Asia</li><li>Sailing further south than any European before him</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Recognizing the Americas as new continents.</strong> While Columbus insisted he had reached Asia, Vespucci argued these were entirely new continents. German cartographer Waldseemüller put Vespucci's name "America" on his 1507 world map, and it stuck.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 26</div>
+      <div class="qtext">The Reconquista refers to:</div>
+      <ol><li>The Spanish conquest of the Aztec Empire</li><li>The centuries-long Christian reconquest of the Iberian Peninsula from Muslim rule</li><li>Portugal's seizure of Brazil under the Treaty of Tordesillas</li><li>Columbus's second voyage to the Americas</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Christian reconquest of the Iberian Peninsula.</strong> Lasting ~700 years and completing in 1492 (with the fall of Granada), the Reconquista created a culture of religious militarism in Spain that directly influenced the conquest of the Americas.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 27</div>
+      <div class="qtext">The Treaty of Tordesillas (1494) divided the non-Christian world between:</div>
+      <ol><li>England and France</li><li>Spain and Portugal</li><li>The Pope and the Holy Roman Emperor</li><li>Spain and the Ottoman Empire</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Spain and Portugal.</strong> Mediated by Pope Alexander VI, the treaty drew a line 370 leagues west of the Cape Verde Islands: Spain received territory to the west (most of the Americas); Portugal received territory to the east (Africa, Asia, and Brazil).</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 28</div>
+      <div class="qtext">Vasco da Gama's 1498 voyage was historically significant because:</div>
+      <ol><li>He was the first European to reach North America</li><li>He completed the first circumnavigation of the globe</li><li>He established a direct sea route from Europe to India, bypassing the Ottoman trade monopoly</li><li>He proved the Earth was round</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Established a sea route to India.</strong> By sailing around Africa to Calicut, India, da Gama opened a route that bypassed Ottoman-controlled land routes. This gave Portugal (and later other European powers) direct access to Asian spice markets, transforming global trade.</div></details>
+    </div>
+
+    <!-- Conquest: Q29–35 -->
+    <h3>European Conquest &amp; Colonization</h3>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 29</div>
+      <div class="qtext">The encomienda system gave Spanish conquistadors:</div>
+      <ol><li>Land grants for farming in exchange for military service</li><li>The right to demand labor and tribute from indigenous people in exchange for "protection" and Christian instruction</li><li>Permission to trade freely with indigenous nations</li><li>Ownership of all silver mines in their territory</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — The right to demand labor and tribute.</strong> In practice, the encomienda was brutal forced labor. It decimated indigenous populations through overwork, abuse, and disease. Bartolomé de Las Casas was its most famous critic.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 30</div>
+      <div class="qtext">How did smallpox most critically contribute to the Spanish conquest of the Americas?</div>
+      <ol><li>It made Spanish soldiers appear supernatural and invincible</li><li>It killed Spanish horses, forcing a change in military tactics</li><li>It devastated indigenous populations before and during conquest, collapsing political structures and military resistance</li><li>It spread to Spain and weakened its ability to send further armies</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Devastated indigenous populations.</strong> With no prior exposure, indigenous peoples had no immunity. Smallpox epidemics killed up to 90% of some populations, devastating armies, killing leaders, and triggering social collapse — making conquest far easier for Spanish forces.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 31</div>
+      <div class="qtext">Hernán Cortés conquered the Aztec Empire in approximately:</div>
+      <ol><li>1492</li><li>1521</li><li>1532</li><li>1545</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — 1521.</strong> Cortés arrived in Mexico in 1519 and, after two years of military campaigns, alliance-building, and the devastating smallpox epidemic, captured Tenochtitlan in 1521.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 32</div>
+      <div class="qtext">Who was Doña Marina (La Malinche)?</div>
+      <ol><li>A Spanish queen who funded Columbus's first voyage</li><li>An indigenous woman who served as Cortés's crucial interpreter and advisor during the conquest</li><li>A Portuguese explorer who first mapped the Mexican coast</li><li>The Aztec empress who negotiated a peace treaty with Spain</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Indigenous interpreter and advisor to Cortés.</strong> A Nahuatl-speaking woman given to Cortés as a slave, she became essential to his communication with the Aztecs. She is a deeply complex figure in Mexican history and identity.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 33</div>
+      <div class="qtext">In the Spanish colonial social hierarchy, who ranked at the very top?</div>
+      <ol><li>Mestizos</li><li>Creoles</li><li>Peninsulares</li><li>Indigenous leaders who converted to Christianity</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Peninsulares.</strong> Spanish-born colonists (born on the Iberian "peninsula") held all major government and church positions. Creoles (American-born Europeans) resented this — a resentment that eventually fueled independence movements.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 34</div>
+      <div class="qtext">Bartolomé de Las Casas is remembered in history for:</div>
+      <ol><li>Leading the conquest of the Maya civilization</li><li>Drawing the first accurate map of the Americas</li><li>Advocating fiercely for the rights of indigenous peoples and documenting Spanish atrocities</li><li>Establishing the first permanent European colony in the Americas</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Advocating for indigenous rights.</strong> A Spanish Dominican priest who initially participated in the conquest system, Las Casas became its fiercest critic. His "Brief Account of the Destruction of the Indies" is one of the earliest human rights documents.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 35</div>
+      <div class="qtext">The Columbian Exchange refers to:</div>
+      <ol><li>Trade agreements negotiated between Columbus and the Taíno people</li><li>The transfer of plants, animals, diseases, and cultural practices between the Old World and the Americas after 1492</li><li>The division of the Americas between Spain and Portugal</li><li>The economic system Columbus proposed to fund future voyages</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Transfer of plants, animals, diseases, and culture.</strong> The Columbian Exchange fundamentally transformed global agriculture (potatoes, corn, tomatoes from Americas; wheat, horses, cattle to Americas) and also devastated indigenous peoples through Old World diseases.</div></details>
+    </div>
+
+    <!-- Slave Trade: Q36–40 -->
+    <h3>The Transatlantic Slave Trade</h3>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 36</div>
+      <div class="qtext">What were the three legs of the triangular trade?</div>
+      <ol><li>Europe → Asia, Asia → Africa, Africa → Europe</li><li>Europe → Americas (goods), Americas → Africa (cash crops), Africa → Europe (enslaved people)</li><li>Europe → Africa (manufactured goods), Africa → Americas (enslaved people), Americas → Europe (cash crops)</li><li>Spain → Portugal, Portugal → Africa, Africa → Spain</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Europe to Africa (goods) → Africa to Americas (enslaved people) → Americas to Europe (cash crops).</strong> This three-legged route made each voyage profitable: European goods for enslaved Africans, enslaved labor produced cash crops, crops sold in Europe for profit to buy more goods.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 37</div>
+      <div class="qtext">The Middle Passage refers to:</div>
+      <ol><li>A mountain pass through the Pyrenees used by Spanish armies</li><li>The ocean voyage of enslaved Africans from West Africa to the Americas</li><li>A trade route through the Sahara linking West Africa to North Africa</li><li>The journey from the Americas back to Europe carrying cash crops</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — The ocean voyage of enslaved Africans to the Americas.</strong> The "middle" leg of the triangular trade was the most horrific. Ships were grotesquely overcrowded; disease, starvation, and violence killed 10–30% of captives per voyage. Over 12 million people survived this crossing into permanent bondage.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 38</div>
+      <div class="qtext">In colonial plantation economies, "monoculture" meant:</div>
+      <ol><li>Using only workers from a single ethnic group</li><li>Farming only one crop (like sugar or tobacco) for export, using enslaved labor</li><li>A system where farmers grew food only for their own families</li><li>Rotating multiple crops to keep soil fertile</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Farming only one crop for export.</strong> Monoculture (sugar in the Caribbean, tobacco in Virginia, cotton later in the Deep South) required vast enslaved workforces, depleted soil, and created economic dependence on a single commodity — leaving colonies vulnerable to price crashes and crop failure.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 39</div>
+      <div class="qtext">Maroons were:</div>
+      <ol><li>European plantation owners who managed enslaved workers</li><li>Indigenous peoples who successfully resisted Spanish conquest</li><li>Enslaved Africans who escaped bondage and formed independent free communities</li><li>Children of mixed African and European ancestry</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>C — Escaped enslaved people who formed free communities.</strong> Maroon communities (Jamaica's Blue Mountains, Brazil's Quilombo dos Palmares, Suriname's jungle interior) maintained African cultural traditions and used guerrilla tactics to resist re-enslavement. Jamaica's Maroons eventually signed a treaty with Britain in 1739.</div></details>
+    </div>
+
+    <div class="quiz-q">
+      <div class="qnum">QUESTION 40</div>
+      <div class="qtext">The African diaspora resulted primarily from:</div>
+      <ol><li>Voluntary migration of Africans to Europe during the Renaissance</li><li>The forced dispersal of millions of Africans through the transatlantic slave trade</li><li>African exploration of the Americas before Columbus</li><li>Religious pilgrimages to Mecca and the Middle East</li></ol>
+      <details><summary>Show Answer</summary><div class="answer"><strong>B — Forced dispersal through the slave trade.</strong> Between the 1400s and 1800s, approximately 12–15 million Africans were forcibly transported to the Americas. Despite devastating circumstances, African culture, religion, music, and language survived and transformed in the Americas, creating lasting Afro-Atlantic cultures.</div></details>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════ RAPID REVIEW -->
+  <section id="rapid-review">
+    <div class="section-header">
+      <span class="icon">⚡</span>
+      <h2>Rapid Review Sheet</h2>
+    </div>
+    <p style="margin-bottom:1.25rem; color:#555; font-style:italic;">Last-minute review — the essentials for Unit 7.</p>
+
+    <div class="rapid-grid">
+      <div class="rapid-box">
+        <h4>Key People</h4>
+        <ul>
+          <li><strong>Mansa Musa</strong> — Mali emperor; great wealth, 1324 hajj</li>
+          <li><strong>Sundiata</strong> — Founded the Mali Empire</li>
+          <li><strong>Prince Henry</strong> — Sponsored Portuguese exploration</li>
+          <li><strong>Bartolomeu Dias</strong> — Rounded Cape of Good Hope (1488)</li>
+          <li><strong>Vasco da Gama</strong> — First to India by sea (1498)</li>
+          <li><strong>Columbus</strong> — Reached Americas (1492)</li>
+          <li><strong>Magellan</strong> — First circumnavigation (1519–22)</li>
+          <li><strong>Vespucci</strong> — Named the Americas</li>
+          <li><strong>Cortés</strong> — Conquered Aztecs (1521)</li>
+          <li><strong>Pizarro</strong> — Conquered Inca (1532)</li>
+          <li><strong>Doña Marina</strong> — Cortés's interpreter, key to conquest</li>
+          <li><strong>Las Casas</strong> — Advocated for indigenous rights</li>
+          <li><strong>Montezuma II</strong> — Aztec emperor at time of conquest</li>
+        </ul>
+      </div>
+
+      <div class="rapid-box">
+        <h4>Key Terms</h4>
+        <ul>
+          <li><strong>Tribute</strong> — Tax paid to Aztec Empire in goods/people</li>
+          <li><strong>Quipu</strong> — Inca knotted-cord record system</li>
+          <li><strong>Gold-salt trade</strong> — Fueled West African empires</li>
+          <li><strong>Encomienda</strong> — Spanish forced labor system</li>
+          <li><strong>Caravel</strong> — Fast Portuguese exploration ship</li>
+          <li><strong>Astrolabe</strong> — Measures latitude by stars</li>
+          <li><strong>Columbian Exchange</strong> — Transfer of plants/animals/disease</li>
+          <li><strong>Triangular Trade</strong> — Europe→Africa→Americas→Europe</li>
+          <li><strong>Middle Passage</strong> — Ocean crossing for enslaved Africans</li>
+          <li><strong>Reconquista</strong> — Christian reconquest of Iberia (ends 1492)</li>
+          <li><strong>Mestizo/Creole/Peninsulare</strong> — Colonial social hierarchy</li>
+          <li><strong>Monoculture</strong> — Single-crop plantation economy</li>
+          <li><strong>Maroons</strong> — Freed/escaped enslaved communities</li>
+          <li><strong>Diaspora</strong> — Scattering of Africans via slave trade</li>
+        </ul>
+      </div>
+
+      <div class="rapid-box">
+        <h4>Key Civilizations &amp; Empires</h4>
+        <ul>
+          <li><strong>Maya</strong> — Writing, astronomy, pyramids; Mesoamerica</li>
+          <li><strong>Aztec</strong> — Tenochtitlan, tribute, human sacrifice</li>
+          <li><strong>Inca</strong> — Cuzco, roads, quipu, Machu Picchu</li>
+          <li><strong>Axum</strong> — East Africa; early Christianity</li>
+          <li><strong>Ghana</strong> — First W. African empire; gold-salt trade</li>
+          <li><strong>Mali</strong> — Mansa Musa; Timbuktu; Islam</li>
+          <li><strong>Swahili Cities</strong> — Indian Ocean trade; Islam</li>
+          <li><strong>Great Zimbabwe</strong> — S. Africa trade center; stone walls</li>
+        </ul>
+      </div>
+
+      <div class="rapid-box">
+        <h4>Content Targets — Quick Answers</h4>
+        <ul>
+          <li><em>Geography shaped civilizations</em> — Aztecs: lake city; Inca: mountain roads; Mali: trans-Saharan trade</li>
+          <li><em>Pre-Columbian achievements</em> — Writing, astronomy, engineering, road networks, trade systems</li>
+          <li><em>African empires' achievements</em> — Axum: early Christianity, Ge'ez script; Mali: Islamic learning, gold wealth</li>
+          <li><em>Motivations to explore</em> — Spice trade, Christian mission, wealth, glory, bypassing Ottomans</li>
+          <li><em>How Europeans explored</em> — Caravel + astrolabe + sponsorship; built on Arab/Greek knowledge</li>
+          <li><em>Slave trade impact</em> — Africa lost millions; Americas developed on forced labor; created diaspora</li>
+          <li><em>Social/economic changes</em> — Capitalism, mercantilism, racial hierarchy, global trade networks</li>
+        </ul>
+      </div>
+
+      <div class="rapid-box" style="grid-column: 1 / -1;">
+        <h4>Key Dates to Know</h4>
+        <ul style="columns: 2; column-gap: 2rem;">
+          <li><strong>1488</strong> — Dias rounds Cape of Good Hope</li>
+          <li><strong>1492</strong> — Columbus; Reconquista ends</li>
+          <li><strong>1494</strong> — Treaty of Tordesillas</li>
+          <li><strong>1498</strong> — Da Gama reaches India</li>
+          <li><strong>1519–1521</strong> — Cortés conquers Aztecs</li>
+          <li><strong>1519–1522</strong> — Magellan's circumnavigation</li>
+          <li><strong>1324</strong> — Mansa Musa's hajj to Mecca</li>
+          <li><strong>1532</strong> — Pizarro conquers Inca</li>
+          <li><strong>c. 330 CE</strong> — Axum converts to Christianity</li>
+          <li><strong>c. 1235</strong> — Sundiata founds Mali Empire</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <a class="back-link" href="../">&#8592; Back to Zach's Study Guides</a>
+</div>
+
+</body>
+</html>

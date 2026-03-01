@@ -143,7 +143,7 @@ Study guides are school-level reference documents. When generating or editing co
 - **Accuracy**: content should be factually accurate and grade-appropriate
 - **Completeness**: include vocabulary terms, key dates, important figures, and review questions
 - **Prompt**: An example prompt to generate the study guide is:
-I am in 9th grade honors world history. I have a test on SOME SUBJECT. The bullet points for this test are X, Y, and Z. Please make a study guide, with example test questions at the end. Let me know if there are any videos available that can help summarize this as well. The study guide should have an overview of concepts, flashcards, a 20 question practice quiz, and a rapid review sheet. Finally, we will also be tested on maps, please create some maps of these civilizations.
+I am in 9th grade honors world history. I have a test on SOME SUBJECT. The bullet points for this test are X, Y, and Z. Please make a study guide, with example test questions at the end. Let me know if there are any videos available that can help summarize this as well. The study guide should have an overview of concepts, flashcards, a 40 question practice quiz, and a rapid review sheet. Finally, we will also be tested on maps, please create some maps of these civilizations.
 
 ---
 

@@ -102,9 +102,12 @@ Choose or create a color theme that fits the subject matter. Reusing an existing
 ```
 
 ### Adding a New Study Guide
-1. Create the HTML file in the appropriate kid's folder
-2. Update that kid's `index.html` guide list
-3. No changes to the root `index.html` are needed
+1. Each kid has a subfolder called syllabi. Within this folder are a list of markdown documents. In each markdown document, there is a summary of the unit, with bullet points for important terms and example questions.
+2. For each document, there should be a corresponding html file generated one directory up from the syllabi folder. For example, for the file `zach/syllabi/unit_7.md`, Claude should generate a file `zach/unit_7.html`. 
+3. When claude generates this html file, it should create a title based on one of the headers near the top of the markdown file.
+4. If the html file already exists, claude does not need to regenerate it. Only generate study guides for syllabus files that do not have a corresponding html file.
+5. After an html file is generated, update the index.html file for that kid.
+6. No changes to the root `index.html` are needed
 
 ### Navigation / Linking
 - Root → Kid: `<kid>/index.html`

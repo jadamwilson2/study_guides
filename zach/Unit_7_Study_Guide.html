@@ -276,31 +276,75 @@
       gap: 0.9rem;
     }
     .flashcard {
-      background: white;
+      perspective: 1000px;
+      height: 190px;
+      cursor: pointer;
+    }
+    .flashcard-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
       border-radius: 8px;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.09);
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.12);
     }
-    .flashcard .term {
+    .flashcard-front {
       background: var(--navy);
-      color: var(--gold);
-      font-family: 'Cinzel', serif;
-      font-size: 0.88rem;
-      padding: 0.6rem 0.9rem;
-      font-weight: 600;
     }
-    .flashcard .def {
-      padding: 0.65rem 0.9rem;
-      font-size: 0.9rem;
+    .flashcard-back {
+      background: white;
+      border: 2px solid var(--navy);
+      transform: rotateY(180deg);
+      justify-content: flex-start;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .fc-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.55);
+    }
+    .fc-term {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .fc-def {
+      font-size: 0.82rem;
       color: var(--text);
       line-height: 1.5;
+      overflow-y: auto;
+      max-height: 100%;
     }
-    /* Color-code by topic */
-    .fc-latin .term  { background: var(--terra); color: #fff; }
-    .fc-africa .term { background: var(--green); color: #fff; }
-    .fc-europe .term { background: var(--ocean); color: #fff; }
-    .fc-conquest .term { background: var(--red); color: #fff; }
-    .fc-slave .term  { background: #4a3728; color: #e8d5c0; }
+    /* Color-code fronts by topic */
+    .fc-latin    .flashcard-front { background: var(--terra); }
+    .fc-africa   .flashcard-front { background: var(--green); }
+    .fc-europe   .flashcard-front { background: var(--ocean); }
+    .fc-conquest .flashcard-front { background: var(--red);   }
+    .fc-slave    .flashcard-front { background: #4a3728;      }
+    /* Color-code back borders to match */
+    .fc-latin    .flashcard-back { border-color: var(--terra); }
+    .fc-africa   .flashcard-back { border-color: var(--green); }
+    .fc-europe   .flashcard-back { border-color: var(--ocean); }
+    .fc-conquest .flashcard-back { border-color: var(--red);   }
+    .fc-slave    .flashcard-back { border-color: #4a3728;      }
+    /* Gold term color on colored fronts */
+    .fc-latin .fc-term, .fc-africa .fc-term, .fc-europe .fc-term,
+    .fc-conquest .fc-term, .fc-slave .fc-term { color: #fff; }
 
     /* ── Quiz ── */
     .quiz-q {
@@ -920,241 +964,640 @@
 
     <div class="flashcard-grid">
       <!-- ── Latin America ── -->
-      <div class="flashcard fc-latin">
-        <div class="term">Maya</div>
-        <div class="def">Ancient Mesoamerican civilization (modern Mexico, Guatemala, Belize). Known for hieroglyphic writing, advanced astronomy, mathematics (including zero), and monumental pyramids. Classic Period: ~250–900 CE.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Maya</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Ancient Mesoamerican civilization (modern Mexico, Guatemala, Belize). Known for hieroglyphic writing, advanced astronomy, mathematics (including zero), and monumental pyramids. Classic Period: ~250–900 CE.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Teotihuacan</div>
-        <div class="def">"City of the Gods" — one of the largest ancient cities in the world, located in central Mexico. Famous for the Pyramids of the Sun and Moon. Influenced civilizations across Mesoamerica; its builders remain unknown.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Teotihuacan</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">"City of the Gods" — one of the largest ancient cities in the world, located in central Mexico. Famous for the Pyramids of the Sun and Moon. Influenced civilizations across Mesoamerica; its builders remain unknown.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Aztecs</div>
-        <div class="def">Powerful Mesoamerican empire centered at Tenochtitlan. Controlled a vast territory through military conquest and a tribute system. Renowned for monumental architecture, a complex religion, and human sacrifice.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Aztecs</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Powerful Mesoamerican empire centered at Tenochtitlan. Controlled a vast territory through military conquest and a tribute system. Renowned for monumental architecture, a complex religion, and human sacrifice.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Tenochtitlan</div>
-        <div class="def">Capital of the Aztec Empire, built on an island in Lake Texcoco (~200,000 people at its peak). Connected to the mainland by causeways. Located under modern Mexico City.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Tenochtitlan</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Capital of the Aztec Empire, built on an island in Lake Texcoco (~200,000 people at its peak). Connected to the mainland by causeways. Located under modern Mexico City.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Human Sacrifice</div>
-        <div class="def">Aztec religious practice of offering human lives to the gods — especially the sun god Huitzilopochtli — to nourish the sun and maintain cosmic order. Sacrificial victims were often captives from war.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Human Sacrifice</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Aztec religious practice of offering human lives to the gods — especially the sun god Huitzilopochtli — to nourish the sun and maintain cosmic order. Sacrificial victims were often captives from war.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Tribute</div>
-        <div class="def">Payments demanded by the Aztec Empire from conquered peoples — including food, goods, textiles, gold, and sometimes humans for sacrifice. The tribute system funded Tenochtitlan's wealth and power.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Tribute</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Payments demanded by the Aztec Empire from conquered peoples — including food, goods, textiles, gold, and sometimes humans for sacrifice. The tribute system funded Tenochtitlan's wealth and power.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Quetzalcoatl</div>
-        <div class="def">Feathered serpent deity worshipped across Mesoamerica. In Aztec mythology, he was associated with wind, learning, and creation. Some sources claim the Aztecs initially believed Cortés was Quetzalcoatl returning.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Quetzalcoatl</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Feathered serpent deity worshipped across Mesoamerica. In Aztec mythology, he was associated with wind, learning, and creation. Some sources claim the Aztecs initially believed Cortés was Quetzalcoatl returning.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Inca</div>
-        <div class="def">The largest empire in pre-Columbian South America, stretching 2,500 miles along the Andes. Capital: Cuzco (Peru). Known for road networks, monumental architecture, and administrative sophistication without a writing system.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Inca</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">The largest empire in pre-Columbian South America, stretching 2,500 miles along the Andes. Capital: Cuzco (Peru). Known for road networks, monumental architecture, and administrative sophistication without a writing system.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Cuzco</div>
-        <div class="def">Capital city of the Inca Empire, located in the highlands of modern Peru. The Inca considered it the "navel of the world." Featured massive stone temples and palaces, including the Temple of the Sun (Coricancha).</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Cuzco</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Capital city of the Inca Empire, located in the highlands of modern Peru. The Inca considered it the "navel of the world." Featured massive stone temples and palaces, including the Temple of the Sun (Coricancha).</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Inca Roads</div>
-        <div class="def">A 25,000+ mile road network connecting the Inca Empire from Ecuador to Chile. Roads crossed mountains and deserts. Used by runners (chasquis), llama caravans, and the military. No wheeled vehicles — all foot traffic.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Inca Roads</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">A 25,000+ mile road network connecting the Inca Empire from Ecuador to Chile. Roads crossed mountains and deserts. Used by runners (chasquis), llama caravans, and the military. No wheeled vehicles — all foot traffic.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Inca Social Structure</div>
-        <div class="def">Sapa Inca (divine emperor) at the top → nobles and priests → commoners (paid mit'a labor tax to the state) → servants. The state redistributed labor and goods rather than using money. No true market economy.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Inca Social Structure</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Sapa Inca (divine emperor) at the top → nobles and priests → commoners (paid mit'a labor tax to the state) → servants. The state redistributed labor and goods rather than using money. No true market economy.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Machu Picchu</div>
-        <div class="def">Famous Inca citadel built around 1450 CE, perched 7,970 feet high in the Andes. Believed to be a royal estate or religious site. Abandoned after the Spanish conquest; "rediscovered" by the West in 1911 by Hiram Bingham.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Machu Picchu</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Famous Inca citadel built around 1450 CE, perched 7,970 feet high in the Andes. Believed to be a royal estate or religious site. Abandoned after the Spanish conquest; "rediscovered" by the West in 1911 by Hiram Bingham.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Mesoamerica</div>
-        <div class="def">Geographic and cultural region stretching from central Mexico through Central America (to northern Costa Rica). Home to the Maya, Aztec, Olmec, Zapotec, and other civilizations. Characterized by jungles, highlands, and coastal plains.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Mesoamerica</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Geographic and cultural region stretching from central Mexico through Central America (to northern Costa Rica). Home to the Maya, Aztec, Olmec, Zapotec, and other civilizations. Characterized by jungles, highlands, and coastal plains.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-latin">
-        <div class="term">Writing Systems (Mesoamerica)</div>
-        <div class="def">Maya: fully developed hieroglyphic script capable of recording all language sounds and concepts. Aztec: pictographic system (pictographs and logograms). Inca: quipu (knotted cords) for recording data — not a written language.</div>
+      <div class="flashcard fc-latin" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Writing Systems (Mesoamerica)</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Maya: fully developed hieroglyphic script capable of recording all language sounds and concepts. Aztec: pictographic system (pictographs and logograms). Inca: quipu (knotted cords) for recording data — not a written language.</div>
+          </div>
+        </div>
       </div>
 
       <!-- ── Africa ── -->
-      <div class="flashcard fc-africa">
-        <div class="term">Axum</div>
-        <div class="def">Ancient kingdom in East Africa (modern Ethiopia/Eritrea), c. 100–940 CE. A major trade hub linking Africa to the Red Sea and Indian Ocean trade networks. Converted to Christianity in the 4th century CE. Created the Ge'ez script and distinctive stone obelisks (stelae).</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Axum</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Ancient kingdom in East Africa (modern Ethiopia/Eritrea), c. 100–940 CE. A major trade hub linking Africa to the Red Sea and Indian Ocean trade networks. Converted to Christianity in the 4th century CE. Created the Ge'ez script and distinctive stone obelisks (stelae).</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Ethiopian Orthodox Church</div>
-        <div class="def">One of the world's oldest Christian institutions, established in the Kingdom of Axum when King Ezana converted in ~330 CE. It follows its own liturgical tradition and claims to house the Ark of the Covenant. Still active today.</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Ethiopian Orthodox Church</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">One of the world's oldest Christian institutions, established in the Kingdom of Axum when King Ezana converted in ~330 CE. It follows its own liturgical tradition and claims to house the Ark of the Covenant. Still active today.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Empire of Ghana</div>
-        <div class="def">First major West African empire (c. 700–1200 CE). Located in modern Mauritania and Mali (not modern Ghana). Controlled the gold-salt trade across the Sahara, taxing all goods passing through. Declined due to drought, overgrazing, and conquest by the Almoravids.</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Empire of Ghana</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">First major West African empire (c. 700–1200 CE). Located in modern Mauritania and Mali (not modern Ghana). Controlled the gold-salt trade across the Sahara, taxing all goods passing through. Declined due to drought, overgrazing, and conquest by the Almoravids.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Gold-Salt Trade</div>
-        <div class="def">Economic exchange between West Africa (abundant in gold) and North Africa (abundant in salt). Salt was essential for preserving food and human survival in the tropics. This trade fueled the wealth of Ghana, Mali, and Songhai empires and supported trans-Saharan trade networks.</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Gold-Salt Trade</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Economic exchange between West Africa (abundant in gold) and North Africa (abundant in salt). Salt was essential for preserving food and human survival in the tropics. This trade fueled the wealth of Ghana, Mali, and Songhai empires and supported trans-Saharan trade networks.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Mansa Musa</div>
-        <div class="def">Emperor of Mali (r. 1312–1337); considered one of the wealthiest people in history. His 1324 pilgrimage to Mecca — with 60,000+ people and enormous quantities of gold — put Mali on European maps and crashed gold prices across the Mediterranean for years.</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Mansa Musa</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Emperor of Mali (r. 1312–1337); considered one of the wealthiest people in history. His 1324 pilgrimage to Mecca — with 60,000+ people and enormous quantities of gold — put Mali on European maps and crashed gold prices across the Mediterranean for years.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Sundiata</div>
-        <div class="def">Founder and first emperor of the Mali Empire. A hero-king who defeated Sumanguru Kante of the Sosso kingdom at the Battle of Kirina (~1235 CE). His story is preserved in the epic oral tradition of the griots (West African storytellers/historians).</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Sundiata</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Founder and first emperor of the Mali Empire. A hero-king who defeated Sumanguru Kante of the Sosso kingdom at the Battle of Kirina (~1235 CE). His story is preserved in the epic oral tradition of the griots (West African storytellers/historians).</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Mali Empire</div>
-        <div class="def">West African empire (c. 1230–1600 CE) that succeeded Ghana. Stretched from the Atlantic coast to the Niger River bend. Timbuktu became a major center of trade and Islamic learning. Mansa Musa was its most famous ruler.</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Mali Empire</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">West African empire (c. 1230–1600 CE) that succeeded Ghana. Stretched from the Atlantic coast to the Niger River bend. Timbuktu became a major center of trade and Islamic learning. Mansa Musa was its most famous ruler.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Swahili Coast</div>
-        <div class="def">East African coastal region (modern Kenya, Tanzania, Mozambique) home to city-states that thrived on Indian Ocean trade (1000–1500 CE). Cities like Kilwa, Mombasa, and Zanzibar blended Bantu African and Arab-Islamic cultures. "Swahili" comes from Arabic for "coasts."</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Swahili Coast</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">East African coastal region (modern Kenya, Tanzania, Mozambique) home to city-states that thrived on Indian Ocean trade (1000–1500 CE). Cities like Kilwa, Mombasa, and Zanzibar blended Bantu African and Arab-Islamic cultures. "Swahili" comes from Arabic for "coasts."</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Islam in the Swahili Coast</div>
-        <div class="def">Islam spread to East African coastal cities through trade with Arab merchants, not military conquest. Muslim merchants settled there; local rulers often converted to ease trade. Swahili culture blended African traditions with Islamic law, architecture, and language (Arabic loanwords in Swahili).</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Islam in the Swahili Coast</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Islam spread to East African coastal cities through trade with Arab merchants, not military conquest. Muslim merchants settled there; local rulers often converted to ease trade. Swahili culture blended African traditions with Islamic law, architecture, and language (Arabic loanwords in Swahili).</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Great Zimbabwe</div>
-        <div class="def">Stone-walled city in southern Africa (modern Zimbabwe), peak c. 1100–1450 CE. The largest pre-colonial stone structure in sub-Saharan Africa — built without mortar. Center of a gold-trading kingdom. Its very existence was denied by European colonists who couldn't believe Africans built it.</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Great Zimbabwe</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Stone-walled city in southern Africa (modern Zimbabwe), peak c. 1100–1450 CE. The largest pre-colonial stone structure in sub-Saharan Africa — built without mortar. Center of a gold-trading kingdom. Its very existence was denied by European colonists who couldn't believe Africans built it.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-africa">
-        <div class="term">Indigenous African Slavery</div>
-        <div class="def">Slavery existed in Africa before European contact, typically resulting from war, debt, or crime. It differed from the later transatlantic system: it was generally not hereditary, enslaved people retained some legal rights, and social mobility was possible. Not based on race.</div>
+      <div class="flashcard fc-africa" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Indigenous African Slavery</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Slavery existed in Africa before European contact, typically resulting from war, debt, or crime. It differed from the later transatlantic system: it was generally not hereditary, enslaved people retained some legal rights, and social mobility was possible. Not based on race.</div>
+          </div>
+        </div>
       </div>
 
       <!-- ── European Exploration ── -->
-      <div class="flashcard fc-europe">
-        <div class="term">Reconquista</div>
-        <div class="def">The centuries-long Christian reconquest of the Iberian Peninsula from Muslim (Moorish) rule. Completed in 1492 when Ferdinand and Isabella took Granada. Created a culture of religious militarism in Spain and Portugal that translated directly into the Age of Exploration and conquest.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Reconquista</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">The centuries-long Christian reconquest of the Iberian Peninsula from Muslim (Moorish) rule. Completed in 1492 when Ferdinand and Isabella took Granada. Created a culture of religious militarism in Spain and Portugal that translated directly into the Age of Exploration and conquest.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Astrolabe</div>
-        <div class="def">A navigational instrument that measures the angle of celestial bodies (sun, stars) above the horizon to determine latitude. Borrowed and refined from Arab and ancient Greek technology. Essential for long ocean voyages without landmarks.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Astrolabe</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">A navigational instrument that measures the angle of celestial bodies (sun, stars) above the horizon to determine latitude. Borrowed and refined from Arab and ancient Greek technology. Essential for long ocean voyages without landmarks.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Caravel</div>
-        <div class="def">Small, maneuverable Portuguese sailing ship with lateen (triangular) sails that could sail against the wind. It was faster and more agile than earlier ships, making long ocean voyages and exploration of unknown coastlines possible.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Caravel</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Small, maneuverable Portuguese sailing ship with lateen (triangular) sails that could sail against the wind. It was faster and more agile than earlier ships, making long ocean voyages and exploration of unknown coastlines possible.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Prince Henry the Navigator</div>
-        <div class="def">Portuguese prince (1394–1460) who sponsored systematic exploration of the African coast and established a school of navigation at Sagres. He never sailed himself, but his patronage transformed exploration into a state-funded enterprise, launching Portugal's age of discovery.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Prince Henry the Navigator</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Portuguese prince (1394–1460) who sponsored systematic exploration of the African coast and established a school of navigation at Sagres. He never sailed himself, but his patronage transformed exploration into a state-funded enterprise, launching Portugal's age of discovery.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Bartolomeu Dias</div>
-        <div class="def">Portuguese explorer who in 1488 became the first European to round the Cape of Good Hope (southern tip of Africa). His voyage proved a sea route to the Indian Ocean was possible, opening the door for Vasco da Gama.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Bartolomeu Dias</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Portuguese explorer who in 1488 became the first European to round the Cape of Good Hope (southern tip of Africa). His voyage proved a sea route to the Indian Ocean was possible, opening the door for Vasco da Gama.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Vasco da Gama</div>
-        <div class="def">Portuguese explorer who in 1498 sailed from Portugal around Africa to reach Calicut, India — establishing the first direct sea trade route from Europe to Asia. This broke the Ottoman monopoly on overland trade routes and made Portugal enormously wealthy.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Vasco da Gama</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Portuguese explorer who in 1498 sailed from Portugal around Africa to reach Calicut, India — establishing the first direct sea trade route from Europe to Asia. This broke the Ottoman monopoly on overland trade routes and made Portugal enormously wealthy.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Christopher Columbus</div>
-        <div class="def">Italian explorer sailing for Spain who in 1492 reached the Caribbean (thinking he had reached Asia). His four voyages (1492–1504) opened sustained contact between Europe and the Americas. He never acknowledged he had reached new continents.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Christopher Columbus</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Italian explorer sailing for Spain who in 1492 reached the Caribbean (thinking he had reached Asia). His four voyages (1492–1504) opened sustained contact between Europe and the Americas. He never acknowledged he had reached new continents.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Ferdinand Magellan</div>
-        <div class="def">Portuguese explorer who led the first expedition to circumnavigate the globe (1519–1522), sailing for Spain. He died in the Philippines; his surviving crew member Juan Sebastián Elcano completed the journey. Proved the Earth was round and enormous.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Ferdinand Magellan</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Portuguese explorer who led the first expedition to circumnavigate the globe (1519–1522), sailing for Spain. He died in the Philippines; his surviving crew member Juan Sebastián Elcano completed the journey. Proved the Earth was round and enormous.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Amerigo Vespucci</div>
-        <div class="def">Italian explorer who made several voyages to the Americas (1499–1504) and was the first to clearly articulate that these were previously unknown continents (not Asia). The Americas are named after him — from the Latinized form "Americus."</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Amerigo Vespucci</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Italian explorer who made several voyages to the Americas (1499–1504) and was the first to clearly articulate that these were previously unknown continents (not Asia). The Americas are named after him — from the Latinized form "Americus."</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Trading Posts</div>
-        <div class="def">Fortified commercial outposts established by Portugal along African coasts and in Asia. They allowed Portugal to control trade without large-scale colonization. Became nodes for the early slave trade and models for later colonial enterprises.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Trading Posts</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Fortified commercial outposts established by Portugal along African coasts and in Asia. They allowed Portugal to control trade without large-scale colonization. Became nodes for the early slave trade and models for later colonial enterprises.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Slave Trade (Early)</div>
-        <div class="def">By the 1440s, Portuguese traders were transporting enslaved Africans to Europe and Atlantic islands (Madeira, Azores). This set the precedent for the far larger transatlantic slave trade that would follow Columbus's voyages.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Slave Trade (Early)</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">By the 1440s, Portuguese traders were transporting enslaved Africans to Europe and Atlantic islands (Madeira, Azores). This set the precedent for the far larger transatlantic slave trade that would follow Columbus's voyages.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-europe">
-        <div class="term">Treaty of Tordesillas (1494)</div>
-        <div class="def">Agreement between Spain and Portugal (mediated by Pope Alexander VI) dividing the non-Christian world between them along a line 370 leagues west of the Cape Verde Islands. Spain got the Americas (except Brazil); Portugal got Africa, Asia, and Brazil. Other powers ignored it.</div>
+      <div class="flashcard fc-europe" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Treaty of Tordesillas (1494)</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Agreement between Spain and Portugal (mediated by Pope Alexander VI) dividing the non-Christian world between them along a line 370 leagues west of the Cape Verde Islands. Spain got the Americas (except Brazil); Portugal got Africa, Asia, and Brazil. Other powers ignored it.</div>
+          </div>
+        </div>
       </div>
 
       <!-- ── Conquest ── -->
-      <div class="flashcard fc-conquest">
-        <div class="term">Encomienda</div>
-        <div class="def">Spanish colonial system granting conquistadors the right to demand labor and tribute from a specific group of indigenous people in exchange for "protection" and Christian instruction. In practice, it was brutal forced labor that decimated indigenous populations.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Encomienda</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Spanish colonial system granting conquistadors the right to demand labor and tribute from a specific group of indigenous people in exchange for "protection" and Christian instruction. In practice, it was brutal forced labor that decimated indigenous populations.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Hernán Cortés</div>
-        <div class="def">Spanish conquistador who conquered the Aztec Empire (1519–1521) with ~500 soldiers, using indigenous allies, horses, steel weapons, and the devastation of smallpox. Took Tenochtitlan in 1521 and founded Mexico City on its ruins.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Hernán Cortés</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Spanish conquistador who conquered the Aztec Empire (1519–1521) with ~500 soldiers, using indigenous allies, horses, steel weapons, and the devastation of smallpox. Took Tenochtitlan in 1521 and founded Mexico City on its ruins.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Francisco Pizarro</div>
-        <div class="def">Spanish conquistador who conquered the Inca Empire (1532) with ~180 soldiers. Arrived during an Inca civil war, captured Emperor Atahualpa, collected a massive gold ransom, then executed him anyway. Established Spanish control over Peru.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Francisco Pizarro</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Spanish conquistador who conquered the Inca Empire (1532) with ~180 soldiers. Arrived during an Inca civil war, captured Emperor Atahualpa, collected a massive gold ransom, then executed him anyway. Established Spanish control over Peru.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Smallpox</div>
-        <div class="def">Epidemic disease brought to the Americas by Europeans. Indigenous peoples had no immunity. In some regions, smallpox killed up to 90% of the population before Spanish soldiers even arrived, collapsing societies and military resistance. The single most devastating factor in the conquest.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Smallpox</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Epidemic disease brought to the Americas by Europeans. Indigenous peoples had no immunity. In some regions, smallpox killed up to 90% of the population before Spanish soldiers even arrived, collapsing societies and military resistance. The single most devastating factor in the conquest.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Mestizo</div>
-        <div class="def">Person of mixed European and indigenous American ancestry. Mestizos occupied a middle tier in the colonial social hierarchy — below Creoles and Peninsulares but above indigenous peoples and enslaved Africans. Today mestizo is the majority population in many Latin American countries.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Mestizo</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Person of mixed European and indigenous American ancestry. Mestizos occupied a middle tier in the colonial social hierarchy — below Creoles and Peninsulares but above indigenous peoples and enslaved Africans. Today mestizo is the majority population in many Latin American countries.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Creole</div>
-        <div class="def">Person of full European descent born in the Americas (as opposed to Spain/Portugal). Creoles were wealthy and educated but were barred from the highest government positions, which were reserved for Peninsulares. Their resentment eventually fueled the Latin American independence movements.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Creole</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Person of full European descent born in the Americas (as opposed to Spain/Portugal). Creoles were wealthy and educated but were barred from the highest government positions, which were reserved for Peninsulares. Their resentment eventually fueled the Latin American independence movements.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Peninsulare</div>
-        <div class="def">A person born on the Iberian Peninsula (Spain or Portugal) living in the Americas. They held the highest positions in colonial government and society. The term reflects the Spanish obsession with "pure" European blood (limpieza de sangre).</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Peninsulare</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">A person born on the Iberian Peninsula (Spain or Portugal) living in the Americas. They held the highest positions in colonial government and society. The term reflects the Spanish obsession with "pure" European blood (limpieza de sangre).</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Doña Marina (La Malinche)</div>
-        <div class="def">Indigenous Nahuatl-speaking woman (also known as Malintzin) given to Cortés as a slave. She became his interpreter, advisor, and partner — without her, the conquest of the Aztecs would likely have failed. A deeply complex historical figure: traitor to some, survivor and pragmatist to others.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Doña Marina (La Malinche)</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Indigenous Nahuatl-speaking woman (also known as Malintzin) given to Cortés as a slave. She became his interpreter, advisor, and partner — without her, the conquest of the Aztecs would likely have failed. A deeply complex historical figure: traitor to some, survivor and pragmatist to others.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Viceroy</div>
-        <div class="def">Royal governor who ruled a Spanish colonial territory (viceroyalty) in the king's name. The two main viceroyalties were New Spain (Mexico, Caribbean, Central America) and Peru (South America). Viceroys held enormous power but were subject to oversight from Spain.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Viceroy</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Royal governor who ruled a Spanish colonial territory (viceroyalty) in the king's name. The two main viceroyalties were New Spain (Mexico, Caribbean, Central America) and Peru (South America). Viceroys held enormous power but were subject to oversight from Spain.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Montezuma II</div>
-        <div class="def">Aztec emperor at the time of the Spanish conquest. He initially received Cortés with diplomacy; Cortés then took him hostage. Montezuma died during the conflict (circumstances debated). His death and the subsequent smallpox epidemic shattered Aztec resistance.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Montezuma II</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Aztec emperor at the time of the Spanish conquest. He initially received Cortés with diplomacy; Cortés then took him hostage. Montezuma died during the conflict (circumstances debated). His death and the subsequent smallpox epidemic shattered Aztec resistance.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Portuguese Conquest of Brazil</div>
-        <div class="def">Under the Treaty of Tordesillas, Portugal claimed Brazil. Initially exploited pau-brasil (brazilwood) for red dye. Eventually established sugar plantations worked by enslaved Africans. Brazil became Portugal's most profitable colony and received the most enslaved Africans of any single country (~4 million).</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Portuguese Conquest of Brazil</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Under the Treaty of Tordesillas, Portugal claimed Brazil. Initially exploited pau-brasil (brazilwood) for red dye. Eventually established sugar plantations worked by enslaved Africans. Brazil became Portugal's most profitable colony and received the most enslaved Africans of any single country (~4 million).</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Columbian Exchange</div>
-        <div class="def">The transfer of plants, animals, diseases, ideas, and people between the Old World (Europe, Africa, Asia) and the New World (Americas) after 1492. Transformed global agriculture, population, and culture. Devastating for indigenous Americans (disease); transformative for the rest of the world (new crops).</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Columbian Exchange</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">The transfer of plants, animals, diseases, ideas, and people between the Old World (Europe, Africa, Asia) and the New World (Americas) after 1492. Transformed global agriculture, population, and culture. Devastating for indigenous Americans (disease); transformative for the rest of the world (new crops).</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-conquest">
-        <div class="term">Bartolomé de Las Casas</div>
-        <div class="def">Spanish Dominican priest who initially participated in the conquest system but became its most prominent critic. His "Brief Account of the Destruction of the Indies" (1542) documented Spanish atrocities against indigenous peoples. He lobbied for the New Laws (1542) limiting indigenous enslavement. An early figure in human rights advocacy.</div>
+      <div class="flashcard fc-conquest" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Bartolomé de Las Casas</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Spanish Dominican priest who initially participated in the conquest system but became its most prominent critic. His "Brief Account of the Destruction of the Indies" (1542) documented Spanish atrocities against indigenous peoples. He lobbied for the New Laws (1542) limiting indigenous enslavement. An early figure in human rights advocacy.</div>
+          </div>
+        </div>
       </div>
 
       <!-- ── Slave Trade ── -->
-      <div class="flashcard fc-slave">
-        <div class="term">Triangular Trade</div>
-        <div class="def">Three-legged trade route: (1) Europe → West Africa, trading manufactured goods for enslaved people; (2) West Africa → Americas (the Middle Passage), transporting enslaved Africans; (3) Americas → Europe, shipping sugar, tobacco, cotton produced by enslaved labor.</div>
+      <div class="flashcard fc-slave" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Triangular Trade</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Three-legged trade route: (1) Europe → West Africa, trading manufactured goods for enslaved people; (2) West Africa → Americas (the Middle Passage), transporting enslaved Africans; (3) Americas → Europe, shipping sugar, tobacco, cotton produced by enslaved labor.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-slave">
-        <div class="term">Middle Passage</div>
-        <div class="def">The brutal ocean voyage of enslaved Africans from West Africa to the Americas — the second "leg" of the triangular trade. Ships were grotesquely overcrowded. Mortality rates reached 10–30% per voyage due to disease, starvation, and violence. Over 12 million people endured this crossing.</div>
+      <div class="flashcard fc-slave" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Middle Passage</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">The brutal ocean voyage of enslaved Africans from West Africa to the Americas — the second "leg" of the triangular trade. Ships were grotesquely overcrowded. Mortality rates reached 10–30% per voyage due to disease, starvation, and violence. Over 12 million people endured this crossing.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-slave">
-        <div class="term">Monoculture</div>
-        <div class="def">Agricultural system focusing entirely on one cash crop for export (sugar in the Caribbean, tobacco in Virginia, cotton in the Deep South). Required massive enslaved labor forces. Depleted soil, created economic dependency, and left colonies vulnerable to crop failure.</div>
+      <div class="flashcard fc-slave" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Monoculture</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Agricultural system focusing entirely on one cash crop for export (sugar in the Caribbean, tobacco in Virginia, cotton in the Deep South). Required massive enslaved labor forces. Depleted soil, created economic dependency, and left colonies vulnerable to crop failure.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-slave">
-        <div class="term">Maroons</div>
-        <div class="def">Enslaved Africans who escaped and formed independent free communities in remote areas — mountain jungles in Jamaica, the Amazon basin in Brazil (Quilombos), Suriname. They maintained African cultural traditions, developed guerrilla warfare, and resisted re-enslavement. The Maroons of Jamaica signed a peace treaty with Britain in 1739.</div>
+      <div class="flashcard fc-slave" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Maroons</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Enslaved Africans who escaped and formed independent free communities in remote areas — mountain jungles in Jamaica, the Amazon basin in Brazil (Quilombos), Suriname. They maintained African cultural traditions, developed guerrilla warfare, and resisted re-enslavement. The Maroons of Jamaica signed a peace treaty with Britain in 1739.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-slave">
-        <div class="term">Diaspora</div>
-        <div class="def">The scattering of a people from their original homeland. The African diaspora refers to the forced dispersal of millions of Africans across the Americas through the slave trade. Despite devastation, African cultures survived and blended with New World cultures, creating Afro-Caribbean, Afro-Brazilian, and African American identities.</div>
+      <div class="flashcard fc-slave" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Diaspora</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">The scattering of a people from their original homeland. The African diaspora refers to the forced dispersal of millions of Africans across the Americas through the slave trade. Despite devastation, African cultures survived and blended with New World cultures, creating Afro-Caribbean, Afro-Brazilian, and African American identities.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-slave">
-        <div class="term">Capitalism</div>
-        <div class="def">An economic system based on private ownership of production and profit-driven enterprise. European exploration and colonization accelerated the development of capitalism through the creation of joint-stock companies, global trade networks, plantation economies, and the accumulation of New World wealth.</div>
+      <div class="flashcard fc-slave" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Capitalism</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">An economic system based on private ownership of production and profit-driven enterprise. European exploration and colonization accelerated the development of capitalism through the creation of joint-stock companies, global trade networks, plantation economies, and the accumulation of New World wealth.</div>
+          </div>
+        </div>
       </div>
-      <div class="flashcard fc-slave">
-        <div class="term">Mercantilism</div>
-        <div class="def">Economic theory dominant in European colonial powers: a nation's wealth depends on accumulating gold/silver and maintaining a favorable trade balance (exporting more than importing). Colonies existed to enrich the mother country — providing raw materials and buying finished goods. Justified exploitation of colonies.</div>
+      <div class="flashcard fc-slave" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Mercantilism</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Economic theory dominant in European colonial powers: a nation's wealth depends on accumulating gold/silver and maintaining a favorable trade balance (exporting more than importing). Colonies existed to enrich the mother country — providing raw materials and buying finished goods. Justified exploitation of colonies.</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

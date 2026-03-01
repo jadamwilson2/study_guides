@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.wikimedia.org)",
+      "Bash(python3 -c \":*)",
+      "Bash(curl -s \"https://en.wikipedia.org/w/api.php?action=query&titles=Age_of_Discovery&prop=images&format=json\")",
+      "Bash(curl -s \"https://en.wikipedia.org/w/api.php?action=query&titles=File:Age_of_Discovery_explorations_in_English.png|File:16th_century_Portuguese_Spanish_trade_routes.png&prop=imageinfo&iiprop=url&format=json\")"
+    ]
+  }
+}

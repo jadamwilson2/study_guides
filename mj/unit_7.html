@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AP Statistics Unit 7 — Inference for Means</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:        #1B2A4A;
+      --teal:        #0B7285;
+      --gold:        #C9A227;
+      --purple:      #5B2D8E;
+      --green:       #2D6A4F;
+      --red:         #8B1A1A;
+      --parchment:   #F5F7FA;
+      --text:        #1a1a2e;
+      --light-teal:  #E3F4F7;
+      --light-blue:  #EAF4FB;
+      --light-gold:  #FFF8E7;
+      --light-green: #E8F5EE;
+      --light-red:   #FCECEA;
+      --light-purple:#F3EAF9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Crimson Pro', Georgia, serif; background: var(--parchment); color: var(--text); font-size: 1.05rem; line-height: 1.65; }
+
+    .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 60%, #0a5a6e 100%); color: white; padding: 4rem 2rem 3rem; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 60px); }
+    .hero .badge { display: inline-block; background: rgba(201,162,39,0.25); border: 1px solid var(--gold); color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.35rem 1rem; border-radius: 999px; margin-bottom: 1rem; }
+    .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700; color: var(--gold); text-shadow: 0 2px 8px rgba(0,0,0,0.4); margin-bottom: 0.5rem; }
+    .hero .subtitle { font-size: 1.1rem; opacity: 0.88; max-width: 640px; margin: 0 auto; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: var(--navy); padding: 0.6rem 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.35rem 0.75rem; border-radius: 999px; border: 1px solid transparent; transition: all 0.15s; white-space: nowrap; }
+    nav a:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    section { margin-bottom: 3.5rem; scroll-margin-top: 60px; }
+
+    .section-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--gold); }
+    .section-header .icon { font-size: 1.6rem; }
+    .section-header h2 { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--navy); }
+    h3 { font-family: 'Cinzel', serif; font-size: 1.05rem; color: var(--teal); margin: 1.25rem 0 0.5rem; }
+
+    .box { background: white; border-radius: 8px; padding: 1.1rem 1.3rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.07); border-left: 4px solid var(--gold); }
+    .box-blue   { border-left-color: var(--teal);   background: var(--light-teal); }
+    .box-green  { border-left-color: var(--green);  background: var(--light-green); }
+    .box-red    { border-left-color: var(--red);    background: var(--light-red); }
+    .box-gold   { border-left-color: var(--gold);   background: var(--light-gold); }
+    .box-purple { border-left-color: var(--purple); background: var(--light-purple); }
+    .box p, .box li { margin-bottom: 0.35rem; }
+    .box ul, .box ol { padding-left: 1.4rem; }
+    .box strong { color: var(--navy); }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    .formula-box { background: var(--navy); color: white; border-radius: 8px; padding: 1rem 1.5rem; margin: 0.75rem 0; font-family: 'Courier New', monospace; font-size: 1.05rem; text-align: center; letter-spacing: 0.02em; }
+    .formula-box .flabel { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 0.4rem; }
+
+    .decision-tree { background: white; border-radius: 8px; padding: 1.25rem; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    .dt-row { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; align-items: flex-start; }
+    .dt-q { background: var(--navy); color: white; font-family: 'Cinzel', serif; font-size: 0.72rem; padding: 0.3rem 0.7rem; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+    .dt-a { font-size: 0.92rem; }
+
+    .step-list { counter-reset: step; list-style: none; padding: 0; }
+    .step-list li { counter-increment: step; display: flex; gap: 0.75rem; margin-bottom: 0.65rem; align-items: flex-start; }
+    .step-list li::before { content: counter(step); background: var(--teal); color: white; font-family: 'Cinzel', serif; font-size: 0.75rem; font-weight: 700; width: 1.6rem; height: 1.6rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+
+    .worked-ex { background: var(--light-blue); border: 1px solid #b0d8e8; border-radius: 8px; padding: 1.1rem 1.3rem; margin-top: 1rem; }
+    .worked-ex .ex-label { font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+
+    .conditions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0.75rem 0; }
+    @media (max-width: 640px) { .conditions-grid { grid-template-columns: 1fr; } }
+    .cond-card { background: white; border-radius: 8px; padding: 0.75rem 1rem; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.07); border-top: 4px solid var(--teal); }
+    .cond-card .cname { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--navy); font-weight: 700; margin-bottom: 0.3rem; }
+    .cond-card p { font-size: 0.85rem; color: #444; }
+
+    table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.07); margin: 0.75rem 0; font-size: 0.9rem; }
+    th { background: var(--navy); color: white; font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.05em; padding: 0.7rem 1rem; text-align: left; }
+    td { padding: 0.6rem 1rem; border-bottom: 1px solid #eee; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafcfe; }
+
+    /* Flashcards */
+    .flashcard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.9rem; }
+    .flashcard { perspective: 1000px; height: 190px; cursor: pointer; }
+    .flashcard-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.5s; }
+    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back { position: absolute; inset: 0; backface-visibility: hidden; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 1rem; text-align: center; box-shadow: 0 1px 5px rgba(0,0,0,0.12); }
+    .flashcard-front { background: var(--navy); }
+    .flashcard-back { background: white; border: 2px solid var(--navy); transform: rotateY(180deg); justify-content: flex-start; align-items: flex-start; text-align: left; }
+    .fc-label { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; color: rgba(255,255,255,0.55); }
+    .fc-term { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold); font-weight: 700; }
+    .fc-def { font-size: 0.82rem; color: var(--text); line-height: 1.5; overflow-y: auto; max-height: 100%; }
+    .fc-ci1 .flashcard-front  { background: var(--teal); }
+    .fc-ci1 .flashcard-back   { border-color: var(--teal); }
+    .fc-test1 .flashcard-front { background: var(--navy); }
+    .fc-test1 .flashcard-back  { border-color: var(--navy); }
+    .fc-ci2 .flashcard-front  { background: var(--green); }
+    .fc-ci2 .flashcard-back   { border-color: var(--green); }
+    .fc-test2 .flashcard-front { background: var(--purple); }
+    .fc-test2 .flashcard-back  { border-color: var(--purple); }
+    .fc-ci1 .fc-term, .fc-test1 .fc-term, .fc-ci2 .fc-term, .fc-test2 .fc-term { color: #fff; }
+
+    /* Quiz */
+    .quiz-q { background: white; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    .quiz-q .qnum { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--teal); font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+    .quiz-q .qtext { font-weight: 600; margin-bottom: 0.6rem; }
+    .quiz-q ol { list-style-type: upper-alpha; padding-left: 1.5rem; }
+    .quiz-q ol li { margin-bottom: 0.25rem; }
+    .quiz-q details { margin-top: 0.75rem; border-top: 1px solid #e0e0e0; padding-top: 0.5rem; }
+    .quiz-q details summary { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--teal); cursor: pointer; letter-spacing: 0.04em; }
+    .quiz-q .answer { margin-top: 0.4rem; background: var(--light-green); border-left: 3px solid var(--green); padding: 0.5rem 0.75rem; border-radius: 4px; font-size: 0.92rem; }
+    .quiz-q .answer strong { color: var(--green); }
+
+    /* Rapid Review */
+    .rapid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .rapid-grid { grid-template-columns: 1fr; } }
+    .rapid-box { background: white; border-radius: 8px; padding: 1rem 1.1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+    .rapid-box h4 { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--navy); border-bottom: 2px solid var(--gold); padding-bottom: 0.3rem; margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .rapid-box ul { padding-left: 1.2rem; }
+    .rapid-box li { font-size: 0.85rem; margin-bottom: 0.3rem; }
+
+    /* Videos */
+    .video-list { display: grid; gap: 0.85rem; }
+    .video-item { background: white; border-radius: 8px; padding: 1rem 1.25rem; box-shadow: 0 1px 4px rgba(0,0,0,0.07); display: flex; align-items: flex-start; gap: 1rem; text-decoration: none; color: inherit; border-left: 4px solid var(--teal); transition: box-shadow 0.15s; }
+    .video-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .video-item .vicon { font-size: 1.8rem; flex-shrink: 0; }
+    .video-item .vtitle { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--teal); margin-bottom: 0.2rem; }
+    .video-item .vdesc { font-size: 0.9rem; color: #555; }
+
+    .back-link { display: inline-block; margin: 1.5rem 0 0; color: #888; text-decoration: none; font-size: 0.88rem; }
+    .back-link:hover { color: var(--navy); }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="badge">11th Grade · AP Statistics</div>
+  <h1>Unit 7: Inference for Means</h1>
+  <p class="subtitle">Confidence Intervals &amp; Significance Tests · One-Sample &amp; Two-Sample t-Procedures</p>
+</div>
+
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#ci-one">One-Sample CI</a>
+  <a href="#test-one">One-Sample Test</a>
+  <a href="#ci-two">Two-Sample CI</a>
+  <a href="#test-two">Two-Sample Test</a>
+  <a href="#formulas">Formulas</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#rapid-review">Rapid Review</a>
+  <a href="#videos">Videos</a>
+</nav>
+
+<div class="container">
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="section-header"><span class="icon">📊</span><h2>Unit Overview</h2></div>
+  <div class="box box-gold">
+    <p>Unit 7 covers inference procedures for population <strong>means</strong> using the <strong>t-distribution</strong>. You'll learn to construct confidence intervals and conduct hypothesis tests — both for a single population mean and for comparing two population means (either paired or independent samples).</p>
+  </div>
+  <h3>The Four Major Procedures</h3>
+  <table>
+    <tr><th>Procedure</th><th>Goal</th><th>When to Use</th></tr>
+    <tr><td><strong>One-Sample t-Interval</strong></td><td>Estimate μ</td><td>One group; estimate population mean</td></tr>
+    <tr><td><strong>One-Sample t-Test</strong></td><td>Test claim about μ</td><td>One group; test vs. a specific value μ₀</td></tr>
+    <tr><td><strong>Paired t-Interval</strong></td><td>Estimate μ_d (mean difference)</td><td>Two measurements on same subject or matched pairs</td></tr>
+    <tr><td><strong>Two-Sample t-Test / CI</strong></td><td>Compare μ₁ and μ₂</td><td>Two independent groups</td></tr>
+  </table>
+  <h3>Decision Tree: Which Procedure?</h3>
+  <div class="decision-tree">
+    <div class="dt-row"><div class="dt-q">How many groups?</div><div class="dt-a"><strong>One group</strong> → One-sample t-procedure &nbsp;|&nbsp; <strong>Two groups</strong> → Continue below</div></div>
+    <div class="dt-row"><div class="dt-q">Are subjects paired?</div><div class="dt-a"><strong>Yes (matched pairs / before &amp; after)</strong> → Paired t-procedure (treat differences as one sample) &nbsp;|&nbsp; <strong>No (independent)</strong> → Two-sample t-procedure</div></div>
+    <div class="dt-row"><div class="dt-q">CI or test?</div><div class="dt-a"><strong>Estimating</strong> → Confidence Interval &nbsp;|&nbsp; <strong>Testing a claim</strong> → Significance Test</div></div>
+  </div>
+</section>
+
+<!-- ONE-SAMPLE CI -->
+<section id="ci-one">
+  <div class="section-header"><span class="icon">📐</span><h2>Confidence Intervals for a Population Mean</h2></div>
+  <div class="box box-blue">
+    <p>A <strong>confidence interval</strong> gives a range of plausible values for a population mean μ. A 95% CI means: if we repeated sampling many times, 95% of the intervals we construct would contain the true μ.</p>
+  </div>
+  <h3>Conditions (RNI)</h3>
+  <div class="conditions-grid">
+    <div class="cond-card"><div class="cname">🎲 Random</div><p>Data comes from a random sample or randomized experiment.</p></div>
+    <div class="cond-card"><div class="cname">🔔 Normal</div><p>n ≥ 30, OR population is Normal, OR histogram shows no strong skew/outliers (small n).</p></div>
+    <div class="cond-card"><div class="cname">🔗 Independent</div><p>Individual observations are independent. If sampling without replacement: n ≤ 10% of population.</p></div>
+  </div>
+  <h3>Formula</h3>
+  <div class="formula-box"><span class="flabel">One-Sample t-Interval for μ</span>x̄ ± t* · (s / √n) &nbsp;&nbsp; df = n − 1</div>
+  <div class="grid-2">
+    <div class="box">
+      <strong>x̄</strong> = sample mean<br>
+      <strong>s</strong> = sample standard deviation<br>
+      <strong>n</strong> = sample size
+    </div>
+    <div class="box">
+      <strong>t*</strong> = critical value from t-table with df = n−1 and desired confidence level<br>
+      <strong>Margin of Error</strong> = t* · (s/√n)
+    </div>
+  </div>
+  <h3>Steps</h3>
+  <ol class="step-list">
+    <li><strong>State</strong>: Define the parameter. "Let μ = the true mean [context]."</li>
+    <li><strong>Plan</strong>: Name the procedure (one-sample t-interval). Check RNI conditions.</li>
+    <li><strong>Calculate</strong>: Find x̄, s, n. Look up t* (df = n−1). Compute interval: x̄ ± t*(s/√n).</li>
+    <li><strong>Conclude</strong>: "We are [C]% confident the true mean [context] is between [L] and [U]."</li>
+  </ol>
+  <h3>Worked Example — Houston Rockets</h3>
+  <div class="worked-ex">
+    <div class="ex-label">Example from Unit 7 Review</div>
+    <p>During the 2016–2017 NBA season, the Houston Rockets averaged <strong>40.317</strong> three-point attempts per game with a standard deviation of <strong>7.078</strong> over <strong>82 games</strong>. Construct a 95% confidence interval for the Rockets' true mean three-point attempts per game.</p>
+    <p style="margin-top:0.75rem"><strong>Conditions:</strong> Random ✓ (treat games as random sample of performance); Normal ✓ (n = 82 ≥ 30); Independent ✓ (82 games &lt; 10% of all NBA games played).</p>
+    <p><strong>Calculate:</strong> df = 81, t* ≈ 1.990<br>
+    ME = 1.990 × (7.078/√82) = 1.990 × 0.782 = 1.556<br>
+    CI = 40.317 ± 1.556 = <strong>(38.76, 41.87)</strong></p>
+    <p><strong>Conclude:</strong> We are 95% confident the Rockets' true mean three-point attempts per game during that season was between 38.76 and 41.87.</p>
+  </div>
+  <h3>Key Facts</h3>
+  <div class="grid-2">
+    <div class="box">
+      <strong>Wider interval when:</strong>
+      <ul><li>Higher confidence level (larger t*)</li><li>More variability (larger s)</li><li>Smaller sample size (smaller n)</li></ul>
+    </div>
+    <div class="box">
+      <strong>Narrower interval when:</strong>
+      <ul><li>Lower confidence level</li><li>Less variability</li><li>Larger sample size</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ONE-SAMPLE TEST -->
+<section id="test-one">
+  <div class="section-header"><span class="icon">🔬</span><h2>Significance Tests for a Population Mean</h2></div>
+  <div class="box box-blue">
+    <p>A <strong>significance test</strong> assesses the evidence against a null hypothesis. We ask: assuming H₀ is true, how likely is our sample result? If the probability (p-value) is small, we have evidence against H₀.</p>
+  </div>
+  <h3>Hypotheses</h3>
+  <div class="grid-2">
+    <div class="box"><strong>Null Hypothesis (H₀):</strong> μ = μ₀ <br><em>The population mean equals a specific value. This is what we assume is true.</em></div>
+    <div class="box"><strong>Alternative Hypothesis (Hₐ):</strong><br>μ &gt; μ₀ &nbsp;(right-tailed)<br>μ &lt; μ₀ &nbsp;(left-tailed)<br>μ ≠ μ₀ &nbsp;(two-tailed)</div>
+  </div>
+  <h3>Formula</h3>
+  <div class="formula-box"><span class="flabel">One-Sample t-Statistic</span>t = (x̄ − μ₀) / (s / √n) &nbsp;&nbsp; df = n − 1</div>
+  <h3>Steps (SPCC)</h3>
+  <ol class="step-list">
+    <li><strong>State</strong>: H₀ and Hₐ in context; significance level α (usually 0.05).</li>
+    <li><strong>Plan</strong>: Name the test (one-sample t-test). Check RNI conditions.</li>
+    <li><strong>Calculate</strong>: Compute t-statistic. Find p-value from t-table (df = n−1).</li>
+    <li><strong>Conclude</strong>: Compare p-value to α. State decision and interpretation in context.</li>
+  </ol>
+  <h3>Conclusion Templates</h3>
+  <div class="box box-green"><strong>Reject H₀:</strong> "Since p = [value] &lt; α = 0.05, we reject H₀. There is convincing evidence that [Hₐ in context]."</div>
+  <div class="box box-red"><strong>Fail to Reject H₀:</strong> "Since p = [value] ≥ α = 0.05, we fail to reject H₀. There is not convincing evidence that [Hₐ in context]."</div>
+  <h3>Type I and Type II Errors</h3>
+  <table>
+    <tr><th></th><th>H₀ is actually TRUE</th><th>H₀ is actually FALSE</th></tr>
+    <tr><td><strong>Reject H₀</strong></td><td style="background:#FCECEA">Type I Error (α)<br><em>False positive</em></td><td style="background:#E8F5EE">Correct ✓ (Power)</td></tr>
+    <tr><td><strong>Fail to Reject H₀</strong></td><td style="background:#E8F5EE">Correct ✓</td><td style="background:#FCECEA">Type II Error (β)<br><em>False negative</em></td></tr>
+  </table>
+  <div class="box box-gold" style="margin-top:0.75rem">
+    <strong>Power</strong> = 1 − β = probability of correctly rejecting a false H₀. Power increases with larger sample size, larger effect size, and higher α.
+  </div>
+  <h3>Worked Example — Houston Rockets</h3>
+  <div class="worked-ex">
+    <div class="ex-label">Example from Unit 7 Review</div>
+    <p>The NBA average was <strong>27</strong> three-point attempts per game. Did the Rockets attempt <em>significantly more</em>? (x̄ = 40.317, s = 7.078, n = 82)</p>
+    <p style="margin-top:0.75rem"><strong>H₀:</strong> μ = 27 &nbsp;&nbsp; <strong>Hₐ:</strong> μ &gt; 27 &nbsp;&nbsp; α = 0.05</p>
+    <p><strong>Conditions:</strong> Random ✓, Normal ✓ (n = 82 ≥ 30), Independent ✓</p>
+    <p><strong>Calculate:</strong> t = (40.317 − 27) / (7.078/√82) = 13.317 / 0.782 ≈ <strong>17.03</strong><br>df = 81, p-value ≈ 0 (essentially 0)</p>
+    <p><strong>Conclude:</strong> Since p ≈ 0 &lt; 0.05, we reject H₀. There is convincing evidence the Rockets averaged more than 27 three-point attempts per game.</p>
+    <p style="margin-top:0.5rem"><strong>Potential Error:</strong> Since we rejected H₀, a Type I error is possible — concluding the Rockets attempted more than average when they actually didn't. Consequence: overestimating the team's three-point strategy impact.</p>
+  </div>
+</section>
+
+<!-- TWO-SAMPLE CI -->
+<section id="ci-two">
+  <div class="section-header"><span class="icon">⚖️</span><h2>Confidence Intervals for a Difference in Population Means</h2></div>
+  <div class="box box-blue">
+    <p>When comparing two groups, we estimate μ₁ − μ₂ (or μ_d for paired data). The key question: <strong>Are the groups paired (matched) or independent?</strong></p>
+  </div>
+  <div class="grid-2">
+    <div class="box box-purple">
+      <strong>Paired (Matched Pairs):</strong>
+      <ul>
+        <li>Same subject measured twice (before/after)</li>
+        <li>Subjects deliberately matched (age groups, siblings)</li>
+        <li>Calculate differences d = x₁ − x₂ for each pair</li>
+        <li>Treat differences as one sample</li>
+      </ul>
+    </div>
+    <div class="box box-green">
+      <strong>Two Independent Samples:</strong>
+      <ul>
+        <li>Two separate, unrelated groups</li>
+        <li>Random assignment to two treatments</li>
+        <li>No natural pairing between observations</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Paired t-Interval Formula</h3>
+  <div class="formula-box"><span class="flabel">Paired t-Interval for μ_d</span>d̄ ± t* · (s_d / √n) &nbsp;&nbsp; df = n − 1 &nbsp;&nbsp; (n = number of pairs)</div>
+  <h3>Two-Sample t-Interval Formula</h3>
+  <div class="formula-box"><span class="flabel">Two-Sample t-Interval for μ₁ − μ₂</span>(x̄₁ − x̄₂) ± t* · √(s₁²/n₁ + s₂²/n₂) &nbsp;&nbsp; df ≈ min(n₁−1, n₂−1)</div>
+  <h3>Worked Example — Supermarket Employees (Paired)</h3>
+  <div class="worked-ex">
+    <div class="ex-label">Example from Unit 7 Review</div>
+    <p>n = 34 matched pairs, d̄ = −0.7 years, s_d = 4.82. Construct a 95% CI for the mean difference in experience (M − WF).</p>
+    <p style="margin-top:0.75rem"><strong>df = 33, t* ≈ 2.035</strong><br>
+    SE = 4.82/√34 = 0.827<br>
+    CI = −0.7 ± 2.035(0.827) = −0.7 ± 1.683 = <strong>(−2.38, 0.98)</strong></p>
+    <p><strong>Conclude:</strong> We are 95% confident the mean difference in experience is between −2.38 and 0.98 years. Since 0 is in the interval, there is <em>no significant difference</em> at the 5% level.</p>
+  </div>
+  <h3>Worked Example — SAT Prep Course (Paired)</h3>
+  <div class="worked-ex">
+    <div class="ex-label">Example from Unit 7 Review</div>
+    <p>12 students. Score differences (after − before): 43, 13, −7, 47, 61, 39, 14, 37, 17, 47, 49, 9.<br>
+    d̄ = 369/12 = <strong>30.75</strong>, s_d ≈ <strong>20.71</strong></p>
+    <p style="margin-top:0.5rem"><strong>95% CI:</strong> df = 11, t* ≈ 2.201<br>
+    SE = 20.71/√12 = 5.98<br>
+    CI = 30.75 ± 2.201(5.98) = 30.75 ± 13.16 = <strong>(17.59, 43.91)</strong></p>
+    <p><strong>Conclude:</strong> We are 95% confident mean improvement is between 17.59 and 43.91 points. Since 30 is <em>inside</em> this interval, we cannot say at 95% confidence that improvement exceeds 30 points.</p>
+  </div>
+</section>
+
+<!-- TWO-SAMPLE TEST -->
+<section id="test-two">
+  <div class="section-header"><span class="icon">🧪</span><h2>Significance Tests for a Difference in Population Means</h2></div>
+  <h3>Paired t-Test</h3>
+  <div class="formula-box"><span class="flabel">Paired t-Statistic</span>t = d̄ / (s_d / √n) &nbsp;&nbsp; H₀: μ_d = 0 &nbsp;&nbsp; df = n − 1</div>
+  <h3>Two-Sample t-Test</h3>
+  <div class="formula-box"><span class="flabel">Two-Sample t-Statistic</span>t = (x̄₁ − x̄₂) / √(s₁²/n₁ + s₂²/n₂) &nbsp;&nbsp; H₀: μ₁ = μ₂ &nbsp;&nbsp; df ≈ min(n₁−1, n₂−1)</div>
+  <h3>Conditions for Two-Sample Tests</h3>
+  <div class="box">
+    <ul>
+      <li><strong>Random:</strong> Both samples are random, or subjects were randomly assigned to groups.</li>
+      <li><strong>Normal:</strong> Both groups satisfy the Normal condition (n ≥ 30 each, or approximately Normal distribution).</li>
+      <li><strong>Independent:</strong> The two groups are independent of each other (this is what distinguishes two-sample from paired). Each sample satisfies the 10% condition.</li>
+    </ul>
+  </div>
+  <h3>Worked Example — Cholesterol Drug (Two-Sample)</h3>
+  <div class="worked-ex">
+    <div class="ex-label">Example from Unit 7 Review</div>
+    <p>Standard drug: n₁ = 50, x̄₁ = 10 mg/dl, s₁ = 8 &nbsp;|&nbsp; New drug: n₂ = 50, x̄₂ = 18 mg/dl, s₂ = 12</p>
+    <p style="margin-top:0.75rem"><strong>H₀:</strong> μ_new = μ_std &nbsp;&nbsp; <strong>Hₐ:</strong> μ_new &gt; μ_std &nbsp;&nbsp; α = 0.05</p>
+    <p><strong>Conditions:</strong> Random ✓ (randomly assigned), Normal ✓ (n = 50 ≥ 30 each), Independent ✓ (separate groups).</p>
+    <p><strong>Calculate:</strong><br>
+    t = (18 − 10) / √(12²/50 + 8²/50) = 8 / √(144/50 + 64/50) = 8 / √4.16 = 8 / 2.039 ≈ <strong>3.92</strong><br>
+    df ≈ min(49, 49) = 49, p-value &lt; 0.001</p>
+    <p><strong>Conclude:</strong> Since p &lt; 0.001 &lt; 0.05, we reject H₀. There is convincing evidence the new drug reduces cholesterol more than the standard treatment.</p>
+    <p style="margin-top:0.5rem"><strong>Interpret p-value:</strong> If the two drugs were equally effective, there is less than a 0.1% chance of observing a difference this large or larger purely by chance.</p>
+  </div>
+  <h3>Worked Example — Cereal Toy (Paired)</h3>
+  <div class="worked-ex">
+    <div class="ex-label">Example from Unit 7 Review</div>
+    <p>14 age-group pairs. Each pair: one got toy coupon, one didn't. Differences (toy − no toy): 2, 4, 0, −1, −1, 5, 6, 6, 2, 0, 1, 1, 0, 1.<br>
+    d̄ = 26/14 ≈ <strong>1.857</strong>, s_d ≈ <strong>2.445</strong></p>
+    <p style="margin-top:0.5rem"><strong>H₀:</strong> μ_d = 0 &nbsp;&nbsp; <strong>Hₐ:</strong> μ_d &gt; 0 &nbsp;&nbsp; α = 0.05</p>
+    <p><strong>Calculate:</strong> t = 1.857 / (2.445/√14) = 1.857 / 0.653 ≈ <strong>2.84</strong>, df = 13, p ≈ 0.007</p>
+    <p><strong>Conclude:</strong> Since p ≈ 0.007 &lt; 0.05, we reject H₀. There is convincing evidence that including a toy coupon increases cereal purchases.</p>
+  </div>
+</section>
+
+<!-- FORMULAS -->
+<section id="formulas">
+  <div class="section-header"><span class="icon">📋</span><h2>Formula Reference Sheet</h2></div>
+  <table>
+    <tr><th>Procedure</th><th>Point Estimate</th><th>Standard Error</th><th>Test Statistic</th><th>df</th></tr>
+    <tr><td>One-Sample t-CI/Test</td><td>x̄</td><td>s/√n</td><td>t = (x̄ − μ₀)/(s/√n)</td><td>n − 1</td></tr>
+    <tr><td>Paired t-CI/Test</td><td>d̄</td><td>s_d/√n</td><td>t = d̄/(s_d/√n)</td><td>n − 1</td></tr>
+    <tr><td>Two-Sample t-CI/Test</td><td>x̄₁ − x̄₂</td><td>√(s₁²/n₁ + s₂²/n₂)</td><td>t = (x̄₁−x̄₂)/SE</td><td>min(n₁−1, n₂−1)</td></tr>
+  </table>
+  <div class="grid-2" style="margin-top:1rem">
+    <div class="box box-gold">
+      <strong>Confidence Interval Structure:</strong><br>
+      Point Estimate ± t* × Standard Error<br>
+      <em>t* depends on confidence level and df</em>
+    </div>
+    <div class="box box-blue">
+      <strong>Common t* Values:</strong><br>
+      90% CI: t* ≈ 1.645 (large n)<br>
+      95% CI: t* ≈ 2.000 (large n)<br>
+      99% CI: t* ≈ 2.576 (large n)
+    </div>
+  </div>
+</section>
+
+<!-- FLASHCARDS -->
+<section id="flashcards">
+  <div class="section-header"><span class="icon">🃏</span><h2>Flashcards</h2></div>
+  <p style="margin-bottom:1.25rem; color:#555; font-style:italic;">Click a card to flip it. &nbsp;
+    <strong style="color:var(--teal)">■ One-Sample CI</strong> &nbsp;
+    <strong style="color:var(--navy)">■ One-Sample Test</strong> &nbsp;
+    <strong style="color:var(--green)">■ Two-Sample CI</strong> &nbsp;
+    <strong style="color:var(--purple)">■ Two-Sample Test</strong>
+  </p>
+  <div class="flashcard-grid">
+
+    <!-- ONE-SAMPLE CI (1–8) -->
+    <div class="flashcard fc-ci1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Confidence Interval</div></div><div class="flashcard-back"><div class="fc-def">A range of plausible values for a population parameter. A C% CI means: if we took many samples, C% of the intervals would capture the true parameter.</div></div></div></div>
+
+    <div class="flashcard fc-ci1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">t* (Critical Value)</div></div><div class="flashcard-back"><div class="fc-def">The value from the t-distribution such that C% of the distribution falls between −t* and +t*. Found using df = n−1 and desired confidence level. Larger for higher confidence or fewer df.</div></div></div></div>
+
+    <div class="flashcard fc-ci1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Degrees of Freedom</div></div><div class="flashcard-back"><div class="fc-def">For a one-sample t-procedure: df = n − 1. Controls the shape of the t-distribution. More df → t-distribution looks more like the Normal distribution.</div></div></div></div>
+
+    <div class="flashcard fc-ci1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Margin of Error</div></div><div class="flashcard-back"><div class="fc-def">ME = t* × (s/√n). Half the width of the confidence interval. Smaller when n is larger, s is smaller, or confidence level is lower.</div></div></div></div>
+
+    <div class="flashcard fc-ci1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Standard Error</div></div><div class="flashcard-back"><div class="fc-def">SE = s/√n. Estimates the standard deviation of the sampling distribution of x̄. Measures how much x̄ typically varies from sample to sample.</div></div></div></div>
+
+    <div class="flashcard fc-ci1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Normal Condition</div></div><div class="flashcard-back"><div class="fc-def">For t-procedures: (1) n ≥ 30, OR (2) population is known to be Normal, OR (3) for n &lt; 30, a histogram/plot shows no strong skew or outliers. CLT ensures Near-Normal sampling distribution when n is large.</div></div></div></div>
+
+    <div class="flashcard fc-ci1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">t-Distribution vs. Normal</div></div><div class="flashcard-back"><div class="fc-def">The t-distribution has heavier tails than Normal (more spread), accounting for uncertainty in estimating σ with s. As df → ∞, t-distribution → standard Normal.</div></div></div></div>
+
+    <div class="flashcard fc-ci1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">CI Interpretation Template</div></div><div class="flashcard-back"><div class="fc-def">"We are [C]% confident that the true mean [context] is between [lower] and [upper] [units]." Must reference the population parameter and context, NOT the sample.</div></div></div></div>
+
+    <!-- ONE-SAMPLE TEST (9–15) -->
+    <div class="flashcard fc-test1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Null Hypothesis (H₀)</div></div><div class="flashcard-back"><div class="fc-def">The "no effect / no difference" claim. For one-sample t-test: H₀: μ = μ₀. We assume H₀ is true when computing the p-value. We never "prove" H₀ — we only fail to reject it.</div></div></div></div>
+
+    <div class="flashcard fc-test1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">P-value</div></div><div class="flashcard-back"><div class="fc-def">The probability of getting a test statistic as extreme as (or more extreme than) the observed value, assuming H₀ is true. Small p-value = strong evidence against H₀. NOT the probability that H₀ is true.</div></div></div></div>
+
+    <div class="flashcard fc-test1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Type I Error</div></div><div class="flashcard-back"><div class="fc-def">Rejecting H₀ when it is actually true (false positive). Probability = α (significance level). Example: concluding a drug works when it actually doesn't.</div></div></div></div>
+
+    <div class="flashcard fc-test1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Type II Error</div></div><div class="flashcard-back"><div class="fc-def">Failing to reject H₀ when it is actually false (false negative). Probability = β. Example: concluding a drug doesn't work when it actually does.</div></div></div></div>
+
+    <div class="flashcard fc-test1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Power of a Test</div></div><div class="flashcard-back"><div class="fc-def">Power = 1 − β = probability of correctly rejecting a false H₀. Increases with: larger n, larger effect size, higher α, less variability.</div></div></div></div>
+
+    <div class="flashcard fc-test1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Significance Level (α)</div></div><div class="flashcard-back"><div class="fc-def">The threshold for the p-value at which we reject H₀. Common: α = 0.05. Setting α = 0.01 is more conservative (harder to reject); α = 0.10 is less conservative.</div></div></div></div>
+
+    <div class="flashcard fc-test1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Conclusion Template (Reject)</div></div><div class="flashcard-back"><div class="fc-def">"Since p = [value] &lt; α = 0.05, we reject H₀. There is convincing evidence that [Hₐ in context]." Always interpret in context of the problem.</div></div></div></div>
+
+    <div class="flashcard fc-test1" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Conclusion Template (FTR)</div></div><div class="flashcard-back"><div class="fc-def">"Since p = [value] ≥ α = 0.05, we fail to reject H₀. There is not convincing evidence that [Hₐ in context]." We never say "accept H₀" or "prove H₀."</div></div></div></div>
+
+    <!-- TWO-SAMPLE CI (16–22) -->
+    <div class="flashcard fc-ci2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Paired vs. Two-Sample</div></div><div class="flashcard-back"><div class="fc-def">Paired: same subject measured twice, or subjects deliberately matched. Two-sample: two independent, unrelated groups. Using the wrong procedure is a serious error.</div></div></div></div>
+
+    <div class="flashcard fc-ci2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Matched Pairs Design</div></div><div class="flashcard-back"><div class="fc-def">An experimental design where subjects are paired based on relevant characteristics (age, gender) OR each subject serves as their own control (before/after). Reduces variability and increases power.</div></div></div></div>
+
+    <div class="flashcard fc-ci2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">μ_d (Mean Difference)</div></div><div class="flashcard-back"><div class="fc-def">The population mean of all individual differences (d = x₁ − x₂) for paired data. H₀ in a paired test: μ_d = 0 (no average difference). Estimate with d̄.</div></div></div></div>
+
+    <div class="flashcard fc-ci2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Paired t-Interval</div></div><div class="flashcard-back"><div class="fc-def">d̄ ± t* · (s_d / √n), where n = number of pairs, df = n − 1. By reducing paired data to differences, this is just a one-sample t-interval on the differences.</div></div></div></div>
+
+    <div class="flashcard fc-ci2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Two-Sample t-Interval</div></div><div class="flashcard-back"><div class="fc-def">(x̄₁ − x̄₂) ± t* · √(s₁²/n₁ + s₂²/n₂). Estimates μ₁ − μ₂. If 0 is NOT in the CI, the difference is statistically significant at that confidence level.</div></div></div></div>
+
+    <div class="flashcard fc-ci2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">CI Contains Zero</div></div><div class="flashcard-back"><div class="fc-def">If a CI for μ₁ − μ₂ (or μ_d) contains 0, the difference is NOT statistically significant. Zero is a plausible value for the difference, meaning we cannot rule out no difference.</div></div></div></div>
+
+    <div class="flashcard fc-ci2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Advantage of Paired Design</div></div><div class="flashcard-back"><div class="fc-def">Pairing controls for lurking variables (like age in the cereal study). By blocking on the confounding variable, variability decreases, the CI is narrower, and the test has more power.</div></div></div></div>
+
+    <!-- TWO-SAMPLE TEST (23–30) -->
+    <div class="flashcard fc-test2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Paired t-Test H₀</div></div><div class="flashcard-back"><div class="fc-def">H₀: μ_d = 0 (the mean difference is zero — no effect). Hₐ can be: μ_d &gt; 0, μ_d &lt; 0, or μ_d ≠ 0 depending on the research question.</div></div></div></div>
+
+    <div class="flashcard fc-test2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Two-Sample t-Test H₀</div></div><div class="flashcard-back"><div class="fc-def">H₀: μ₁ = μ₂ (equivalently, μ₁ − μ₂ = 0). The two populations have equal means. Hₐ: μ₁ &gt; μ₂, μ₁ &lt; μ₂, or μ₁ ≠ μ₂.</div></div></div></div>
+
+    <div class="flashcard fc-test2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Independence Condition (Two-Sample)</div></div><div class="flashcard-back"><div class="fc-def">The two samples must be independent of each other — observations in group 1 have no relationship to observations in group 2. If subjects are matched, use paired procedures instead.</div></div></div></div>
+
+    <div class="flashcard fc-test2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">df for Two-Sample t</div></div><div class="flashcard-back"><div class="fc-def">Conservative: df = min(n₁−1, n₂−1). More precise: Welch-Satterthwaite formula (given by calculator). Using the conservative df gives slightly wider intervals and larger p-values.</div></div></div></div>
+
+    <div class="flashcard fc-test2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Interpret P-value (Two-Sample)</div></div><div class="flashcard-back"><div class="fc-def">"If μ₁ = μ₂, there is a [p-value] probability of observing a difference of x̄₁ − x̄₂ = [value] or more extreme purely by chance." Small p → evidence groups differ.</div></div></div></div>
+
+    <div class="flashcard fc-test2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Effect of Larger n on Power</div></div><div class="flashcard-back"><div class="fc-def">Larger sample size increases power: (1) SE decreases, making the test stat larger; (2) the CI narrows; (3) real differences are easier to detect. More data = harder for a real effect to hide.</div></div></div></div>
+
+    <div class="flashcard fc-test2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">Statistically Significant ≠ Practically Important</div></div><div class="flashcard-back"><div class="fc-def">With large n, even tiny differences can be statistically significant (p &lt; 0.05) but may not matter in real life. Always consider the effect size (how big is the actual difference?) alongside the p-value.</div></div></div></div>
+
+    <div class="flashcard fc-test2" onclick="this.classList.toggle('flipped')" title="Click to flip"><div class="flashcard-inner"><div class="flashcard-front"><div class="fc-label">Click to reveal</div><div class="fc-term">p-value Interpretation Template</div></div><div class="flashcard-back"><div class="fc-def">"Assuming H₀ is true (μ₁ = μ₂), there is a [p-value] probability of observing a difference as extreme as [observed difference] by chance alone." DO NOT say "probability H₀ is true."</div></div></div></div>
+
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="section-header"><span class="icon">📝</span><h2>40-Question Practice Quiz</h2></div>
+  <p style="margin-bottom:1.25rem; color:#555; font-style:italic;">Click "Show Answer" after each question to check yourself.</p>
+
+  <h3>One-Sample Confidence Intervals (Q1–Q10)</h3>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 1</div><div class="qtext">Which of the following correctly interprets a 95% confidence interval of (38.76, 41.87) for μ?</div><ol><li>There is a 95% probability that μ is between 38.76 and 41.87.</li><li>95% of the sample data falls between 38.76 and 41.87.</li><li>We are 95% confident the true population mean is between 38.76 and 41.87.</li><li>If we repeat the study, μ will be in this interval 95% of the time.</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C.</strong> A confidence interval gives a range of plausible values for the population parameter. We are confident the method produces intervals containing μ 95% of the time — but for any one interval, μ either is or isn't in it.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 2</div><div class="qtext">A random sample of n = 16 has x̄ = 52 and s = 8. What is the degrees of freedom for a t-interval?</div><ol><li>8</li><li>15</li><li>16</li><li>17</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B — 15.</strong> df = n − 1 = 16 − 1 = 15 for a one-sample t-procedure.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 3</div><div class="qtext">All else equal, increasing the sample size will:</div><ol><li>Widen the confidence interval</li><li>Narrow the confidence interval</li><li>Have no effect on the confidence interval</li><li>Change the confidence level</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Larger n → smaller SE = s/√n → smaller margin of error → narrower interval.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 4</div><div class="qtext">Which condition is NOT required for a one-sample t-interval?</div><ol><li>The data come from a random sample</li><li>The population standard deviation σ is known</li><li>The sampling distribution of x̄ is approximately Normal</li><li>Observations are independent</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> t-procedures use the sample standard deviation s — we do NOT need to know σ. That's the whole point of using t instead of z.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 5</div><div class="qtext">A 99% confidence interval will be _________ a 95% confidence interval, for the same data.</div><ol><li>Narrower than</li><li>The same width as</li><li>Wider than</li><li>Cannot be determined</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C — Wider than.</strong> Higher confidence requires a larger t*, which increases the margin of error.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 6</div><div class="qtext">For a one-sample t-interval with n = 25, x̄ = 100, s = 10, what is the standard error?</div><ol><li>10</li><li>4</li><li>2</li><li>0.4</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C — 2.</strong> SE = s/√n = 10/√25 = 10/5 = 2.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 7</div><div class="qtext">A student with n = 10 (skewed right distribution) wants to construct a t-interval. Which condition is most at risk?</div><ol><li>Random</li><li>Normal</li><li>Independent</li><li>None — all conditions are met</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B — Normal.</strong> With n = 10 (small) and a skewed distribution, the sampling distribution of x̄ may not be approximately Normal. We'd need to verify with a graph that there are no strong outliers or skew.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 8</div><div class="qtext">A 95% CI for the mean height of students is (64.2, 68.8) inches. What is the sample mean?</div><ol><li>64.2</li><li>68.8</li><li>66.5</li><li>4.6</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C — 66.5.</strong> x̄ = (lower + upper)/2 = (64.2 + 68.8)/2 = 133/2 = 66.5.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 9</div><div class="qtext">From the same CI (64.2, 68.8), what is the margin of error?</div><ol><li>4.6</li><li>2.3</li><li>66.5</li><li>1.15</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B — 2.3.</strong> ME = (upper − lower)/2 = (68.8 − 64.2)/2 = 4.6/2 = 2.3.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 10</div><div class="qtext">The Houston Rockets' 95% CI for mean 3-point attempts is (38.76, 41.87). Based on this, can we conclude the true mean differs from 40?</div><ol><li>Yes, because 40 is not the midpoint</li><li>No, because 40 falls inside the interval</li><li>Yes, because the interval is entirely above 27</li><li>No, because we need a hypothesis test for that</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Since 40 is inside the CI, it is a plausible value for μ. We cannot conclude the mean differs from 40.</div></details></div>
+
+  <h3>One-Sample Significance Tests (Q11–Q20)</h3>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 11</div><div class="qtext">A researcher tests H₀: μ = 50 vs. Hₐ: μ &gt; 50. The p-value is 0.03. At α = 0.05, the conclusion is:</div><ol><li>Fail to reject H₀; no evidence μ &gt; 50</li><li>Reject H₀; convincing evidence μ &gt; 50</li><li>Accept H₀; μ = 50</li><li>The test is inconclusive</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> p = 0.03 &lt; α = 0.05, so we reject H₀. There is convincing evidence that μ &gt; 50.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 12</div><div class="qtext">For a two-sided test (Hₐ: μ ≠ μ₀), the p-value is found by:</div><ol><li>The area in one tail beyond the test statistic</li><li>Doubling the area in one tail beyond |t|</li><li>Subtracting the t-statistic from 1</li><li>Using the area between −t and +t</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> For a two-sided test, p-value = 2 × P(T &gt; |t|), accounting for both tails.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 13</div><div class="qtext">A Type I error in the Houston Rockets example would be:</div><ol><li>Concluding the Rockets averaged ≤ 27 attempts when they actually averaged more</li><li>Concluding the Rockets averaged &gt; 27 attempts when they actually didn't</li><li>Using the wrong significance level</li><li>Using a two-sided test instead of one-sided</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Type I error = rejecting H₀ when H₀ is true = concluding μ &gt; 27 when actually μ = 27 (false positive).</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 14</div><div class="qtext">A test statistic of t = −2.5 with df = 20 (one-sided left test). The p-value is:</div><ol><li>Greater than 0.05</li><li>About 0.5</li><li>Less than 0.05</li><li>Equal to 0.025</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C.</strong> For df = 20, the critical value at α = 0.05 is about −1.725. Since −2.5 &lt; −1.725, the p-value &lt; 0.05.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 15</div><div class="qtext">Which of the following statements about the p-value is TRUE?</div><ol><li>A small p-value proves H₀ is false</li><li>The p-value is the probability H₀ is true</li><li>A large p-value proves H₀ is true</li><li>The p-value is calculated assuming H₀ is true</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>D.</strong> The p-value is computed assuming H₀ is true. It measures how unlikely the observed result is if H₀ were true — but it does not prove or disprove H₀.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 16</div><div class="qtext">Decreasing α from 0.05 to 0.01 will:</div><ol><li>Increase the chance of a Type I error</li><li>Decrease the chance of a Type I error but increase the chance of a Type II error</li><li>Decrease both Type I and Type II errors</li><li>Increase the power of the test</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Lower α → harder to reject H₀ → fewer false positives (Type I ↓) but more false negatives (Type II ↑, power ↓).</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 17</div><div class="qtext">For the Rockets test (t = 17.03, df = 81, one-sided), which statement is most accurate?</div><ol><li>The result is marginally significant</li><li>The result is extremely statistically significant with p ≈ 0</li><li>We fail to reject H₀ because the sample size is too large</li><li>The result would only be significant with a two-sided test</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> A t-statistic of 17.03 is enormous. The p-value is essentially 0, providing overwhelming evidence against H₀.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 18</div><div class="qtext">Which phrasing correctly concludes a significance test when we fail to reject H₀?</div><ol><li>"We accept H₀; the null hypothesis is true."</li><li>"We prove there is no effect."</li><li>"We fail to reject H₀; there is not convincing evidence of [Hₐ]."</li><li>"The data supports H₀ with 95% confidence."</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C.</strong> We never "accept" or "prove" H₀. "Fail to reject" means only that evidence against H₀ was insufficient, not that H₀ is true.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 19</div><div class="qtext">A Type II error in a drug study would mean:</div><ol><li>Approving an ineffective drug</li><li>Rejecting an effective drug</li><li>Using the wrong sample size</li><li>Misinterpreting the confidence interval</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Type II error = failing to reject H₀ when it is false = concluding the drug doesn't work when it actually does (false negative). Very costly in medicine.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 20</div><div class="qtext">To increase the power of a one-sample t-test, a researcher should:</div><ol><li>Decrease the sample size</li><li>Use a smaller significance level (α)</li><li>Increase the sample size</li><li>Use a two-sided test instead of one-sided</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C.</strong> Larger n → smaller SE → larger test statistic for the same true effect → higher power (more likely to detect a real effect).</div></details></div>
+
+  <h3>Two-Sample &amp; Paired Confidence Intervals (Q21–Q30)</h3>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 21</div><div class="qtext">In the cereal toy study, subjects were matched by age group. The appropriate procedure is:</div><ol><li>Two-sample t-test, because there are two groups</li><li>Paired t-procedure, because subjects are matched by age</li><li>One-sample t-test, because each age group is one unit</li><li>Chi-square test, because the data are counts</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> The design is matched pairs (one from each age group, one gets toy coupon). The appropriate procedure is the paired t-procedure.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 22</div><div class="qtext">For the supermarket study (paired, n=34, d̄=−0.7, s_d=4.82), the 95% CI is (−2.38, 0.98). What does this tell us?</div><ol><li>There is a significant difference in experience at the 5% level</li><li>There is no significant difference because 0 is in the interval</li><li>WF employees have significantly more experience</li><li>M employees have significantly more experience</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Since 0 is inside the interval (−2.38, 0.98), a difference of 0 is plausible. We cannot conclude there is a significant difference.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 23</div><div class="qtext">For paired data with n = 20 pairs, the degrees of freedom are:</div><ol><li>38</li><li>19</li><li>20</li><li>18</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B — 19.</strong> Paired data is treated as a one-sample procedure on the differences. df = n − 1 = 20 − 1 = 19.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 24</div><div class="qtext">Two independent groups: n₁ = 30, n₂ = 25. Using the conservative df for a two-sample t-procedure:</div><ol><li>df = 53</li><li>df = 55</li><li>df = 24</li><li>df = 29</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C — 24.</strong> Conservative df = min(n₁−1, n₂−1) = min(29, 24) = 24.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 25</div><div class="qtext">A 95% CI for μ₁ − μ₂ is (2.1, 8.3). We can conclude:</div><ol><li>μ₁ = μ₂ is plausible</li><li>μ₁ is significantly greater than μ₂ at the 5% level</li><li>μ₂ is significantly greater than μ₁</li><li>The difference is not significant</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Since the entire interval is above 0, both bounds are positive. Zero is not plausible, so μ₁ &gt; μ₂ at the 5% significance level.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 26</div><div class="qtext">Why did the cereal study match subjects by age group rather than use two independent groups?</div><ol><li>To make the study cheaper</li><li>Age is unrelated to cereal purchases</li><li>To control for age as a confounding variable, reducing variability</li><li>The study required an even number of subjects</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C.</strong> Age likely affects how much cereal people buy. Matching by age removes this source of variability, making the test more sensitive to the actual toy effect.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 27</div><div class="qtext">The SAT prep course 95% CI for mean improvement is (17.59, 43.91). Does this support the claim of &gt;30 point improvement?</div><ol><li>Yes, because the mean is 30.75 &gt; 30</li><li>Yes, because the lower bound (17.59) is positive</li><li>No, because 30 is inside the interval</li><li>No, because the upper bound exceeds 30</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C.</strong> Since 30 is inside the CI, a true mean improvement of 30 is plausible. We cannot rule out that μ_d = 30, so we have no evidence the improvement <em>exceeds</em> 30 at the 95% level.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 28</div><div class="qtext">In a two-sample t-interval, the standard error is √(s₁²/n₁ + s₂²/n₂). This formula comes from:</div><ol><li>Adding the two sample standard deviations</li><li>The variance of a difference of independent random variables</li><li>The pooled standard deviation formula</li><li>The Central Limit Theorem only</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Var(X̄₁ − X̄₂) = Var(X̄₁) + Var(X̄₂) = σ₁²/n₁ + σ₂²/n₂ (since samples are independent). We estimate σ with s.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 29</div><div class="qtext">Which scenario requires a paired t-procedure (not two-sample)?</div><ol><li>Comparing cholesterol levels of 50 patients on Drug A vs. 50 different patients on Drug B</li><li>Comparing SAT scores before and after a prep course for the same students</li><li>Comparing average salaries at two different companies</li><li>Comparing heights of students at two different schools</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Before-and-after measurements on the <em>same</em> subjects = paired data. The other scenarios involve independent groups.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 30</div><div class="qtext">A paired CI is preferred over a two-sample CI when:</div><ol><li>The sample sizes are large</li><li>There is a natural pairing that reduces variability between pairs</li><li>The two groups have equal standard deviations</li><li>The researcher prefers a wider interval</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Pairing is beneficial when the pairing variable (like age) is associated with the response. This reduces within-pair variability and yields a more precise estimate.</div></details></div>
+
+  <h3>Two-Sample &amp; Paired Significance Tests (Q31–Q40)</h3>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 31</div><div class="qtext">In the cholesterol study, the null hypothesis H₀: μ_new = μ_std means:</div><ol><li>The new drug increases cholesterol more</li><li>Both drugs reduce cholesterol by the same average amount</li><li>The new drug is superior</li><li>Cholesterol levels are the same before treatment</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> H₀ states there is no difference in mean cholesterol reduction between the two drugs — both produce the same average effect.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 32</div><div class="qtext">The cholesterol study t-statistic is t ≈ 3.92 with df = 49 (one-sided). The appropriate conclusion (α = 0.05) is:</div><ol><li>Fail to reject H₀; no evidence the new drug is better</li><li>Reject H₀; convincing evidence the new drug reduces cholesterol more</li><li>Accept H₀; the drugs are equally effective</li><li>The test is inconclusive without more data</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> t = 3.92 gives p &lt; 0.001 &lt; 0.05. We reject H₀ and conclude the new drug is significantly more effective.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 33</div><div class="qtext">In the cereal toy paired test (d̄ = 1.857, s_d = 2.445, n = 14), what is the test statistic?</div><ol><li>t = 0.76</li><li>t = 1.86</li><li>t = 2.84</li><li>t = 4.12</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C — t ≈ 2.84.</strong> t = d̄ / (s_d/√n) = 1.857 / (2.445/√14) = 1.857/0.653 ≈ 2.84.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 34</div><div class="qtext">The cereal test p-value is 0.007. How do you interpret this?</div><ol><li>There is a 0.7% chance people buy more cereal with a toy coupon</li><li>If the toy has no effect, there is a 0.7% chance of seeing a mean difference this large or larger by chance</li><li>The toy coupon increases sales by 0.7%</li><li>H₀ is true with 99.3% probability</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> The p-value is the probability of the observed result (or more extreme) assuming H₀ is true (no effect). It is NOT the probability H₀ is true.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 35</div><div class="qtext">Why can't you use a two-sample t-test for the SAT prep data?</div><ol><li>The sample size is too small</li><li>The scores are not Normal</li><li>The "before" and "after" scores come from the same students — they're paired, not independent</li><li>SAT scores can't be used in t-tests</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C.</strong> The same students were measured before and after. The scores are not independent — the paired t-test is required to properly account for the within-student correlation.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 36</div><div class="qtext">If the two-sample t-test for cholesterol gave p = 0.0002, what is the correct interpretation?</div><ol><li>The new drug works 99.98% of the time</li><li>If both drugs were equally effective, there is a 0.02% chance of observing this large a difference by chance</li><li>H₀ is false with probability 0.9998</li><li>The new drug reduces cholesterol by 0.02% more</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> p-value interpretation: assuming H₀ is true (equal means), the probability of observing a difference this extreme is 0.0002 — extremely unlikely, strong evidence against H₀.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 37</div><div class="qtext">A Type I error in the cereal toy study would mean:</div><ol><li>Concluding the toy increases sales when it actually doesn't</li><li>Concluding the toy has no effect when it actually does</li><li>Using paired instead of two-sample procedure</li><li>Having too few subjects in the study</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>A.</strong> Type I error = rejecting H₀ when it is true = concluding the toy increases sales (Hₐ) when in reality μ_d = 0 (H₀ true).</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 38</div><div class="qtext">For a two-sample test with n₁ = n₂ = 50, which change would most increase power?</div><ol><li>Decrease α from 0.05 to 0.01</li><li>Use a two-sided instead of one-sided test</li><li>Increase each sample to n = 100</li><li>Use the conservative df instead of Welch df</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>C.</strong> Doubling the sample size reduces the SE, making the test statistic larger and power higher. The other options either decrease power or have minimal effect.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 39</div><div class="qtext">In a two-sample t-test, the Random condition requires:</div><ol><li>Only one sample to be randomly selected</li><li>Both samples to be random, or subjects randomly assigned to treatments</li><li>The samples to be the same size</li><li>The populations to be Normally distributed</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> Both groups must come from random samples or a randomized experiment. Random assignment (as in the cholesterol study) satisfies this condition.</div></details></div>
+
+  <div class="quiz-q"><div class="qnum">QUESTION 40</div><div class="qtext">A researcher finds p = 0.048 with a very large sample (n = 10,000). The best conclusion is:</div><ol><li>The effect is large and practically important since p &lt; 0.05</li><li>The result is statistically significant but the effect size may be trivially small</li><li>The result is not significant at α = 0.05</li><li>A larger sample is needed to confirm</li></ol><details><summary>Show Answer</summary><div class="answer"><strong>B.</strong> With huge samples, even tiny differences become statistically significant. Always consider effect size alongside p-value. Statistical significance ≠ practical importance.</div></details></div>
+
+</section>
+
+<!-- RAPID REVIEW -->
+<section id="rapid-review">
+  <div class="section-header"><span class="icon">⚡</span><h2>Rapid Review Sheet</h2></div>
+  <div class="rapid-grid">
+    <div class="rapid-box">
+      <h4>All t-Interval Formulas</h4>
+      <ul>
+        <li><strong>One-sample:</strong> x̄ ± t*(s/√n)</li>
+        <li><strong>Paired:</strong> d̄ ± t*(s_d/√n)</li>
+        <li><strong>Two-sample:</strong> (x̄₁−x̄₂) ± t*√(s₁²/n₁+s₂²/n₂)</li>
+        <li><strong>df (one/paired):</strong> n − 1</li>
+        <li><strong>df (two-sample):</strong> min(n₁−1, n₂−1)</li>
+      </ul>
+    </div>
+    <div class="rapid-box">
+      <h4>All t-Test Statistics</h4>
+      <ul>
+        <li><strong>One-sample:</strong> t = (x̄ − μ₀)/(s/√n)</li>
+        <li><strong>Paired:</strong> t = d̄/(s_d/√n)</li>
+        <li><strong>Two-sample:</strong> t = (x̄₁−x̄₂)/√(s₁²/n₁+s₂²/n₂)</li>
+        <li><strong>One-sample H₀:</strong> μ = μ₀</li>
+        <li><strong>Paired H₀:</strong> μ_d = 0</li>
+        <li><strong>Two-sample H₀:</strong> μ₁ = μ₂</li>
+      </ul>
+    </div>
+    <div class="rapid-box">
+      <h4>RNI Conditions Checklist</h4>
+      <ul>
+        <li>✓ <strong>R</strong>andom sample or random assignment</li>
+        <li>✓ <strong>N</strong>ormal: n ≥ 30, or pop. Normal, or no strong skew/outliers</li>
+        <li>✓ <strong>I</strong>ndependent: obs. independent; n ≤ 10% of pop.</li>
+        <li>✓ Two-sample: also need groups independent of each other</li>
+      </ul>
+    </div>
+    <div class="rapid-box">
+      <h4>Conclusion Templates</h4>
+      <ul>
+        <li><strong>Reject H₀:</strong> "Since p &lt; α, we reject H₀. There is convincing evidence that [Hₐ in context]."</li>
+        <li><strong>FTR H₀:</strong> "Since p ≥ α, we fail to reject H₀. There is not convincing evidence that [Hₐ in context]."</li>
+        <li><strong>CI:</strong> "We are [C]% confident the true mean [context] is between [L] and [U]."</li>
+      </ul>
+    </div>
+    <div class="rapid-box">
+      <h4>Error Types</h4>
+      <ul>
+        <li><strong>Type I:</strong> Reject H₀ when true (false +). Prob = α.</li>
+        <li><strong>Type II:</strong> FTR H₀ when false (false −). Prob = β.</li>
+        <li><strong>Power:</strong> = 1 − β. Probability of correctly rejecting false H₀.</li>
+        <li>n↑ → Power↑, β↓, interval width↓</li>
+        <li>α↓ → Type I↓ but Type II↑ (power↓)</li>
+      </ul>
+    </div>
+    <div class="rapid-box">
+      <h4>Paired vs. Two-Sample</h4>
+      <ul>
+        <li><strong>Paired:</strong> Same subject twice, OR subjects matched. Compute differences d = x₁ − x₂.</li>
+        <li><strong>Two-sample:</strong> Two unrelated, independent groups.</li>
+        <li><strong>Key signal:</strong> "Before/after," "matched by [variable]" → paired</li>
+        <li>CI contains 0 → not significant at that level</li>
+        <li>CI entirely above 0 → group 1 significantly higher</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos">
+  <div class="section-header"><span class="icon">🎬</span><h2>Recommended Videos</h2></div>
+  <div class="video-list">
+    <a class="video-item" href="https://www.khanacademy.org/math/ap-statistics/estimating-confidence-ap/introduction-confidence-intervals/v/confidence-intervals-and-margin-of-error" target="_blank" rel="noopener">
+      <span class="vicon">▶️</span>
+      <div><div class="vtitle">Confidence Intervals — Introduction (Khan Academy)</div><div class="vdesc">What a confidence interval means and how to interpret it correctly. Great starting point for Unit 7A.</div></div>
+    </a>
+    <a class="video-item" href="https://www.khanacademy.org/math/ap-statistics/estimating-confidence-ap/one-sample-t-interval-mean/v/one-sample-t-confidence-interval" target="_blank" rel="noopener">
+      <span class="vicon">▶️</span>
+      <div><div class="vtitle">One-Sample t-Interval (Khan Academy)</div><div class="vdesc">Step-by-step construction of a one-sample t confidence interval with conditions and interpretation.</div></div>
+    </a>
+    <a class="video-item" href="https://www.khanacademy.org/math/ap-statistics/tests-significance-ap/one-sample-t-test-mean/v/when-to-use-z-or-t-statistics" target="_blank" rel="noopener">
+      <span class="vicon">▶️</span>
+      <div><div class="vtitle">One-Sample t-Test for a Mean (Khan Academy)</div><div class="vdesc">Hypothesis testing with t-statistics: setting up hypotheses, computing the test stat, finding p-values.</div></div>
+    </a>
+    <a class="video-item" href="https://www.khanacademy.org/math/ap-statistics/tests-significance-ap/error-probabilities-power/v/introduction-to-power-in-significance-tests" target="_blank" rel="noopener">
+      <span class="vicon">▶️</span>
+      <div><div class="vtitle">Introduction to Power in Significance Tests (Khan Academy)</div><div class="vdesc">Explains Type I error, Type II error, and power — key concepts for the AP exam free-response questions.</div></div>
+    </a>
+    <a class="video-item" href="https://www.khanacademy.org/math/ap-statistics/two-sample-inference/two-sample-t-test-means/v/two-sample-t-test-for-difference-of-means" target="_blank" rel="noopener">
+      <span class="vicon">▶️</span>
+      <div><div class="vtitle">Two-Sample t-Test for Difference of Means (Khan Academy)</div><div class="vdesc">Full worked example comparing two independent groups using the two-sample t-test procedure.</div></div>
+    </a>
+    <a class="video-item" href="https://www.khanacademy.org/math/ap-statistics/two-sample-inference/inference-about-two-population-means/v/matched-pairs-t-test" target="_blank" rel="noopener">
+      <span class="vicon">▶️</span>
+      <div><div class="vtitle">Matched Pairs t-Test (Khan Academy)</div><div class="vdesc">When and how to use the paired t-test. Covers the key distinction between paired and two-sample designs.</div></div>
+    </a>
+  </div>
+  <a class="back-link" href="../">&#8592; MJ's Study Guides</a>
+</section>
+
+</div><!-- /container -->
+</body>
+</html>

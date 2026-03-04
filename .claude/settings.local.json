@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pdftotext \"/c/Users/jadam/Documents/src/study_guides/mj/syllabi/unit_7_review.pdf\" -)",
+      "Bash(pdftotext \"/c/Users/jadam/Documents/src/study_guides/mj/syllabi/unit_7_notes.pdf\" -)"
+    ]
+  }
+}

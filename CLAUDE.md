@@ -63,6 +63,7 @@ Rich, self-contained single-page HTML documents. Each has:
 | Content sections | Color-coded with section headers using emoji icons |
 | Inline CSS only | No external CSS files are referenced (Google Fonts CDN is acceptable) |
 | No JavaScript dependencies | Any JS should be minimal and inline |
+| Flashcards | Interactive flip cards (see template below) |
 
 #### Existing color themes (for reference)
 
@@ -81,6 +82,64 @@ Fonts: Georgia serif (no Google Fonts import)
 Fonts: Cinzel + Crimson Pro via Google Fonts CDN
 
 Choose or create a color theme that fits the subject matter. Reusing an existing theme is fine; creating a new one for new subjects is encouraged.
+
+#### Flashcard Template (required pattern)
+
+Flashcards must use a CSS 3D flip on click — **not** a static two-row layout. Use this exact pattern:
+
+**CSS** (adapt colors to the guide's theme):
+```css
+.flashcard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.9rem;
+}
+.flashcard { perspective: 1000px; height: 190px; cursor: pointer; }
+.flashcard-inner {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  padding: 1rem; text-align: center;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+}
+.flashcard-front { background: var(--navy); /* use theme's dark color */ }
+.flashcard-back {
+  background: white;
+  border: 2px solid var(--navy);
+  transform: rotateY(180deg);
+  justify-content: flex-start; align-items: flex-start; text-align: left;
+}
+.fc-label {
+  font-family: 'Cinzel', serif; font-size: 0.58rem;
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 8px; color: rgba(255,255,255,0.55);
+}
+.fc-term { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold); font-weight: 700; }
+.fc-def { font-size: 0.82rem; color: var(--text); line-height: 1.5; overflow-y: auto; max-height: 100%; }
+```
+
+**HTML** (one card):
+```html
+<div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+  <div class="flashcard-inner">
+    <div class="flashcard-front">
+      <div class="fc-label">Click to reveal</div>
+      <div class="fc-term">Term Here</div>
+    </div>
+    <div class="flashcard-back">
+      <div class="fc-def">Definition or explanation here.</div>
+    </div>
+  </div>
+</div>
+```
 
 ---
 

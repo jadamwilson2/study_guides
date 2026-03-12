@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 8 Quiz Study Guide — Middle East &amp; East Asia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2744;
+      --navy-mid: #243560;
+      --gold: #C9A227;
+      --gold-light: #e8c55a;
+      --crimson: #8B1A1A;
+      --crimson-mid: #a52020;
+      --cream: #FAF6EE;
+      --cream-dark: #f0e8d8;
+      --text: #1a1a2e;
+      --text-light: #4a4a6a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Crimson Pro', Georgia, serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, #3a1a40 100%);
+      color: white;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A227' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-back {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.5rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .hero-back:hover { color: var(--gold-light); }
+    .hero-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .hero-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+    .hero-topics span {
+      background: rgba(201,162,39,0.2);
+      border: 1px solid rgba(201,162,39,0.4);
+      color: var(--gold-light);
+      padding: 0.25rem 0.85rem;
+      border-radius: 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* STICKY NAV */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      justify-content: center;
+      padding: 0;
+    }
+    .sticky-nav a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.1rem;
+      transition: all 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+    .sticky-nav a:hover {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* MAIN LAYOUT */
+    .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 60px;
+    }
+    .section-header {
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* OVERVIEW */
+    .overview-box {
+      background: var(--navy);
+      color: white;
+      border-radius: 10px;
+      padding: 1.75rem 2rem;
+      border-left: 5px solid var(--gold);
+    }
+    .overview-box p { margin-bottom: 0.75rem; color: rgba(255,255,255,0.88); }
+    .overview-box p:last-child { margin-bottom: 0; }
+    .overview-box strong { color: var(--gold-light); }
+
+    /* TOPIC CARDS */
+    .topic-card {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 10px rgba(26,39,68,0.08);
+      overflow: hidden;
+      border: 1px solid var(--cream-dark);
+    }
+    .topic-card-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .topic-card-header h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      color: white;
+    }
+    .topic-card-header .dates {
+      margin-left: auto;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+    }
+    .tc-mongol .topic-card-header { background: linear-gradient(90deg, #3d2b1f, #5a3e2b); }
+    .tc-ottoman .topic-card-header { background: linear-gradient(90deg, #1a2744, #2d4070); }
+    .tc-safavid .topic-card-header { background: linear-gradient(90deg, #2d1a44, #4a2d70); }
+    .tc-ming .topic-card-header { background: linear-gradient(90deg, #8B1A1A, #a52020); }
+    .tc-tokugawa .topic-card-header { background: linear-gradient(90deg, #1a3a2a, #2d5a40); }
+    .tc-qing .topic-card-header { background: linear-gradient(90deg, #1a1a3a, #2d2d6a); }
+    .topic-card-body { padding: 1.25rem 1.5rem; }
+    .topic-card-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .topic-card-body ul li {
+      padding: 0.3rem 0 0.3rem 1.4rem;
+      position: relative;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    .topic-card-body ul li:last-child { border-bottom: none; }
+    .topic-card-body ul li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.6rem;
+      top: 0.55rem;
+    }
+    .key-term {
+      display: inline-block;
+      background: var(--cream-dark);
+      border-radius: 4px;
+      padding: 0.05rem 0.4rem;
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+
+    /* FLASHCARDS */
+    .flashcard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 0.9rem;
+    }
+    .flashcard {
+      perspective: 1000px;
+      height: 190px;
+      cursor: pointer;
+    }
+    .flashcard-inner {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+    .flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+    .flashcard-front, .flashcard-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+    }
+    .flashcard-front { background: var(--navy); }
+    .flashcard-back {
+      background: white;
+      border: 2px solid var(--navy);
+      transform: rotateY(180deg);
+      justify-content: flex-start;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .fc-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.55);
+    }
+    .fc-term {
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .fc-def {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.5;
+      overflow-y: auto;
+      max-height: 100%;
+    }
+
+    /* QUIZ */
+    .quiz-question {
+      background: white;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 6px rgba(26,39,68,0.07);
+      border-left: 4px solid var(--navy);
+    }
+    .quiz-question .q-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .quiz-question .q-text {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .quiz-options {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 0.35rem;
+    }
+    .quiz-options li {
+      padding: 0.3rem 0.5rem;
+      border-radius: 5px;
+      font-size: 0.97rem;
+    }
+    .quiz-options li span.opt-letter {
+      font-weight: 700;
+      color: var(--navy-mid);
+      margin-right: 0.4rem;
+    }
+
+    .answer-key {
+      background: var(--navy);
+      color: white;
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin-top: 1.5rem;
+    }
+    .answer-key h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .answer-key-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 0.4rem;
+    }
+    .answer-key-grid .ak-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 5px;
+      padding: 0.3rem 0.5rem;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .answer-key-grid .ak-item .ak-q {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.75rem;
+    }
+    .answer-key-grid .ak-item .ak-a {
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    /* SHORT ANSWER */
+    .saq-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 10px rgba(26,39,68,0.08);
+    }
+    .saq-question {
+      background: var(--crimson);
+      color: white;
+      padding: 1rem 1.5rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+    .saq-answer {
+      padding: 1.25rem 1.5rem;
+    }
+    .saq-answer h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.8rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
+    .saq-answer p { margin-bottom: 0.5rem; }
+    .saq-answer p:last-child { margin-bottom: 0; }
+
+    /* RAPID REVIEW */
+    .rapid-review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .rr-card {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(26,39,68,0.1);
+    }
+    .rr-header {
+      padding: 0.6rem 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      color: white;
+      font-weight: 600;
+    }
+    .rr-mongol .rr-header { background: #5a3e2b; }
+    .rr-ottoman .rr-header { background: var(--navy); }
+    .rr-safavid .rr-header { background: #4a2d70; }
+    .rr-ming .rr-header { background: var(--crimson); }
+    .rr-tokugawa .rr-header { background: #2d5a40; }
+    .rr-qing .rr-header { background: #2d2d6a; }
+    .rr-body {
+      background: white;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      border: 1px solid var(--cream-dark);
+      border-top: none;
+    }
+    .rr-body ul { list-style: none; padding: 0; }
+    .rr-body ul li {
+      padding: 0.2rem 0 0.2rem 1rem;
+      position: relative;
+      font-size: 0.88rem;
+    }
+    .rr-body ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    /* VIDEO RESOURCES */
+    .video-list {
+      list-style: none;
+      padding: 0;
+    }
+    .video-list li {
+      background: white;
+      border-radius: 8px;
+      padding: 0.9rem 1.25rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 5px rgba(26,39,68,0.07);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      border-left: 3px solid var(--crimson);
+    }
+    .video-list li .vid-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .video-list li .vid-info strong { display: block; font-size: 1rem; }
+    .video-list li .vid-info span { font-size: 0.9rem; color: var(--text-light); }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.6rem; }
+      .sticky-nav a { font-size: 0.7rem; padding: 0.6rem 0.7rem; }
+      .flashcard-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <a class="hero-back" href="../">&#8592; Zach's Study Guides</a>
+  <div class="hero-eyebrow">Honors World History · Unit 8 · Quiz Prep</div>
+  <h1>Middle East &amp; East Asia</h1>
+  <p class="hero-subtitle">Short Answer Quiz — March 13, 2026</p>
+  <div class="hero-topics">
+    <span>⚔️ Mongols</span>
+    <span>🌙 Ottoman Empire</span>
+    <span>🕌 Safavid Empire</span>
+    <span>🏯 Ming Dynasty</span>
+    <span>⛩ Tokugawa Shogunate</span>
+    <span>🐉 Qing Dynasty</span>
+  </div>
+</div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <a href="#overview">Overview</a>
+  <a href="#topics">Topics</a>
+  <a href="#flashcards">Flashcards</a>
+  <a href="#quiz">Practice Quiz</a>
+  <a href="#short-answer">Short Answer</a>
+  <a href="#rapid-review">Rapid Review</a>
+  <a href="#videos">Videos</a>
+</nav>
+
+<div class="main">
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2 class="section-header">🌐 Overview</h2>
+    <div class="overview-box">
+      <p>Unit 8 covers major empires that dominated the <strong>Middle East, Central Asia, and East Asia</strong> roughly from the 13th through the 19th centuries. These civilizations share themes of imperial expansion, religious identity, administrative innovation, and the tension between openness and isolation.</p>
+      <p>The <strong>Mongols</strong> conquered an enormous swath of Eurasia, then fragmented into regional khanates — one of which evolved into the <strong>Ottoman Empire</strong>. While the Ottomans and <strong>Safavids</strong> competed over the Islamic world (Sunni vs. Shia), China was rebuilt under the <strong>Ming Dynasty</strong> after Mongol rule, and Japan was unified under the <strong>Tokugawa Shogunate</strong>. Finally, the Manchu-led <strong>Qing Dynasty</strong> replaced the Ming and pushed China to its greatest territorial extent.</p>
+      <p><strong>Focus for your quiz:</strong> Chief characteristics and main ideas for each empire — not every detail, but the defining features, key leaders, and lasting impacts.</p>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section id="topics">
+    <h2 class="section-header">📚 Topic Summaries</h2>
+
+    <!-- Mongols -->
+    <div class="topic-card tc-mongol">
+      <div class="topic-card-header">
+        <span style="font-size:1.4rem">⚔️</span>
+        <h3>The Mongols</h3>
+        <span class="dates">c. 1206 – 1368</span>
+      </div>
+      <div class="topic-card-body">
+        <ul>
+          <li><span class="key-term">Genghis Khan</span> (r. 1206–1227) united the Mongol tribes and launched conquests across Central Asia, China, Persia, and into Eastern Europe.</li>
+          <li>Created the <span class="key-term">largest contiguous land empire</span> in history, stretching from the Pacific to Eastern Europe.</li>
+          <li>Tactics: fast cavalry, terror and destruction to force surrender, but spared those who submitted peacefully.</li>
+          <li>After Genghis's death, the empire split into four <span class="key-term">khanates</span>: the Yuan (China), Il-Khanate (Persia), Golden Horde (Russia/Central Asia), and Chagatai Khanate (Central Asia).</li>
+          <li><span class="key-term">Pax Mongolica</span> ("Mongol Peace"): period of relative stability that facilitated trade and cultural exchange along the Silk Road.</li>
+          <li><span class="key-term">Yuan Dynasty</span> in China (Kublai Khan) — Mongols ruled China until expelled by the Ming in 1368.</li>
+          <li>Legacy: devastated many cities and populations, but also connected East and West — enabling spread of ideas, disease (Black Death), and goods.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Ottoman Empire -->
+    <div class="topic-card tc-ottoman">
+      <div class="topic-card-header">
+        <span style="font-size:1.4rem">🌙</span>
+        <h3>Ottoman Empire</h3>
+        <span class="dates">c. 1299 – 1922</span>
+      </div>
+      <div class="topic-card-body">
+        <ul>
+          <li>Founded by <span class="key-term">Osman I</span> (~1299) in northwestern Anatolia; expanded to become one of the longest-lasting empires in history.</li>
+          <li><span class="key-term">1453: Capture of Constantinople</span> — Sultan Mehmed II (the Conqueror) ended the Byzantine Empire; renamed city Istanbul, made it Ottoman capital.</li>
+          <li><span class="key-term">Suleiman the Magnificent</span> (r. 1520–1566): peak of Ottoman power — expanded into Hungary and the Mediterranean; also known as a great lawgiver.</li>
+          <li><span class="key-term">Millet system</span>: allowed religious minorities (Christians, Jews) to govern themselves under their own laws within the empire.</li>
+          <li><span class="key-term">Devshirme system</span>: the "blood tax" — recruited Christian boys, converted them to Islam, trained as elite soldiers called <span class="key-term">Janissaries</span> or government officials.</li>
+          <li>Sunni Muslim state; controlled key trade routes between Europe and Asia (contributing to European desire to find sea routes).</li>
+          <li>Empire stretched across Anatolia, the Balkans, the Middle East, and North Africa at its height.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Safavid Empire -->
+    <div class="topic-card tc-safavid">
+      <div class="topic-card-header">
+        <span style="font-size:1.4rem">🕌</span>
+        <h3>Safavid Empire</h3>
+        <span class="dates">1501 – 1736</span>
+      </div>
+      <div class="topic-card-body">
+        <ul>
+          <li>Founded by <span class="key-term">Shah Ismail I</span> (1501) in Persia (modern-day Iran); declared <span class="key-term">Twelver Shia Islam</span> the state religion.</li>
+          <li>This created a major Sunni–Shia divide with the Ottoman Empire, leading to frequent conflict and rivalry.</li>
+          <li><span class="key-term">Shah Abbas I</span> (r. 1588–1629): peak of the empire — reformed the military (used slave soldiers like the Ottomans), moved the capital to <span class="key-term">Isfahan</span>, made it a magnificent city of art and architecture.</li>
+          <li>Promoted Persian language, culture, and the arts; the era is considered a golden age of Persian civilization.</li>
+          <li>Geographic crossroads — traded with both East and West, but frequently at war with the Ottomans to the west and Uzbeks/Mughals to the east.</li>
+          <li>Declined after Shah Abbas I; eventually conquered by Afghan tribes in 1736.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Ming Dynasty -->
+    <div class="topic-card tc-ming">
+      <div class="topic-card-header">
+        <span style="font-size:1.4rem">🏯</span>
+        <h3>Ming Dynasty</h3>
+        <span class="dates">1368 – 1644</span>
+      </div>
+      <div class="topic-card-body">
+        <ul>
+          <li>Founded by <span class="key-term">Hongwu Emperor</span> (Zhu Yuanzhang) who expelled the Mongol Yuan Dynasty in 1368; reasserted Chinese culture and Confucian values.</li>
+          <li><span class="key-term">Yongle Emperor</span>: moved the capital to <span class="key-term">Beijing</span> and built the <span class="key-term">Forbidden City</span> — the massive imperial palace complex.</li>
+          <li><span class="key-term">Zheng He's voyages</span> (1405–1433): massive naval expeditions with enormous "treasure ships" reaching Southeast Asia, India, Arabia, and East Africa — a display of Chinese power, but ultimately abandoned as China turned inward.</li>
+          <li>Expanded and reinforced the <span class="key-term">Great Wall of China</span> — primarily to defend against Mongol incursions from the north.</li>
+          <li>Maintained the <span class="key-term">civil service examination system</span> based on Confucian classics — meritocratic but also conservative.</li>
+          <li>Increasingly <span class="key-term">isolationist</span> policies in later years; restricted foreign trade to official tribute missions.</li>
+          <li>Fell in 1644 when the Manchu (from northeast) invaded, establishing the Qing Dynasty.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tokugawa Shogunate -->
+    <div class="topic-card tc-tokugawa">
+      <div class="topic-card-header">
+        <span style="font-size:1.4rem">⛩</span>
+        <h3>Tokugawa Shogunate</h3>
+        <span class="dates">1603 – 1868</span>
+      </div>
+      <div class="topic-card-body">
+        <ul>
+          <li><span class="key-term">Tokugawa Ieyasu</span> unified Japan after decades of civil war and became <span class="key-term">shogun</span> in 1603; established capital at <span class="key-term">Edo</span> (modern Tokyo).</li>
+          <li>A <span class="key-term">shogunate</span> is a military government — the emperor still existed but was a figurehead; the shogun held real power.</li>
+          <li><span class="key-term">Sakoku policy</span> ("closed country"): Japan severely restricted contact with the outside world — foreigners were expelled, Japanese forbidden to travel abroad, foreign trade limited to a small Dutch post at Nagasaki.</li>
+          <li>Rigid <span class="key-term">social hierarchy</span>: samurai → farmers → artisans → merchants (roughly). The samurai class maintained privilege even as their military role declined.</li>
+          <li>~250 years of relative <span class="key-term">peace and stability</span> — allowed arts, culture, and urban life to flourish (kabuki theater, woodblock prints, haiku).</li>
+          <li>Daimyo (regional lords) were controlled through the <span class="key-term">sankin-kōtai</span> system — they had to alternate residence between their domain and Edo, keeping them under the shogun's eye.</li>
+          <li>Ended in 1868 with the <span class="key-term">Meiji Restoration</span> — Japan rapidly modernized and opened to Western influence.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Qing Dynasty -->
+    <div class="topic-card tc-qing">
+      <div class="topic-card-header">
+        <span style="font-size:1.4rem">🐉</span>
+        <h3>Qing Dynasty</h3>
+        <span class="dates">1644 – 1912</span>
+      </div>
+      <div class="topic-card-body">
+        <ul>
+          <li>Founded by the <span class="key-term">Manchu</span> people from northeast of China — an ethnic minority ruling over the Han Chinese majority (similar to Mongols with the Yuan).</li>
+          <li>The Manchu required Han Chinese men to wear the <span class="key-term">queue</span> (a long braid) as a sign of submission to Qing rule.</li>
+          <li>Largely kept the <span class="key-term">Ming administrative structure</span> — retained the civil service exam, Confucian bureaucracy, and Chinese customs to maintain legitimacy.</li>
+          <li>Greatest territorial expansion: under <span class="key-term">Kangxi Emperor</span> (r. 1661–1722) and <span class="key-term">Qianlong Emperor</span> (r. 1735–1796), China reached its greatest geographic extent, including Tibet, Xinjiang, and Mongolia.</li>
+          <li>Population boom and agricultural success in early Qing; prosperous and powerful in the 17th–18th centuries.</li>
+          <li>Eventually declined: internal rebellions, European pressure, and the <span class="key-term">Opium Wars</span> (1839–1842, 1856–1860) with Britain exposed Qing weakness.</li>
+          <li>Last Chinese dynasty — ended in 1912 with the republican revolution.</li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FLASHCARDS -->
+  <section id="flashcards">
+    <h2 class="section-header">🃏 Flashcards</h2>
+    <div class="flashcard-grid">
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Genghis Khan</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Founder and supreme leader of the Mongol Empire (r. 1206–1227). United the Mongol tribes and launched massive conquests across Asia and into Europe.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Pax Mongolica</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">"Mongol Peace" — a period of relative stability under Mongol rule that allowed trade, ideas, and goods (and disease) to flow along the Silk Road.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Khanate</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">The regional sub-empires created after Genghis Khan's death. The four main khanates were the Yuan (China), Il-Khanate (Persia), Golden Horde, and Chagatai.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Osman I</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Founder of the Ottoman dynasty (~1299) in northwestern Anatolia. The empire is named after him.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Fall of Constantinople (1453)</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Sultan Mehmed II captured Constantinople, ending the Byzantine Empire. The city was renamed Istanbul and became the Ottoman capital.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Suleiman the Magnificent</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Ottoman sultan (r. 1520–1566) who ruled at the empire's peak. Expanded into Hungary and the Mediterranean; also reformed the legal system — called "the Lawgiver" by Ottomans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Devshirme / Janissaries</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Devshirme = "blood tax" system of taking Christian boys, converting them, and training them. Janissaries = elite Ottoman infantry soldiers produced by this system.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Millet System</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Ottoman policy allowing religious minority communities (Christians, Jews) to self-govern under their own religious laws. Made the diverse empire more manageable.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Shah Ismail I</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Founder of the Safavid Empire (1501). Declared Twelver Shia Islam the state religion of Persia, creating a religious divide with the Sunni Ottomans.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Sunni vs. Shia</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">The major split in Islam. Ottomans = Sunni; Safavids = Shia. This religious difference drove centuries of conflict between the two empires.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Shah Abbas I</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Greatest Safavid ruler (r. 1588–1629). Moved the capital to Isfahan, reformed the military, and presided over a golden age of Persian art and culture.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Hongwu Emperor</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Founder of the Ming Dynasty (r. 1368–1398). A peasant who led the rebellion against the Mongol Yuan Dynasty; restored Confucian values and Chinese rule.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Forbidden City</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Massive imperial palace complex in Beijing, built by the Yongle Emperor. The seat of Ming and Qing emperors for nearly 500 years.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Zheng He's Voyages</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Series of enormous Chinese naval expeditions (1405–1433) commanded by Admiral Zheng He. Reached Southeast Asia, India, Arabia, and East Africa — demonstrating Ming power.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Tokugawa Ieyasu</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Unified Japan after the civil war era and became shogun in 1603. Established the Tokugawa Shogunate with its capital at Edo (Tokyo).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Shogun / Shogunate</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">A shogun is a military ruler of Japan. A shogunate is the military government. The emperor was a figurehead; real power belonged to the shogun.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Sakoku Policy</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Tokugawa "closed country" policy — Japan expelled most foreigners, banned Japanese from traveling abroad, and limited trade to a Dutch post at Nagasaki. Lasted ~200 years.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Manchu / Qing Dynasty</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">The Manchu were a people from northeast China who conquered the Ming in 1644 and founded the Qing Dynasty — the last imperial dynasty of China (ended 1912).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Kangxi &amp; Qianlong Emperors</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Two great Qing emperors who expanded China's territory to its greatest extent, incorporating Tibet, Xinjiang, and Mongolia. The empire was prosperous under their long reigns.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flashcard" onclick="this.classList.toggle('flipped')" title="Click to flip">
+        <div class="flashcard-inner">
+          <div class="flashcard-front">
+            <div class="fc-label">Click to reveal</div>
+            <div class="fc-term">Queue (Qing Hair Rule)</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="fc-def">Qing policy requiring Han Chinese men to shave the front of their head and wear a long braid (queue) as a sign of submission to Manchu rule. Refusal meant death.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRACTICE QUIZ -->
+  <section id="quiz">
+    <h2 class="section-header">✏️ Practice Quiz (20 Questions)</h2>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 1</div>
+      <div class="q-text">Who united the Mongol tribes and founded the Mongol Empire in 1206?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Kublai Khan</li>
+        <li><span class="opt-letter">B.</span> Genghis Khan</li>
+        <li><span class="opt-letter">C.</span> Tamerlane</li>
+        <li><span class="opt-letter">D.</span> Osman I</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 2</div>
+      <div class="q-text">The "Pax Mongolica" refers to:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> The Mongol military strategy of total warfare</li>
+        <li><span class="opt-letter">B.</span> A peace treaty between China and the Mongols</li>
+        <li><span class="opt-letter">C.</span> A period of relative stability that allowed trade across the Mongol Empire</li>
+        <li><span class="opt-letter">D.</span> The Mongol conversion to Buddhism</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 3</div>
+      <div class="q-text">Which Ottoman sultan captured Constantinople in 1453?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Suleiman the Magnificent</li>
+        <li><span class="opt-letter">B.</span> Osman I</li>
+        <li><span class="opt-letter">C.</span> Selim I</li>
+        <li><span class="opt-letter">D.</span> Mehmed II</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 4</div>
+      <div class="q-text">The Ottoman devshirme system involved:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Taxing merchants on the Silk Road</li>
+        <li><span class="opt-letter">B.</span> Taking Christian boys, converting them to Islam, and training them as soldiers or officials</li>
+        <li><span class="opt-letter">C.</span> Allowing religious minorities to self-govern</li>
+        <li><span class="opt-letter">D.</span> A system of trade with Persia</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 5</div>
+      <div class="q-text">The Safavid Empire's state religion was:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Sunni Islam</li>
+        <li><span class="opt-letter">B.</span> Christianity</li>
+        <li><span class="opt-letter">C.</span> Twelver Shia Islam</li>
+        <li><span class="opt-letter">D.</span> Buddhism</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 6</div>
+      <div class="q-text">Which Safavid ruler is considered the greatest, moving the capital to Isfahan and presiding over a golden age of Persian culture?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Shah Ismail I</li>
+        <li><span class="opt-letter">B.</span> Shah Abbas I</li>
+        <li><span class="opt-letter">C.</span> Shah Tahmasp I</li>
+        <li><span class="opt-letter">D.</span> Shah Suleiman</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 7</div>
+      <div class="q-text">A major source of conflict between the Ottoman and Safavid empires was:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Control of the Indian Ocean trade routes</li>
+        <li><span class="opt-letter">B.</span> The Sunni–Shia religious divide</li>
+        <li><span class="opt-letter">C.</span> Competition over China</li>
+        <li><span class="opt-letter">D.</span> Disputes over the Mongol legacy</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 8</div>
+      <div class="q-text">The Ming Dynasty was founded after expelling which rulers from China?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> The Qing Dynasty</li>
+        <li><span class="opt-letter">B.</span> The Tang Dynasty</li>
+        <li><span class="opt-letter">C.</span> The Mongol Yuan Dynasty</li>
+        <li><span class="opt-letter">D.</span> The Manchu</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 9</div>
+      <div class="q-text">Zheng He's voyages (1405–1433) are significant because they:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Established permanent Chinese colonies in Africa</li>
+        <li><span class="opt-letter">B.</span> Demonstrated Chinese naval power and expanded tribute relationships across Asia and Africa</li>
+        <li><span class="opt-letter">C.</span> Opened direct trade with Europe</li>
+        <li><span class="opt-letter">D.</span> Led to the colonization of Japan</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 10</div>
+      <div class="q-text">The Forbidden City in Beijing was built during the reign of:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> The Hongwu Emperor</li>
+        <li><span class="opt-letter">B.</span> Genghis Khan</li>
+        <li><span class="opt-letter">C.</span> The Yongle Emperor</li>
+        <li><span class="opt-letter">D.</span> The Kangxi Emperor</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 11</div>
+      <div class="q-text">Who established the Tokugawa Shogunate in 1603?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Oda Nobunaga</li>
+        <li><span class="opt-letter">B.</span> Toyotomi Hideyoshi</li>
+        <li><span class="opt-letter">C.</span> Tokugawa Ieyasu</li>
+        <li><span class="opt-letter">D.</span> Emperor Meiji</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 12</div>
+      <div class="q-text">The Tokugawa sakoku policy meant that Japan:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Aggressively expanded its territory across Asia</li>
+        <li><span class="opt-letter">B.</span> Isolated itself from most foreign contact and trade</li>
+        <li><span class="opt-letter">C.</span> Adopted Christianity as the state religion</li>
+        <li><span class="opt-letter">D.</span> Formed an alliance with the Ming Dynasty</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 13</div>
+      <div class="q-text">In the Tokugawa social hierarchy, which group ranked highest?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Merchants</li>
+        <li><span class="opt-letter">B.</span> Artisans</li>
+        <li><span class="opt-letter">C.</span> Samurai</li>
+        <li><span class="opt-letter">D.</span> Farmers</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 14</div>
+      <div class="q-text">The Qing Dynasty was founded by which ethnic group?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Han Chinese</li>
+        <li><span class="opt-letter">B.</span> Mongols</li>
+        <li><span class="opt-letter">C.</span> Tibetans</li>
+        <li><span class="opt-letter">D.</span> Manchu</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 15</div>
+      <div class="q-text">The Qing Dynasty largely kept which administrative system from the previous dynasty?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Mongol tribal councils</li>
+        <li><span class="opt-letter">B.</span> The Ming civil service exam and Confucian bureaucracy</li>
+        <li><span class="opt-letter">C.</span> The Japanese shogunate model</li>
+        <li><span class="opt-letter">D.</span> Ottoman devshirme system</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 16</div>
+      <div class="q-text">The "queue" enforced by the Qing Dynasty required Han Chinese men to:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Convert to Manchu religion</li>
+        <li><span class="opt-letter">B.</span> Wear traditional Manchu dress</li>
+        <li><span class="opt-letter">C.</span> Shave the front of their head and wear a long braid as a sign of submission</li>
+        <li><span class="opt-letter">D.</span> Pay a special tax to the Manchu rulers</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 17</div>
+      <div class="q-text">Under the Ottoman millet system:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> All subjects were required to convert to Islam</li>
+        <li><span class="opt-letter">B.</span> Religious minority communities could govern themselves under their own laws</li>
+        <li><span class="opt-letter">C.</span> Christians and Jews were expelled from Ottoman territory</li>
+        <li><span class="opt-letter">D.</span> Military service was mandatory for all non-Muslims</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 18</div>
+      <div class="q-text">What was a shared characteristic of the Mongol, Manchu (Qing), and Ottoman empires?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> All three were Shia Muslim</li>
+        <li><span class="opt-letter">B.</span> All three were outsiders/minorities who conquered and ruled over larger, established civilizations</li>
+        <li><span class="opt-letter">C.</span> All three used gunpowder for the first time</li>
+        <li><span class="opt-letter">D.</span> All three were based in China</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 19</div>
+      <div class="q-text">Which two empires were frequently at war largely due to the Sunni–Shia divide?</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Ming and Qing</li>
+        <li><span class="opt-letter">B.</span> Mongol and Tokugawa</li>
+        <li><span class="opt-letter">C.</span> Ottoman and Safavid</li>
+        <li><span class="opt-letter">D.</span> Safavid and Ming</li>
+      </ul>
+    </div>
+
+    <div class="quiz-question">
+      <div class="q-num">Question 20</div>
+      <div class="q-text">The Tokugawa Shogunate ended in 1868 with the:</div>
+      <ul class="quiz-options">
+        <li><span class="opt-letter">A.</span> Mongol invasion of Japan</li>
+        <li><span class="opt-letter">B.</span> Meiji Restoration — Japan modernized and restored imperial rule</li>
+        <li><span class="opt-letter">C.</span> American colonization of Japan</li>
+        <li><span class="opt-letter">D.</span> Ming conquest of Japan</li>
+      </ul>
+    </div>
+
+    <!-- Answer Key -->
+    <div class="answer-key">
+      <h3>🔑 Answer Key</h3>
+      <div class="answer-key-grid">
+        <div class="ak-item"><div class="ak-q">Q1</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q2</div><div class="ak-a">C</div></div>
+        <div class="ak-item"><div class="ak-q">Q3</div><div class="ak-a">D</div></div>
+        <div class="ak-item"><div class="ak-q">Q4</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q5</div><div class="ak-a">C</div></div>
+        <div class="ak-item"><div class="ak-q">Q6</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q7</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q8</div><div class="ak-a">C</div></div>
+        <div class="ak-item"><div class="ak-q">Q9</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q10</div><div class="ak-a">C</div></div>
+        <div class="ak-item"><div class="ak-q">Q11</div><div class="ak-a">C</div></div>
+        <div class="ak-item"><div class="ak-q">Q12</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q13</div><div class="ak-a">C</div></div>
+        <div class="ak-item"><div class="ak-q">Q14</div><div class="ak-a">D</div></div>
+        <div class="ak-item"><div class="ak-q">Q15</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q16</div><div class="ak-a">C</div></div>
+        <div class="ak-item"><div class="ak-q">Q17</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q18</div><div class="ak-a">B</div></div>
+        <div class="ak-item"><div class="ak-q">Q19</div><div class="ak-a">C</div></div>
+        <div class="ak-item"><div class="ak-q">Q20</div><div class="ak-a">B</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHORT ANSWER PRACTICE -->
+  <section id="short-answer">
+    <h2 class="section-header">📝 Short Answer Practice</h2>
+    <p style="margin-bottom:1.25rem; color:var(--text-light); font-style:italic;">These questions mirror the format of your actual quiz. Focus on chief characteristics and main ideas — not exhaustive detail.</p>
+
+    <div class="saq-card">
+      <div class="saq-question">1. What were the chief characteristics of the Mongol Empire under Genghis Khan, and what was its lasting impact on Eurasia?</div>
+      <div class="saq-answer">
+        <h4>Model Answer</h4>
+        <p>The Mongols were nomadic warriors from Central Asia who, under Genghis Khan, created the largest contiguous land empire in history through highly effective cavalry warfare and a strategy of terror — cities that surrendered were spared; those that resisted were destroyed. The empire later split into four khanates. Its lasting impact was the <strong>Pax Mongolica</strong>: a period of relative stability that facilitated Silk Road trade and cultural exchange between East and West, while also inadvertently spreading the Black Death. The Mongol Yuan Dynasty in China was eventually expelled and replaced by the Ming Dynasty in 1368.</p>
+      </div>
+    </div>
+
+    <div class="saq-card">
+      <div class="saq-question">2. Compare the Ottoman and Safavid empires — what did they have in common, and what was the main source of conflict between them?</div>
+      <div class="saq-answer">
+        <h4>Model Answer</h4>
+        <p>Both the Ottoman and Safavid empires were powerful Muslim states in the Middle East that used gunpowder, maintained professional armies, and ruled over multi-ethnic populations. Both borrowed the idea of slave-soldier corps from earlier traditions. However, the main source of conflict was the <strong>Sunni–Shia divide</strong>: the Ottomans were Sunni Muslim and the Safavids declared Twelver Shia Islam the state religion of Persia. This religious difference led to frequent wars over territory and religious supremacy, making them bitter rivals throughout the 16th and 17th centuries.</p>
+      </div>
+    </div>
+
+    <div class="saq-card">
+      <div class="saq-question">3. What was the policy of isolation adopted by the Tokugawa Shogunate, and why is it significant? How does the Qing Dynasty's approach to ruling China compare?</div>
+      <div class="saq-answer">
+        <h4>Model Answer</h4>
+        <p>The Tokugawa Shogunate enforced the <strong>sakoku ("closed country") policy</strong> — expelling most foreigners, banning Japanese travel abroad, and limiting trade to a single Dutch post at Nagasaki. This kept Japan isolated for roughly 200 years, preserving a stable feudal society but leaving it technologically behind when Western powers arrived in force in the 19th century. The Qing Dynasty similarly used controlled contact with the outside world, restricting European trade to Canton. However, the Qing faced a different internal challenge: as Manchu rulers over a Han Chinese majority, they maintained Ming institutions (civil service exams, Confucian bureaucracy) to appear legitimate while imposing Manchu cultural markers like the queue hairstyle. Both empires eventually faced crises from Western pressure — Japan's forced opening in 1853 and China's Opium Wars.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAPID REVIEW -->
+  <section id="rapid-review">
+    <h2 class="section-header">⚡ Rapid Review Sheet</h2>
+    <p style="margin-bottom:1.25rem; color:var(--text-light); font-style:italic;">Key facts only — great for the night before the quiz.</p>
+    <div class="rapid-review-grid">
+      <div class="rr-card rr-mongol">
+        <div class="rr-header">⚔️ Mongols</div>
+        <div class="rr-body">
+          <ul>
+            <li>Genghis Khan unites tribes (1206)</li>
+            <li>Largest contiguous land empire</li>
+            <li>Split into 4 khanates</li>
+            <li>Pax Mongolica = Silk Road trade</li>
+            <li>Yuan Dynasty in China (Kublai Khan)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rr-card rr-ottoman">
+        <div class="rr-header">🌙 Ottomans</div>
+        <div class="rr-body">
+          <ul>
+            <li>Founded by Osman I (~1299)</li>
+            <li>1453: took Constantinople (Istanbul)</li>
+            <li>Peak: Suleiman the Magnificent</li>
+            <li>Devshirme → Janissaries</li>
+            <li>Millet system for minorities</li>
+            <li>Sunni Muslim</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rr-card rr-safavid">
+        <div class="rr-header">🕌 Safavids</div>
+        <div class="rr-body">
+          <ul>
+            <li>Founded by Shah Ismail I (1501)</li>
+            <li>State religion: Twelver Shia</li>
+            <li>Rival of Ottomans (Sunni vs Shia)</li>
+            <li>Peak: Shah Abbas I</li>
+            <li>Capital: Isfahan</li>
+            <li>Persia / Iran</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rr-card rr-ming">
+        <div class="rr-header">🏯 Ming Dynasty</div>
+        <div class="rr-body">
+          <ul>
+            <li>Expelled Mongols (1368)</li>
+            <li>Hongwu = founder</li>
+            <li>Yongle → Beijing / Forbidden City</li>
+            <li>Zheng He's voyages (1405–1433)</li>
+            <li>Great Wall expanded</li>
+            <li>Civil service exams</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rr-card rr-tokugawa">
+        <div class="rr-header">⛩ Tokugawa Japan</div>
+        <div class="rr-body">
+          <ul>
+            <li>Ieyasu unifies (1603), capital: Edo</li>
+            <li>Shogun = real power; Emperor = figurehead</li>
+            <li>Sakoku = isolation policy</li>
+            <li>Rigid social hierarchy</li>
+            <li>~250 yrs peace; arts flourish</li>
+            <li>Ended: Meiji Restoration (1868)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="rr-card rr-qing">
+        <div class="rr-header">🐉 Qing Dynasty</div>
+        <div class="rr-body">
+          <ul>
+            <li>Manchu conquer China (1644)</li>
+            <li>Last Chinese dynasty (ended 1912)</li>
+            <li>Kept Ming bureaucracy</li>
+            <li>Queue = submission symbol</li>
+            <li>Greatest emperors: Kangxi, Qianlong</li>
+            <li>Declined: Opium Wars</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO RESOURCES -->
+  <section id="videos">
+    <h2 class="section-header">🎬 Helpful Videos</h2>
+    <p style="margin-bottom:1rem; color:var(--text-light); font-style:italic;">Search for these on YouTube — Crash Course History is especially helpful for quiz prep.</p>
+    <ul class="video-list">
+      <li>
+        <span class="vid-icon">▶️</span>
+        <div class="vid-info">
+          <strong>Crash Course World History: The Mongols</strong>
+          <span>Search: "Crash Course World History Mongols" — covers Genghis Khan, empire structure, and Pax Mongolica (~12 min)</span>
+        </div>
+      </li>
+      <li>
+        <span class="vid-icon">▶️</span>
+        <div class="vid-info">
+          <strong>Crash Course World History: The Ottoman Empire</strong>
+          <span>Search: "Crash Course Ottoman Empire" — devshirme, Suleiman, millet system covered clearly</span>
+        </div>
+      </li>
+      <li>
+        <span class="vid-icon">▶️</span>
+        <div class="vid-info">
+          <strong>Crash Course World History: The Mughal Empire / Islamic Empires</strong>
+          <span>Search: "Crash Course Safavid Empire" or "Islamic Gunpowder Empires" — covers Ottomans, Safavids, and Mughals together</span>
+        </div>
+      </li>
+      <li>
+        <span class="vid-icon">▶️</span>
+        <div class="vid-info">
+          <strong>Crash Course World History: 2000 Years of Chinese History</strong>
+          <span>Search: "Crash Course Ming Dynasty" or "Crash Course Qing" — covers both dynasties with key events</span>
+        </div>
+      </li>
+      <li>
+        <span class="vid-icon">▶️</span>
+        <div class="vid-info">
+          <strong>Crash Course World History: Japan in the Heian Period &amp; Feudalism</strong>
+          <span>Search: "Crash Course Tokugawa Japan" — covers the shogunate, sakoku, and social structure</span>
+        </div>
+      </li>
+      <li>
+        <span class="vid-icon">▶️</span>
+        <div class="vid-info">
+          <strong>Khan Academy: Gunpowder Empires</strong>
+          <span>Search: "Khan Academy Gunpowder Empires" — a concise comparison of the Ottoman, Safavid, and Mughal empires</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+</div><!-- .main -->
+</body>
+</html>
